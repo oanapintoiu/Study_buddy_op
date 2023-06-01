@@ -159,7 +159,7 @@ REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
 6. Install MongoDB
    ```
    brew tap mongodb/brew
-   brew install mongodb-community@5.0
+    brew tap mongodb/brew
    ```
    *Note:* If you see a message that says `If you need to have mongodb-community@5.0 first in your PATH, run:`, follow the instruction. Restart your terminal after this.
 7. Start MongoDB

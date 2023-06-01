@@ -5,9 +5,10 @@ const SessionsController = {
 
   Create: (req, res) => {
     const email = req.body.email;
+    const username = req.body.username;
     const password = req.body.password;
 
-    User.findOne({ email: email }).then(async (user) => {
+    User.findOne({ email: email, username: username }).then(async (user) => {
       if (!user) {
         console.log("auth error: user not found")
         res.status(401).json({ message: "auth error" });
