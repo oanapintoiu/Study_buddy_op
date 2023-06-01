@@ -1,4 +1,4 @@
-import Feed from './Feed'
+import Feed from './StudyGroup'
 const navigate = () => {}
 
 describe("Feed", () => {

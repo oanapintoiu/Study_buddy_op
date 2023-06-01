@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Post from '../post/Post'
+import { useParams } from "react-router-dom";
 
-const Feed = ({ navigate }) => {
+const StudyGroup = ({ navigate }) => {
+  const { groupId } = useParams();
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
 
   useEffect(() => {
     if(token) {
-      fetch("/posts", {
+      fetch(`/groups/${groupId}/posts`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -19,31 +21,22 @@ const Feed = ({ navigate }) => {
           setPosts(data.posts);
         })
     }
-  }, [])
-    
+  }, [groupId, token])
 
-  const logout = () => {
-    window.localStorage.removeItem("token")
-    navigate('/login')
+  if(token) {
+    return(
+      <>
+        <h2>Group Posts</h2>
+        <div id='group' role="group">
+            {posts.map(
+              (post) => ( <Post post={ post } key={ post._id } /> )
+            )}
+        </div>
+      </>
+    )
+  } else {
+    navigate('/signin')
   }
-  
-    if(token) {
-      return(
-        <>
-          <h2>Posts</h2>
-            <button onClick={logout}>
-              Logout
-            </button>
-          <div id='feed' role="feed">
-              {posts.map(
-                (post) => ( <Post post={ post } key={ post._id } /> )
-              )}
-          </div>
-        </>
-      )
-    } else {
-      navigate('/signin')
-    }
 }
 
-export default Feed;
+export default StudyGroup;
