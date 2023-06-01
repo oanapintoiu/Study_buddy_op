@@ -1,248 +1,288 @@
-# Acebook
+# Bank_Tech_Test README
 
-In this project, you are tasked with working on an existing application. A significant part of the challenge will be to familiarise yourself with the codebase you've inherited, as you work to **improve and extend** it.
+## Table of Contents
 
-## Videos
+[1. Specifications](#1-specifications)  
+[2. Observations](#2-observations)  
+[3. User Story](#3-user-story)  
+[4. Diagram](#4-diagram)  
+[5. Methodology Implementaion](#5-methodology-implementation)  
+[6. Tickets](#6-tickets)  
+[7. Test Covarage](#7-test-covarage)  
+[8. Screenshots: program tested in terminal](#8-screenshots-program-tested-in-terminal)  
+[9. Instructions](#9-instructions)   
 
-These videos complement the docs below.
+Technologies
 
-* [An overview of the app](https://youtu.be/meTABGgrO2c)
-* [The backend (api)](https://youtu.be/mFczOzWW3vo)
-* [Postman](https://youtu.be/VO_kinuJngA)
-
-## Existing Features
-
-It's already possible for a user to:
-- Sign up
-- Sign in
-- Sign out
-- View a list of posts
-
-## Technologies
-
+Technologies
 Here's an overview of the technologies used to build this template application. You don't need to do a deep dive on each one right now. Instead, try to get a feeling for the big picture and then dive into the details when a specific task pushes you in that direction.
 
-### **M** is for MongoDB
-[MongoDB](https://www.mongodb.com/) is a _NoSQL_ database program that stores data in collections of documents (in a format similar to JSON), rather than in tables. The application interacts with MongoDB using a tool called Mongoose.
+M is for MongoDB
+MongoDB is a NoSQL database program that stores data in collections of documents (in a format similar to JSON), rather than in tables. The application interacts with MongoDB using a tool called Mongoose.
 
-### **E** is for Express
-[Express](https://expressjs.com/) is the Javascript equivalent of Sinatra. The structure of this application will feel quite different to what you're used to but the principles are the same.
+E is for Express
+Express is the Javascript equivalent of Sinatra. The structure of this application will feel quite different to what you're used to but the principles are the same.
 
-### **R** is for React
-[React](https://reactjs.org/) is a hugely popular tool that is used to build engaging front ends. The basic principle is that the front end is split up into _components_, each of which _could_ include some logic, template structure (HTML) and styling (CSS).
+R is for React
+React is a hugely popular tool that is used to build engaging front ends. The basic principle is that the front end is split up into components, each of which could include some logic, template structure (HTML) and styling (CSS).
 
-### **N** is for Node
-Java script was originally designed to run exclusively in browsers, such as Chrome. [Node](https://nodejs.org/en/) is a tool that allows you to run Javascript outside the browser and its invention made it possible to build full stack Javascript apps.
+N is for Node
+Java script was originally designed to run exclusively in browsers, such as Chrome. Node is a tool that allows you to run Javascript outside the browser and its invention made it possible to build full stack Javascript apps.
 
 We also used...
 
-- [Jest](https://jestjs.io/) for unit testing on the back end
-- [Cypress](https://www.cypress.io/) for end-to-end testing and component testing, on the front end
-- [Mongoose](https://mongoosejs.com) to model objects in MongoDB.
-- [Handlebars](https://handlebarsjs.com/) for the `home` template.
-- [ESLint](https://eslint.org) for linting.
-- [Nodemon](https://nodemon.io/) to reload the server automatically.
-
-## Architecture
-
+Jest for unit testing on the back end
+Cypress for end-to-end testing and component testing, on the front end
+Mongoose to model objects in MongoDB.
+Handlebars for the home template.
+ESLint for linting.
+Nodemon to reload the server automatically.
+Architecture
 This application is comprised of two distinct pieces.
 
-- A backend API built with Express
-- A front end built with React
-
+A backend API built with Express
+A front end built with React
 The React front end sends HTTP requests to the backend API and receives JSON in response body, rather than a whole page of HTML.
 
-For example, the React front end would send this request to retrieve the entire `Post` collection.
+
+
+## 1. Specifications
+
+
+#### Requirements
+
+* TEXT
+
+
+## 2. Observations
+
+*
+
+## 3. User Story
 
 ```
-GET "/posts"
+
+#Authentication
+1. As a user, I would like to: sign up - MVP - Started
+2. As a user, I would like to: log in - MVP - Started
+3. As a user, I would like to: log out - MVP - Started
+4. As a user, I would like to: have a username that's unique - MVP
+  
+#User Profile
+4. As a user, I would like to: view and edit my profile page - MVP - Use Moangoose code
+5. As a user, I would like to: have my personal details on my profile - MVP - Use Moangoose code base for this
+6. As a user, I would like to: list all study groups I'm a part of - MVP
+7. As a user, I would like to: list all my skill levels (proficiency) - MVP
+8. As a user, I would like to: list all my study interests - MVP
+  
+#View
+9. As a user, I would like to: like to see other peoples profiles with limited personal details (GDPR) - MVP
+10. As a user, I would like to: see my study group page
+
+#Add study buddies
+11. As a user, I would like to: add study buddies to my study buddy list - MVP (to invite they need to be on list)
+
+#Search
+12. As a user, I would like to: filter study categories using a search bar (predefined) - MVP
+ 
+#Create or join
+13. As a user, I would like to: create or join private groups - MVP
+14. As a user, I would like to: invite other users to a group - MVP
+15. As a user, I would like to: accept or decline invitations - MVP
+16. As a user, I would like to: give my group a custom name - MVP
+
+#AI integration
+17. As a user, I would like to: ask a ai bot questions in my group that everyone can see the answers to - MVP
+
+#Post
+18. As a user, I would like to: post threads in a group - MVP
+19. As a user, I would like to: respond to posts - MVP
+
+#Nice to have features: 
+
+1. As a user, I would like to: see my photo - Bonus
+2. As a user, I would like to: message other users directly - Bonus
+3. As a user, I would like to: search public groups by name - Bonus
+4. As a user, I would like to: filter study groups by location on a map - Bonus (high priority)
+5. As a user, I would like to: use the ai to summarise the day - bonus
+6. As a user, I would like to: have an option to display if I'm open to face to face meetups - Bonus
+7. As a user, I would like to: have a reminder for my meetups - Bonus
+8. As a user, I would like to: set my status (custom text) - Bonus
+9. As a user, I would like to: set my status (green/red/amber) - Bonus
+10. As a user, I would like to: see all the group notes organised in the study group page - Bonus
+11. As a user, I would like to: add and see study links on my study group page - Bonus
+12. As a user, I would like to: see rules of the group - Bonus
+13. As a user, I would like to: like posts - Bonus
+14. As a user, I would like to: set the limit for the number of people in my group - Bonus
+15. As a user, I would like to: set other users as admins - Bonus
 ```
 
-And the body of the response would look like this.
+## 4. Diagram
 
-```
-{
-    "posts": [
-        {
-            "_id": "62f8ef0e6c1ffcf74cbbb181",
-            "message": "Hello, this is my first Acebook post!",
-            "__v": 0
-        },
-        {
-            "_id": "62f8ef366c1ffcf74cbbb188",
-            "message": "Welcome to Acebook! Have an Acetime :)",
-            "__v": 0
-        },
-        {
-            "_id": "62f8f08af1cffef85a7426ae",
-            "message": "Thank you :D",
-            "__v": 0
-        }
-    ]
-}
-```
+**1. Diagram Version 1**
+<img src="location/picure_name.png"
+alt="Text in case picture does not display">
 
-Here's a diagram of the above
-<br>
-<br>
-![a diagram of the MERN stack](./diagrams/mern_stack.png)
-<br>
-<br>
+**2. Diagram Version 2**
+<img src="location/picure_name_2.png"
+alt="Text in case picture does not display 2">
 
-Once received by the React FE, the JSON in the response body is used to render a list of posts on the page.
 
-![response body mapped onto a page](./diagrams/response_parsing.png)
 
-This architectural pattern is quite popular because it allows teams to build multiple front ends, all of which use the same backend API. You could, for example, go on to build a mobile app without needing to create another backend API.
-## Authentication
+## 5. Methodology Implementation
 
-Up until now, if you've implemented authentication, it will likely have been done using sessions - this is a useful point of comparison but, if you haven't implemented authentication yet, that's not going to impede you right now.
+### Research
 
-Here's the authentication flow for this application
+This is how you add a link: [test to link](link).
 
-1. A registered user submits their email address and password via the React front end.
-2. The Express backend receives the data and tries to find a user in the DB with the same email address.
-3. If a user is found, the password in the database is compared to the password that was submitted.
-4. If the passwords match, a JSON Web Token is generated and returned, as part of the response.
-5. The React front end receives the token and holds on to it.
-6. Every request to `"/posts"` must include a valid token (which is checked by the backend).
-7. When the user logs out, the front end discards the token.
 
-![authentication flow diagram](./diagrams/auth_flow.png)
+### Controller functionality
 
-### What is a JSON Web Token?
+1. **User Controller**: 
 
-A JSON Web Token, or JWT, is a token that comprises three parts
+* All about the `user controller`
 
-- A header, which contains information about how the token was generated.
-- A signature, which is used to verify the token.
-- A payload, which you can use to store some **non-sensitive data** like a user id. Note that the payload is not secure and can be decoded very easily.
+2. **Example Controller**:
 
-The signature is created using a 'secret', which must be kept private (i.e. not put on GitHub) otherwise nefarious internet users could start to issue tokens for your application.
+* 
 
-Here, we've used an environment variable called `JWT_SECRET`, which you'll see used in the commands to start the application and run the tests (below). You can change the value of that environment variable to anything you like.
-## Card wall
+3. **Example Controller**:
 
-REPLACE THIS TEXT WITH A LINK TO YOUR CARD WALL
-
-## Quickstart
-
-### Install Node.js
-
-1. Install Node Version Manager (NVM)
-   ```
-   brew install nvm
-   ```
-   Then follow the instructions to update your `~/.bash_profile`.
-2. Open a new terminal
-3. Install the latest version of [Node.js](https://nodejs.org/en/), currently `18.1.0`.
-   ```
-   nvm install 18
-   ```
-
-### Set up your project
-
-1. Fork this repository
-2. Rename your fork to `acebook-<team name>`
-3. Clone your fork to your local machine
-4. Install Node.js dependencies for both FE and BE (API)
-   ```
-   ; cd api
-   ; npm install
-   ; cd ../frontend
-   ; npm install
-   ```
-5. Install an ESLint plugin for your editor. For example: [`linter-eslint`](https://github.com/AtomLinter/linter-eslint) for Atom.
-6. Install MongoDB
-   ```
-   brew tap mongodb/brew
-   brew install mongodb-community@5.0
-   ```
-   *Note:* If you see a message that says `If you need to have mongodb-community@5.0 first in your PATH, run:`, follow the instruction. Restart your terminal after this.
-7. Start MongoDB
-   ```
-   brew services start mongodb-community@5.0
-   ```
-
-### Start
-
-1. Start the server
-
-  **Note the use of an environment variable for the JWT secret**
-
-   ```
-   ; cd api
-   ; JWT_SECRET=SUPER_SECRET npm start
-   ```
-2. Start the front end
-
-  In a new terminal session...
-
-  ```
-  ; cd frontend
-  ; npm start
-  ```
-
-You should now be able to open your browser and go to `http://localhost:3000/signup` to create a new user.
-
-Then, after signing up, you should be able to log in by going to `http://localhost:3000/login`.
-
-After logging in, you won't see much but you can create posts using PostMan and they should then show up in the browser if you refresh the page.
+* 
 
 ### Testing
 
+1. **User Controller Tests**:
 
-#### The Backend (API)
+* key notes:
 
-**Note the use of an environment variable for the JWT secret**
+* test (PASSED):
+  * test
 
-  Start the server in test mode (so that it connects to the test DB)
 
-  ```
-  ; cd api
-  ; JWT_SECRET=SUPER_SECRET npm run start:test
-  ```
+2. **Transaction Controller Tests**:
 
-  Then run the tests in a new terminal session
+* key notes:
+  * test
 
-  ```
-  ; cd api
-  ; JWT_SECRET=SUPER_SECRET npm run test
-  ```
+3. **Statement Controller Tests**:
 
-#### The frontend (React)
+* print
 
-**Note the use of an environment variable for the JWT secret**
+## 6. Tickets
 
-  Start the server in test mode (so that it connects to the test DB)
 
-  ```
-  ; cd api
-  ; JWT_SECRET=SUPER_SECRET npm run start:test
-  ```
+## 7. Test Covarage
 
-  Then start the front end in a new terminal session
+**1. Test coverage:**
 
-  ```
-  ; cd frontend
-  ; JWT_SECRET=SUPER_SECRET npm start
-  ```
+**1. Screenshot 1**
+<img src="location/picure_name.png"
+alt="Text in case picture does not display">
 
-  Then run the tests in a new terminal session
+**2. Screenshot 2**
+<img src="location/picure_name_2.png"
+alt="Text in case picture does not display 2">
 
-  ```
-  ; cd frontend
-  ; JWT_SECRET=SUPER_SECRET npm run test
-  ```
+**4. ESlint - all errors fixed and cleared:** 
 
-## MongoDB Connection Errors?
+Note: in two situations `this` was used to call upon a method ([see here for more details](https://www.w3schools.com/js/js_function_call.asp)) and ESlint gave an error. One was fixed by turning the method into const declaration and the other by using the keyword `static`and turned the (regurlar) method into a static method ([read more here on static methods](https://javascript.info/static-properties-methods)).
 
-Some people occasionally experience MongoDB connection errors when running the tests or trying to use the application. Here are some tips which might help resolve such issues.
+**1. Screenshot 1**
+<img src="location/picure_name.png"
+alt="Text in case picture does not display">
 
-- Check that MongoDB is installed using `mongo --version`
-- Check that it's running using `brew services list`
+## 8. Screenshots: program tested in terminal
 
-If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
+**1. Screenshot 1**
+<img src="location/picure_name.png"
+alt="Text in case picture does not display">
+
+**10. Finished product:**
+
+<img src="location/picure_name.png"
+alt="Text in case picture does not display">
+
+## 9. Instructions
+
+### Running JavaScript
+
+#### Introduction
+
+This program uses Javascript, a dynamic computer programming language and one of the core technologies for developing web page content, alongside HTML and CSS.
+
+For this exercise to be run, a program called Node.js will have to be installed. Node.js is a JavaScript runtime, i.e. it reads JavaScript code and executes it as a programs
+
+<ins> Step 1: Clone this repo to your machine:
+
+```
+# Create a folder/directory where you would like to store the cloned repo: 
+$ mkdir cloned-repo
+
+# Then switch to the newly created directory:
+$ cd cloned-repo
+
+# Inside the new fodler clone the repo, command which will copy all the existing files from the Git repository:
+$ git clone link-to-git-repository
+
+```
+
+<ins> Step 2: Install nvm
+
+Nvm stands for Node Version Manager, a tool that allows you to install and swtich in between different versions of Node.
+NVM is distributed using github - you can find installation instructions for the latest version [here](https://github.com/nvm-sh/nvm#installing-and-updating).
+
+```
+# You'll need to run a command that looks like this:
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
+# Once that step is complete, reload your ~/.zshrc file:
+source ~/.zshrc
+
+# Now you can install Node by running: 
+$ nvm install node
+```
+
+<ins> Step 3: Setting up the project
+
+```
+# When NVM is installed, once can automatically install and use the latest, stable version. You can set up the enviroment by running: 
+$ nvm use node
+
+#The next step would be to set up the folder structure, however this is not required as this has been already done. 
+
+# Initialize NPM project, i.e. create the package.json file: 
+$ npm init -y
+
+# Add the jest package to run tests in the tests directory:
+$ npm add jest
+
+```
+
+<ins> Step 4: Running tests:
+
+```
+# Please check that all tests are running in the test directory before running the program in REPL: 
+$ npx jest
+
+# alternatively try:
+$ jest
+
+
+# To see test coverage then run: 
+$ npx jest --coverage
+
+# alternatively try:
+$ test
+```
+
+<ins> Step 5: Running the program:
+
+__OPTIONN 1__ 
+
+```
+
+```
 
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
@@ -250,7 +290,7 @@ If you have issues that are not resolved by these tips, please reach out to a co
 ---
 
 **How was this resource?**  
-[😫](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Facebook-mern-template&prefill_File=README.md&prefill_Sentiment=😫) [😕](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Facebook-mern-template&prefill_File=README.md&prefill_Sentiment=😕) [😐](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Facebook-mern-template&prefill_File=README.md&prefill_Sentiment=😐) [🙂](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Facebook-mern-template&prefill_File=README.md&prefill_Sentiment=🙂) [😀](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Facebook-mern-template&prefill_File=README.md&prefill_Sentiment=😀)  
+[😫](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/course&prefill_File=individual_challenges/bank_tech_test.md&prefill_Sentiment=😫) [😕](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/course&prefill_File=individual_challenges/bank_tech_test.md&prefill_Sentiment=😕) [😐](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/course&prefill_File=individual_challenges/bank_tech_test.md&prefill_Sentiment=😐) [🙂](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/course&prefill_File=individual_challenges/bank_tech_test.md&prefill_Sentiment=🙂) [😀](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/course&prefill_File=individual_challenges/bank_tech_test.md&prefill_Sentiment=😀)  
 Click an emoji to tell us.
 
 <!-- END GENERATED SECTION DO NOT EDIT -->
