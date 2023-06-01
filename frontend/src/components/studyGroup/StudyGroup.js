@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import Post from '../post/Post'
-import { useParams } from "react-router-dom";
+import Post from '../post/Post';
+import PostForm from '../postForm/PostForm';
 
 const StudyGroup = ({ navigate }) => {
-  const { groupId } = useParams();
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
 
   useEffect(() => {
     if(token) {
-      fetch(`/groups/${groupId}/posts`, {
+      fetch("/posts", {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -21,22 +20,50 @@ const StudyGroup = ({ navigate }) => {
           setPosts(data.posts);
         })
     }
-  }, [groupId, token])
+  }, [])
+
+  const handlePostSubmit = async (postText) => {
+    if(token) {
+      // Assume "/posts" is your API endpoint to create a new post.
+      const response = await fetch('/posts', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: postText }),
+      });
+
+      if (response.ok) {
+        const newPost = await response.json();
+        setPosts((prevPosts) => [newPost, ...prevPosts]);
+      } else {
+        // Handle error case
+      }
+    }
+  };
+
+  const logout = () => {
+    window.localStorage.removeItem("token");
+    navigate('/login');
+  };
 
   if(token) {
-    return(
+    return (
       <>
-        <h2>Study Group Posts</h2>
-        <div id='group' role="group">
-            {posts.map(
-              (post) => ( <Post post={ post } key={ post._id } /> )
-            )}
+        <h2>Your Study Group Posts</h2>
+        <button onClick={logout}>Logout</button>
+        <PostForm handlePostSubmit={handlePostSubmit} />
+        <div id='feed' role="feed">
+        {posts && posts.map(
+          (post) => (<Post post={post} key={post._id} />)
+        )}
         </div>
       </>
-    )
+    );
   } else {
-    navigate('/signin')
+    navigate('/signin');
   }
-}
+};
 
 export default StudyGroup;
