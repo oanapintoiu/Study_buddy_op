@@ -6,8 +6,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "start:test": "MONGODB_URL='mongodb://0.0.0.0/acebook_test' npm start",
-    "test": "jest"
+    "start:test": "MONGODB_URL='mongodb://0.0.0.0/study_buddy_test' npm start",
+    "test": "jest --runInBand --detectOpenHandles --coverage"
   },
   "engines": {
     "node": ">=18.1.0"
