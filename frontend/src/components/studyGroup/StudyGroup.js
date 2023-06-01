@@ -26,7 +26,7 @@ const StudyGroup = ({ navigate }) => {
   if(token) {
     return(
       <>
-        <h2>Group Posts</h2>
+        <h2>Study Group Posts</h2>
         <div id='group' role="group">
             {posts.map(
               (post) => ( <Post post={ post } key={ post._id } /> )
