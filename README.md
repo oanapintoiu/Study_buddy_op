@@ -62,59 +62,6 @@ The React front end sends HTTP requests to the backend API and receives JSON in 
 
 ```
 
-#Authentication
-1. As a user, I would like to: sign up - MVP - Started
-2. As a user, I would like to: log in - MVP - Started
-3. As a user, I would like to: log out - MVP - Started
-4. As a user, I would like to: have a username that's unique - MVP
-  
-#User Profile
-4. As a user, I would like to: view and edit my profile page - MVP - Use Moangoose code
-5. As a user, I would like to: have my personal details on my profile - MVP - Use Moangoose code base for this
-6. As a user, I would like to: list all study groups I'm a part of - MVP
-7. As a user, I would like to: list all my skill levels (proficiency) - MVP
-8. As a user, I would like to: list all my study interests - MVP
-  
-#View
-9. As a user, I would like to: like to see other peoples profiles with limited personal details (GDPR) - MVP
-10. As a user, I would like to: see my study group page
-
-#Add study buddies
-11. As a user, I would like to: add study buddies to my study buddy list - MVP (to invite they need to be on list)
-
-#Search
-12. As a user, I would like to: filter study categories using a search bar (predefined) - MVP
- 
-#Create or join
-13. As a user, I would like to: create or join private groups - MVP
-14. As a user, I would like to: invite other users to a group - MVP
-15. As a user, I would like to: accept or decline invitations - MVP
-16. As a user, I would like to: give my group a custom name - MVP
-
-#AI integration
-17. As a user, I would like to: ask a ai bot questions in my group that everyone can see the answers to - MVP
-
-#Post
-18. As a user, I would like to: post threads in a group - MVP
-19. As a user, I would like to: respond to posts - MVP
-
-#Nice to have features: 
-
-1. As a user, I would like to: see my photo - Bonus
-2. As a user, I would like to: message other users directly - Bonus
-3. As a user, I would like to: search public groups by name - Bonus
-4. As a user, I would like to: filter study groups by location on a map - Bonus (high priority)
-5. As a user, I would like to: use the ai to summarise the day - bonus
-6. As a user, I would like to: have an option to display if I'm open to face to face meetups - Bonus
-7. As a user, I would like to: have a reminder for my meetups - Bonus
-8. As a user, I would like to: set my status (custom text) - Bonus
-9. As a user, I would like to: set my status (green/red/amber) - Bonus
-10. As a user, I would like to: see all the group notes organised in the study group page - Bonus
-11. As a user, I would like to: add and see study links on my study group page - Bonus
-12. As a user, I would like to: see rules of the group - Bonus
-13. As a user, I would like to: like posts - Bonus
-14. As a user, I would like to: set the limit for the number of people in my group - Bonus
-15. As a user, I would like to: set other users as admins - Bonus
 ```
 
 ## 4. Diagram
