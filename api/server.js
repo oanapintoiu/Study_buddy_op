@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const populateDatabase = require('./data');
-const { getAllCategories, getSubcategoriesByCategory } = require('./categoryController');
+const { getAllCategories, getSubcategoriesByCategory } = require('./contollers/categories');
 
 const app = express();
 
