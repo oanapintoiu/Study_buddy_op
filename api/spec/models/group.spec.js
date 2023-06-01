@@ -1,17 +1,33 @@
 const mongoose = require("mongoose");
-const User = require("../../models/user");
+
+require("../mongodb_helper");
 const Group = require("../../models/group");
 
 describe("Group model", () => {
-  // beforeEach((done) => {
-  //   mongoose.connection.collections.groups.drop(() => {
-  //     done();
-  //   });
-  // });
+  beforeEach((done) => {
+    mongoose.connection.collections.groups.drop(() => {
+      done();
+    });
+  });
 
-  it("has a name", () => {
-    let user = new User({ name: "Test User", email: "test@test.com", password: "password123" });
-    let group = new Group({ name: "Test Group", members: [user._id] });
-    expect(group.name).toEqual("Test Group");
+  it("can create a group", () => {
+    const group = new Group({ name: "Test Group" });
+
+    expect(group).toMatchObject({ name: "Test Group" });
+  });
+
+  it("can save a group", (done) => {
+    var group = new Group({ name: "some group" });
+
+    group.save((err) => {
+      expect(err).toBeNull();
+
+      Group.find((err, groups) => {
+        expect(err).toBeNull();
+
+        expect(groups[0]).toMatchObject({ name: "some group" });
+        done();
+      });
+    });
   });
 });
