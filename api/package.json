@@ -1,7 +1,7 @@
 {
-  "name": "acebook",
+  "name": "study_buddy",
   "version": "0.0.0",
-  "description": "Template for the AceBook project",
+  "description": "Template for the tudy_buddy project",
   "license": "CC BY-NC-SA",
   "private": true,
   "scripts": {
