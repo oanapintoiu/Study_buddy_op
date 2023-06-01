@@ -1,5 +1,5 @@
-const Category = require('./Category');
-const Subcategory = require('./Subcategory');
+const Category = require('./models/category.js');
+const Subcategory = require('./models/subcategory');
 
 const categories = [
   {
