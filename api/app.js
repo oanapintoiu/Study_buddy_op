@@ -7,6 +7,7 @@ const JWT = require("jsonwebtoken");
 const postsRouter = require("./routes/posts");
 const tokensRouter = require("./routes/tokens");
 const usersRouter = require("./routes/users");
+const cookieParser = require("cookie-parser");
 const groupsRouter = require("./routes/groups");  // require the groups router
 const categoriesRouter = require("./routes/categories");
 
@@ -14,6 +15,7 @@ const app = express();
 
 // setup for receiving JSON
 app.use(express.json())
+app.use(cookieParser());
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -60,6 +62,22 @@ app.use((err, req, res) => {
 
   // respond with details of the error
   res.status(err.status || 500).json({message: 'server error'})
+});
+
+app.put('/userRouter/:id', async (req, res) => {
+  try {
+    const { username } = req.body;
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    user.username = username;
+    await user.save();
+    res.json({ message: 'User updated successfully', user });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
 });
 
 module.exports = app;
