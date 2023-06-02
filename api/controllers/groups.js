@@ -21,7 +21,8 @@ const GroupController = {
     });
   },
   Create: (req, res) => {
-    const group = new Group(req.body);
+    const { name, category, subcategory } = req.body;
+    const group = new Group({ name, category, subcategory });
     group.save(async (err) => {
       if (err) {
         throw err;
