@@ -10,7 +10,7 @@ describe("Group model", () => {
   // });
 
   it("has a name", () => {
-    let user = new User({ name: "Test User", email: "test@test.com", password: "password123" });
+    let user = new User({ name: "Test User", username: "username", password: "password123" });
     let group = new Group({ name: "Test Group", members: [user._id] });
     expect(group.name).toEqual("Test Group");
   });
