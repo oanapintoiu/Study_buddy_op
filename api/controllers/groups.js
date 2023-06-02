@@ -78,6 +78,34 @@ const GroupController = {
       }
     });
   },
+
+  RemoveMember: (req, res) => {
+    const userId = req.body.userId;
+  
+    Group.findById(req.params.id, async (err, group) => {
+      if (err) {
+        throw err;
+      }
+  
+      if (!group.members.includes(userId)) {
+        res.status(400).json({ message: "User not a member of this group" });
+      } else {
+        const index = group.members.indexOf(userId);
+        if (index > -1) {
+          group.members.splice(index, 1);
+        }
+  
+        group.save(async err => {
+          if (err) {
+            throw err;
+          }
+  
+          const token = await TokenGenerator.jsonwebtoken(req.user_id);
+          res.status(200).json({ group: group, token: token });
+        });
+      }
+    });
+  },  
 };  
 
 module.exports = GroupController;

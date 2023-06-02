@@ -172,5 +172,24 @@ describe("/groups", () => {
       const updatedGroup = await Group.findById(group.id);
       expect(String(updatedGroup.members[0])).toEqual(String(newUser.id));
     });
+  }); 
+  
+  describe("DELETE /groups/:id/members, when token is present", () => {
+    test("removes a user from the group", async () => {
+      const group = new Group({ name: "study group 1", members: [], posts: [] });
+      const newUser = new User({ email: "newuser@test.com", password: "12345678" });
+      
+      await newUser.save();
+      group.members.push(newUser);
+      await group.save();
+  
+      await request(app)
+        .delete(`/groups/${group.id}/members`)
+        .set("Authorization", `Bearer ${token}`)
+        .send({ userId: newUser.id, token: token });
+    
+      const updatedGroup = await Group.findById(group.id);
+      expect(updatedGroup.members).not.toContain(String(newUser.id));
+    });
   });  
 });
