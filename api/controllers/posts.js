@@ -3,7 +3,7 @@ const TokenGenerator = require("../models/token_generator");
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find(async (err, posts) => {
+    Post.find({ group: req.query.group }, async (err, posts) => {
       if (err) {
         throw err;
       }
@@ -13,6 +13,7 @@ const PostsController = {
   },
   Create: (req, res) => {
     const post = new Post(req.body);
+    post.group = req.body.group; 
     post.save(async (err) => {
       if (err) {
         throw err;
