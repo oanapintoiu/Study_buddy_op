@@ -95,7 +95,7 @@ describe("/groups", () => {
         .send({token: token});
       let groupNames = response.body.groups.map((group) => ( group.name ));
       expect(groupNames).toEqual(["group 1", "group 2"]);
-    })
+    });
 
     test("the response code is 200", async () => {
       let group1 = new Group({name: "group 1", members: [], posts: []});
@@ -121,7 +121,7 @@ describe("/groups", () => {
       let newPayload = JWT.decode(response.body.token, secret);
       let originalPayload = JWT.decode(token, secret);
       expect(newPayload.iat > originalPayload.iat).toEqual(true);
-    })
+    });
   })
 
   describe("GET /groups, when token is missing", () => {
@@ -153,7 +153,7 @@ describe("/groups", () => {
       let response = await request(app)
         .get("/groups");
       expect(response.body.token).toEqual(undefined);
-    })
+    });
   })
 
   describe("POST /groups/:id/members, when token is present", () => {
@@ -190,6 +190,30 @@ describe("/groups", () => {
     
       const updatedGroup = await Group.findById(group.id);
       expect(updatedGroup.members).not.toContain(String(newUser.id));
+    });
+  });  
+
+  describe("POST /groups/:id/posts, when token is present", () => {
+    test("adds a post to the group", async () => {
+      const group = new Group({
+        name: "study group 1",
+        members: [],
+        posts: [],
+      });
+      await group.save();
+  
+      const newPostMessage = "New post";
+  
+      const response = await request(app)
+        .post(`/groups/${group.id}/posts`)
+        .set("Authorization", `Bearer ${token}`)
+        .send({ message: newPostMessage, token: token });
+  
+      expect(response.status).toEqual(201);
+  
+      const updatedGroup = await Group.findById(group.id).populate('posts');
+      expect(updatedGroup.posts.length).toEqual(1);
+      expect(updatedGroup.posts[0].message).toEqual(newPostMessage);
     });
   });  
 });
