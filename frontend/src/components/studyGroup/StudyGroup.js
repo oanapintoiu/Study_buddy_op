@@ -2,65 +2,69 @@ import React, { useEffect, useState } from 'react';
 import Post from '../post/Post';
 import PostForm from '../postForm/PostForm';
 
-const StudyGroup = ({ navigate }) => {
+const StudyGroup = ({ groupId, navigate }) => {
   const [posts, setPosts] = useState([]);
+  const [newPost, setNewPost] = useState("");
   const [token, setToken] = useState(window.localStorage.getItem("token"));
 
   useEffect(() => {
     if(token) {
-      fetch("/posts", {
+      fetch("/posts?group=" + groupId, {  // Add the group ID as a query parameter
         headers: {
           'Authorization': `Bearer ${token}`
         }
       })
         .then(response => response.json())
         .then(async data => {
-          window.localStorage.setItem("token", data.token)
-          setToken(window.localStorage.getItem("token"))
+          window.localStorage.setItem("token", data.token);
+          setToken(window.localStorage.getItem("token"));
           setPosts(data.posts);
         })
     }
-  }, [])
+  }, [token, groupId]);
 
-  const handlePostSubmit = async (postText) => {
-    if(token) {
-      // Assume "/posts" is your API endpoint to create a new post.
-      const response = await fetch('/posts', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message: postText }),
+  const handlePostChange = event => {
+    setNewPost(event.target.value);
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    fetch("/posts", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ message: newPost, group: groupId }) // Add the group ID when creating a new post
+    })
+      .then(response => response.json())
+      .then(async data => {
+        window.localStorage.setItem("token", data.token);
+        setToken(window.localStorage.getItem("token"));
+        setPosts([ ...posts, { message: newPost }]);
+        setNewPost("");
       });
-
-      if (response.ok) {
-        const newPost = await response.json();
-        setPosts((prevPosts) => [newPost, ...prevPosts]);
-      } else {
-        // Handle error case
-      }
-    }
   };
 
   const logout = () => {
     window.localStorage.removeItem("token");
     navigate('/login');
   };
-
+  
   if(token) {
-    return (
+    return(
       <>
         <h2>Your Study Group Posts</h2>
-        <button onClick={logout}>Logout</button>
-        <PostForm handlePostSubmit={handlePostSubmit} />
+        <button onClick={logout}>
+          Logout
+        </button>
         <div id='feed' role="feed">
-        {posts && posts.map(
-          (post) => (<Post post={post} key={post._id} />)
-        )}
+            {posts.map((post, index) => ( <Post post={post} key={index} /> ))}
         </div>
+        <PostForm handlePostChange={handlePostChange} handleSubmit={handleSubmit} newPost={newPost} />
       </>
-    );
+    )
   } else {
     navigate('/signin');
   }
