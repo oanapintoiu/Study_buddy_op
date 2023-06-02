@@ -53,6 +53,31 @@ const GroupController = {
       res.status(200).json({ message: "Group deleted", token: token });
     });
   },
-};
+
+  AddMember: (req, res) => {
+    const userId = req.body.userId;
+  
+    Group.findById(req.params.id, async (err, group) => {
+      if (err) {
+        throw err;
+      }
+  
+      if (group.members.includes(userId)) {
+        res.status(400).json({ message: "User already a member of this group" });
+      } else {
+        group.members.push(userId);
+  
+        group.save(async err => {
+          if (err) {
+            throw err;
+          }
+  
+          const token = await TokenGenerator.jsonwebtoken(req.user_id);
+          res.status(200).json({ group: group, token: token });
+        });
+      }
+    });
+  },
+};  
 
 module.exports = GroupController;

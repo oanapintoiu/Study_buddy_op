@@ -8,5 +8,6 @@ router.post("/", GroupController.Create);
 router.get("/:id", GroupController.Show);
 router.put("/:id", GroupController.Update);
 router.delete("/:id", GroupController.Delete);
+router.post("/:id/members", GroupController.AddMember);
 
 module.exports = router;
