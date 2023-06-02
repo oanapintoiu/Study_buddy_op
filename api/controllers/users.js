@@ -23,7 +23,7 @@ const UsersController = {
 
     const updateFields = {};
     if (email) updateFields.email = email;
-   // if (username) updateFields.username = username;
+    if (username) updateFields.username = username;
    // if (password) updateFields.password = password;
    // if (firstName) updateFields.firstName = firstName;
    // if (lastName) updateFields.lastName = lastName;

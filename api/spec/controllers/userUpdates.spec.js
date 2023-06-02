@@ -47,4 +47,27 @@ describe("when updating email only", () => {
     });
   });
 
+  describe("when updating username only", () => {
+    const updatedFields = {
+      username: "Johnny",
+    };
+    let response;
+
+    beforeEach(async () => {
+      response = await request(app)
+        .put(`/users/`)
+        .set('Cookie', [`token=${new_token}`])
+        .send(updatedFields);
+    });
+
+    it("should return status 200", async () => {
+      expect(response.statusCode).toEqual(200);
+    });
+
+    it("should update the email only", async () => {
+      const updatedUser = await User.findById(user._id);
+      expect(updatedUser.username).toEqual(updatedFields.username);
+    });
+  });
+
 });
