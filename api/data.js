@@ -132,26 +132,31 @@ const categories = [
 
 const populateDatabase = async () => {
   try {
-    await Category.deleteMany();
-    await Subcategory.deleteMany();
+    const categoryCount = await Category.countDocuments();
+    const subcategoryCount = await Subcategory.countDocuments();
 
-    for (const categoryData of categories) {
-      const category = new Category({ name: categoryData.name });
-      await category.save();
+    if (categoryCount === 0 && subcategoryCount === 0) {
+      for (const categoryData of categories) {
+        const category = new Category({ name: categoryData.name });
+        await category.save();
 
-      for (const subcategoryName of categoryData.subcategories) {
-        const subcategory = new Subcategory({
-          name: subcategoryName,
-          category: category._id,
-        });
-        await subcategory.save();
+        for (const subcategoryName of categoryData.subcategories) {
+          const subcategory = new Subcategory({
+            name: subcategoryName,
+            category: category._id,
+          });
+          await subcategory.save();
+        }
       }
-    }
 
-    console.log('Database populated successfully.');
+      console.log('Database populated successfully.');
+    } else {
+      console.log('Database already contains data. Skipping population.');
+    }
   } catch (error) {
     console.error('Error populating database:', error);
   }
 };
+
 
 module.exports = populateDatabase;
