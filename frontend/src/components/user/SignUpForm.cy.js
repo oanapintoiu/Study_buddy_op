@@ -9,8 +9,8 @@ describe("Signing up", () => {
     cy.intercept('POST', '/users', { message: "OK" }).as("signUpRequest")
 
     cy.get("#email").type("someone@example.com");
-    cy.get("#password").type("PASS");
     cy.get("#username").type("username");
+    cy.get("#password").type("PASS");
     cy.get("#submit").click();
     cy.wait('@signUpRequest').then( interception => {
       expect(interception.response.body.message).to.eq("OK")

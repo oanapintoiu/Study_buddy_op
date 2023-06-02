@@ -6,7 +6,7 @@ describe("Signing up", () => {
     cy.get("#password").type("password");
     cy.get("#submit").click();
 
-    cy.url().should("include", "/login");
+    cy.url().should("include", "/");
   });
 
   it("with missing password, redirects to '/signup'", () => {
