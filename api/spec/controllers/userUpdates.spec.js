@@ -15,7 +15,7 @@ describe("User Updates", () => {
       email: "daved@test.com",
       username: "dave",
       password: "5678",
-    //  firstName: "Dave",
+      firstName: "Dave",
     //  lastName: "David",
     });
     await user.save();
@@ -47,9 +47,11 @@ describe("when updating email only", () => {
     });
   });
 
-  describe("when updating username only", () => {
+  describe("when updating username and password", () => {
     const updatedFields = {
       username: "Johnny",
+      password: "seven2",
+      firstName: "Johhny"
     };
     let response;
 
@@ -67,6 +69,8 @@ describe("when updating email only", () => {
     it("should update the email only", async () => {
       const updatedUser = await User.findById(user._id);
       expect(updatedUser.username).toEqual(updatedFields.username);
+      expect(updatedUser.password).toEqual(updatedFields.password);
+      expect(updatedUser.firstName).toEqual(updatedFields.firstName);
     });
   });
 
