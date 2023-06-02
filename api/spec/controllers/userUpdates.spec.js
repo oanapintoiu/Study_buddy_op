@@ -16,7 +16,7 @@ describe("User Updates", () => {
       username: "dave",
       password: "5678",
       firstName: "Dave",
-    //  lastName: "David",
+      lastName: "David",
     });
     await user.save();
 
@@ -71,6 +71,7 @@ describe("when updating email only", () => {
       expect(updatedUser.username).toEqual(updatedFields.username);
       expect(updatedUser.password).toEqual(updatedFields.password);
       expect(updatedUser.firstName).toEqual(updatedFields.firstName);
+      expect(updatedUser.lasttName).toEqual(updatedFields.lastName);
     });
   });
 

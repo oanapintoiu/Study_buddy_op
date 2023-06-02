@@ -26,7 +26,7 @@ const UsersController = {
     if (username) updateFields.username = username;
     if (password) updateFields.password = password;
     if (firstName) updateFields.firstName = firstName;
-   // if (lastName) updateFields.lastName = lastName;
+    if (lastName) updateFields.lastName = lastName;
 
     User.findByIdAndUpdate(
       UserId,
