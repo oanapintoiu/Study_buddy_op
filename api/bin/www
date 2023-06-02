@@ -29,6 +29,9 @@ mongoose.connect(mongoDbUrl, {
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
+var populateDatabase = require("../data.js");
+populateDatabase();
+
 /**
  * Create HTTP server.
  */
