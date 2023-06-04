@@ -1,26 +1,25 @@
 import './App.css';
 import LoginForm from '../auth/LoginForm'
 import SignUpForm from '../user/SignUpForm'
-import StudyGroup from '../studyGroup/StudyGroup'
 import React from 'react';
 import Sidebar from '../sidebar/Sidebar'
 
-import {
-  useNavigate,
-  Routes,
-  Route,
-} from "react-router-dom";
+import Feed from '../homeFeed/feed'
+import CreateGroup from '../createGroup/createGroup';
+import { useNavigate, Routes, Route } from "react-router-dom";
 
 const App = () => {
+  const navigate = useNavigate();
     return (
       <>
-        <Sidebar/>
-        <div className="app-body">
-          <Routes>
-            <Route path='/groups/:groupId' element={<StudyGroup navigate={ useNavigate() }/>}/>
-            <Route path='/login'  element={<LoginForm  navigate={ useNavigate() }/>}/>
-            <Route path='/signup' element={<SignUpForm navigate={ useNavigate() }/>}/>
-          </Routes>
+      <Sidebar/>
+      <div className="app-body">
+        <Routes>
+          <Route path='/groups/:groupId' element={<StudyGroup navigate={ useNavigate() }/>}/>
+          <Route path='/login'  element={<LoginForm  navigate={ useNavigate() }/>}/>
+          <Route path='/signup' element={<SignUpForm navigate={ useNavigate() }/>}/>
+          <Route path="/create-group" element={<CreateGroup navigate={navigate} />} />
+        </Routes>
         </div>
       </>
     );

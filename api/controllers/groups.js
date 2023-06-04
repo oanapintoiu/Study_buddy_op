@@ -1,5 +1,6 @@
 const Group = require("../models/group");
 const TokenGenerator = require("../models/token_generator");
+const mongoose = require('mongoose');
 
 const GroupController = {
   Index: (req, res) => {
@@ -21,7 +22,16 @@ const GroupController = {
     });
   },
   Create: (req, res) => {
-    const group = new Group(req.body);
+
+    let { name, category, subcategory } = req.body;
+    console.log(category)
+    console.log(subcategory)
+
+
+     category = mongoose.Types.ObjectId(category)
+     subcategory = mongoose.Types.ObjectId(subcategory)
+  
+    const group = new Group({ name, category, subcategory });
     group.save(async (err) => {
       if (err) {
         throw err;
@@ -30,6 +40,7 @@ const GroupController = {
       res.status(201).json({ group: group, token: token });
     });
   },
+  
   Update: (req, res) => {
     Group.findByIdAndUpdate(
       req.params.id,
