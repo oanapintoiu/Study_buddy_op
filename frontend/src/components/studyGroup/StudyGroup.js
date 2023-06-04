@@ -74,7 +74,7 @@ const StudyGroup = () => {
     };
   
     setPosts([...posts, newPostAI]);
-    setNewPost('');  // clear the newPost state
+    setNewPost('');
     setLoading(false);
   };  
 
