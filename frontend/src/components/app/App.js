@@ -2,7 +2,7 @@ import './App.css';
 import LoginForm from '../auth/LoginForm'
 import SignUpForm from '../user/SignUpForm'
 import UserProfileForm from '../userProfile/UserProfileForm'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Sidebar from '../sidebar/Sidebar'
 
@@ -13,9 +13,15 @@ import StudyGroup from '../studyGroup/StudyGroup';
 
 const App = () => {
   const navigate = useNavigate();
+  const [token, setToken] = useState(window.localStorage.getItem("token"));
+
+  useEffect(() => {
+    //this is where we will check if the user is logged in and shows the navbar 
+    setToken(window.localStorage.getItem("token"))
+  })
     return (
       <>
-      <Sidebar/>
+      {token ? <Sidebar navigate={navigate}/>: null}
       <div className="app-body">
         <Routes>
           <Route path="/posts" element={<Feed navigate={navigate} />} />

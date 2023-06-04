@@ -23,6 +23,11 @@ const LogInForm = ({ navigate }) => {
       
       let data = await response.json();
       window.localStorage.setItem("token", data.token);
+      window.localStorage.setItem("username", username)
+
+      let avatarResponse = await fetch(`/users/${username}/avatars`)
+      let avatarData = await avatarResponse.json()
+      window.localStorage.setItem("avatar", avatarData.avatar)
 
       const expirationDate = new Date();
       expirationDate.setDate(
@@ -36,7 +41,7 @@ const LogInForm = ({ navigate }) => {
 
       document.cookie = cookieValue;
 
-      navigate("/profile");
+      navigate("/posts");
     }
   };
 
