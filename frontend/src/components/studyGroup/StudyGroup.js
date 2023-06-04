@@ -66,8 +66,12 @@ const StudyGroup = () => {
     
     const data = await response.json();
     
-    console.log(data.choices[0].text);
-  };  
+    const newPost = {
+      message: data.choices[0].text
+    };
+  
+    setPosts([...posts, newPost]);
+  };   
 
   const logout = () => {
     window.localStorage.removeItem("token");
