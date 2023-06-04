@@ -51,6 +51,11 @@ const StudyGroup = () => {
       });
   };
 
+  const handleAskAI = (postText) => {
+    console.log(`AI is asked: ${postText}`);
+    // code to process AI request
+  };
+
   const logout = () => {
     window.localStorage.removeItem("token");
     navigate('/login');
@@ -66,7 +71,7 @@ const StudyGroup = () => {
         <div id='feed' role="feed">
             {posts.map((post, index) => ( <Post post={post} key={index} /> ))}
         </div>
-        <PostForm handlePostChange={handlePostChange} handleSubmit={handleSubmit} newPost={newPost} />
+        <PostForm handlePostChange={handlePostChange} handleSubmit={handleSubmit} newPost={newPost} handleAskAI={handleAskAI} />
       </>
     )
   } else {
