@@ -10,7 +10,7 @@ let token;
 
 describe("/groups", () => {
   beforeAll( async () => {
-    const user = new User({email: "test@test.com", password: "12345678"});
+    const user = new User({email: "test@test.com", username: "test", password: "12345678"});
     await user.save();
 
     token = JWT.sign({
@@ -161,7 +161,7 @@ describe("/groups", () => {
       const group = new Group({ name: "study group 1", members: [], posts: [] });
       await group.save();
   
-      const newUser = new User({ email: "newuser@test.com", password: "12345678" });
+      const newUser = new User({ email: "newuser@test.com", username: "newuser", password: "12345678" });
       await newUser.save();
   
       await request(app)
@@ -177,7 +177,7 @@ describe("/groups", () => {
   describe("DELETE /groups/:id/members, when token is present", () => {
     test("removes a user from the group", async () => {
       const group = new Group({ name: "study group 1", members: [], posts: [] });
-      const newUser = new User({ email: "newuser@test.com", password: "12345678" });
+      const newUser = new User({ email: "newuser@test.com", username: "newuser", password: "12345678" });
       
       await newUser.save();
       group.members.push(newUser);
