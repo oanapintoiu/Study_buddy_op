@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import Post from '../post/Post';
 import PostForm from '../postForm/PostForm';
+import { useParams, useNavigate } from "react-router-dom";
 
-const StudyGroup = ({ groupId, navigate }) => {
+const StudyGroup = () => {
+  const { groupId } = useParams();
+  const navigate = useNavigate();
+  
   const [posts, setPosts] = useState([]);
   const [newPost, setNewPost] = useState("");
   const [token, setToken] = useState(window.localStorage.getItem("token"));
 
   useEffect(() => {
     if(token) {
-      fetch("/posts?group=" + groupId, {  // Add the group ID as a query parameter
+      fetch("/groups/" + groupId + "/posts", {  
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -30,7 +34,7 @@ const StudyGroup = ({ groupId, navigate }) => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    fetch("/posts", {
+    fetch("/groups/" + groupId + "/posts", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
