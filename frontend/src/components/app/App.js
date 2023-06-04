@@ -16,6 +16,7 @@ const App = () => {
       <Sidebar/>
       <div className="app-body">
         <Routes>
+          <Route path="/posts" element={<Feed navigate={navigate} />} />
           <Route path='/groups/:groupId' element={<StudyGroup navigate={ useNavigate() }/>}/>
           <Route path='/login'  element={<LoginForm  navigate={ useNavigate() }/>}/>
           <Route path='/signup' element={<SignUpForm navigate={ useNavigate() }/>}/>
