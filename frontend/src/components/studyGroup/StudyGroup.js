@@ -51,10 +51,24 @@ const StudyGroup = () => {
       });
   };
 
-  const handleAskAI = (postText) => {
-    console.log(`AI is asked: ${postText}`);
-    // code to process AI request
-  };
+  const handleAskAI = async (postText) => {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        prompt: postText,
+        max_tokens: 60
+      })
+    });
+    
+    const data = await response.json();
+    
+    // Do something with the response data
+    console.log(data.choices[0].text);
+  };  
 
   const logout = () => {
     window.localStorage.removeItem("token");

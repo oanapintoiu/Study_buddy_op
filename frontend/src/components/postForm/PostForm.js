@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 
-const PostForm = ({ handlePostSubmit, handleAskAI }) => {
+const PostForm = ({ handleSubmit, handleAskAI }) => {
     const [postText, setPostText] = useState('');
 
-    const handleSubmit = (event) => {
+    const submitForm = (event) => {
         event.preventDefault();
-        handlePostSubmit(postText);
+        handleSubmit(postText);
         setPostText('');
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={submitForm}>
             <textarea
                 value={postText}
                 onChange={(e) => setPostText(e.target.value)}
@@ -23,3 +23,4 @@ const PostForm = ({ handlePostSubmit, handleAskAI }) => {
 };
 
 export default PostForm;
+
