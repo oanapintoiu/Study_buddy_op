@@ -10,7 +10,8 @@ const PostForm = ({ handlePostChange, handleSubmit, newPost, handleAskAI, loadin
   };
 
   const handleAskButtonClick = () => {
-    handleAskAI(newPost); // Pass the newPost value to handleAskAI
+    handleAskAI(newPost);
+    setPostText('');
   };
 
   return (
@@ -22,7 +23,7 @@ const PostForm = ({ handlePostChange, handleSubmit, newPost, handleAskAI, loadin
       />
       <button type="submit">Post to the group</button>
       <button type="button" onClick={handleAskButtonClick}>Ask Sheldon AI</button>
-      {loading && <p>Loading...</p>}
+      {loading && <p>Sheldon is thinking...</p>}
     </form>
   );
 };
