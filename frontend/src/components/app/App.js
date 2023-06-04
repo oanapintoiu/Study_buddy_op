@@ -1,7 +1,9 @@
 import './App.css';
 import LoginForm from '../auth/LoginForm'
 import SignUpForm from '../user/SignUpForm'
-import React from 'react';
+import UserProfileForm from '../userProfile/UserProfileForm'
+import React, { useState } from 'react';
+
 import Sidebar from '../sidebar/Sidebar'
 
 import Feed from '../homeFeed/feed'
@@ -21,6 +23,7 @@ const App = () => {
           <Route path='/login'  element={<LoginForm  navigate={ useNavigate() }/>}/>
           <Route path='/signup' element={<SignUpForm navigate={ useNavigate() }/>}/>
           <Route path="/create-group" element={<CreateGroup navigate={navigate} />} />
+          <Route path='/profile' element={<UserProfileForm navigate={ useNavigate() }/>}/>
         </Routes>
         </div>
       </>
