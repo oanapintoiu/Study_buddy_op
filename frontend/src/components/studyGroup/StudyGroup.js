@@ -52,7 +52,7 @@ const StudyGroup = () => {
   };
 
   const handleAskAI = async (postText) => {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    const response = await fetch('https://api.openai.com/v1/engines/text-davinci-003/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -60,13 +60,12 @@ const StudyGroup = () => {
       },
       body: JSON.stringify({
         prompt: postText,
-        max_tokens: 60
+        max_tokens: 600
       })
     });
     
     const data = await response.json();
     
-    // Do something with the response data
     console.log(data.choices[0].text);
   };  
 
