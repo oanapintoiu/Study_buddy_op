@@ -7,6 +7,7 @@ import Sidebar from '../sidebar/Sidebar'
 import Feed from '../homeFeed/feed'
 import CreateGroup from '../createGroup/createGroup';
 import { useNavigate, Routes, Route } from "react-router-dom";
+import StudyGroup from '../studyGroup/StudyGroup';
 
 const App = () => {
   const navigate = useNavigate();
