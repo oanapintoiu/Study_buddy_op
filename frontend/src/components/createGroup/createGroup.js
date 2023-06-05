@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CreateGroup = () => {
   const [groupName, setGroupName] = useState('');
@@ -10,6 +11,7 @@ const CreateGroup = () => {
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem('token'));
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchCategories();
@@ -65,6 +67,7 @@ const CreateGroup = () => {
       });
 
       if (response.ok) {
+        navigate('/posts');
         // Group creation was successful
         // Handle any necessary logic or show a success message
       } else if (response.status === 401) {
