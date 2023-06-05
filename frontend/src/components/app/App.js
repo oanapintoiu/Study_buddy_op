@@ -21,9 +21,15 @@ const App = () => {
   })
     return (
       <>
+
+<div className="App">
+
+</div>
+      
       {token ? <Sidebar navigate={navigate}/>: null}
       <div className="app-body">
         <Routes>
+        <Route path='/'  element={<LoginForm  navigate={ useNavigate() }/>}/>
           <Route path="/posts" element={<Feed navigate={navigate} />} />
           <Route path='/groups/:groupId' element={<StudyGroup navigate={ useNavigate() }/>}/>
           <Route path='/login'  element={<LoginForm  navigate={ useNavigate() }/>}/>

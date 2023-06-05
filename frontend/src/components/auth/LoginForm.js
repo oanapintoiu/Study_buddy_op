@@ -54,6 +54,7 @@ const LogInForm = ({ navigate }) => {
   };
 
   return (
+    <>
     <form onSubmit={handleSubmit}>
       <input
         placeholder="Username"
@@ -71,6 +72,11 @@ const LogInForm = ({ navigate }) => {
       />
       <input role="submit-button" id="submit" type="submit" value="Submit" />
     </form>
+    <div>
+      <br></br>
+      <button onClick={() => navigate("/signup")}>Sign Up</button>
+    </div>
+    </>
   );
 };
 

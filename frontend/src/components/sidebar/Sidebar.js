@@ -40,6 +40,7 @@ const Sidebar = ({navigate}) => {
       <a target="_blank"href="https://zoom.us/">Zoom</a>
       <a target="_blank"href="https://trello.com/">Trello</a>
       <a target="_blank"href="https://excalidraw.com/">Excalidraw</a>
+      <a target="_blank"href="https://pomofocus.io/">Pomodoro</a>
     </div>
   </div>
   <br />
