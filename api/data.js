@@ -132,26 +132,44 @@ const categories = [
 
 const populateDatabase = async () => {
   try {
-    await Category.deleteMany();
-    await Subcategory.deleteMany();
+    // Check if the database is already populated
+    const categoryCount = await Category.countDocuments();
+    const subcategoryCount = await Subcategory.countDocuments();
 
-    for (const categoryData of categories) {
-      const category = new Category({ name: categoryData.name });
-      await category.save();
+    if (categoryCount === 0 && subcategoryCount === 0) {
+      for (const categoryData of categories) {
+        // Create a new category
+        const category = new Category({ name: categoryData.name });
 
-      for (const subcategoryName of categoryData.subcategories) {
-        const subcategory = new Subcategory({
-          name: subcategoryName,
-          category: category._id,
-        });
-        await subcategory.save();
+        // Save the category to the database
+        await category.save();
+
+        for (const subcategoryName of categoryData.subcategories) {
+          // Create a new subcategory with the category reference
+          const subcategory = new Subcategory({
+            name: subcategoryName,
+            category: category._id,
+          });
+
+          // Save the subcategory to the database
+          await subcategory.save();
+
+          // Add the subcategory to the category's subcategories array
+          category.subcategories.push(subcategory);
+        }
+
+        // Save the updated category with subcategories to the database
+        await category.save();
       }
-    }
 
-    console.log('Database populated successfully.');
+      console.log('Database populated successfully.');
+    } else {
+      console.log('Database already contains data. Skipping population.');
+    }
   } catch (error) {
     console.error('Error populating database:', error);
   }
 };
+
 
 module.exports = populateDatabase;
