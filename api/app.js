@@ -30,22 +30,25 @@ app.post('/ai', async (req, res) => {
   const { message } = req.body;
 
   try {
-    const response = await openai.ChatCompletion.create({
-      model: 'text-davinci-003',
-      messages: [
-        {
-          role: 'system',
-          content: 'You are a helpful assistant.',
-        },
-        {
-          role: 'user',
-          content: message,
-        },
-      ],
+    const response = await fetch('https://api.openai.com/v1/engines/text-davinci-003/completions', {  //better to find out how to use the open ai library in future
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        prompt: message,
+        max_tokens: 60
+      })
     });
 
-    res.json(response.data.choices[0].message.content);
+    if (!response.ok) throw new Error(`Server response: ${response.status}`);
+
+    const data = await response.json();
+
+    res.json(data.choices[0].text);
   } catch (error) {
+    console.error(error);
     res.status(500).send(error);
   }
 });

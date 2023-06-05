@@ -69,7 +69,7 @@ const StudyGroup = () => {
   
     console.log(data);
     const newPost = {
-      message: data.message,
+      message: data,
     };
 
     setPosts([...posts, newPost]);
