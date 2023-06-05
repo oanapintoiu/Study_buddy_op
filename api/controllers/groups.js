@@ -14,6 +14,7 @@ const GroupController = {
     });
   },
   Show: (req, res) => {
+    console.log("ENTROU NO SHOW",req.params.id)
     Group.findById(req.params.id, async (err, group) => {
       if (err) {
         throw err;
