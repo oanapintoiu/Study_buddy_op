@@ -1,24 +1,31 @@
 import React, { useState } from 'react';
 
-const PostForm = ({ handlePostSubmit }) => {
-    const [postText, setPostText] = useState('');
+const PostForm = ({ handlePostChange, handleSubmit, newPost, handleAskAI, loading }) => {
+  const [postText, setPostText] = useState('');
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        handlePostSubmit(postText);
-        setPostText('');
-    };
+  const submitForm = (event) => {
+    event.preventDefault();
+    handleSubmit(event);
+    setPostText('');
+  };
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <textarea
-                value={postText}
-                onChange={(e) => setPostText(e.target.value)}
-                placeholder="Ask your group or Sheldon a question!"
-            />
-            <button type="submit">Submit</button>
-        </form>
-    );
+  const handleAskButtonClick = () => {
+    handleAskAI(newPost);
+    setPostText('');
+  };
+
+  return (
+    <form onSubmit={submitForm}>
+      <textarea
+        value={newPost}
+        onChange={handlePostChange}
+        placeholder="Ask your group or Sheldon a question!"
+      />
+      <button type="submit">Post to the group</button>
+      <button type="button" onClick={handleAskButtonClick}>Ask Sheldon AI</button>
+      {loading && <p>Sheldon is thinking...</p>}
+    </form>
+  );
 };
 
 export default PostForm;

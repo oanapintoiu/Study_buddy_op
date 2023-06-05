@@ -1,4 +1,5 @@
 const Group = require("../models/group");
+const Post = require("../models/post");
 const TokenGenerator = require("../models/token_generator");
 const mongoose = require('mongoose');
 
@@ -114,7 +115,32 @@ const GroupController = {
         });
       }
     });
-  },  
-};  
+  }, 
+  
+  CreatePost: async (req, res) => {
+    const groupId = req.params.id;
+    const { message } = req.body;
+  
+    try {
+      const group = await Group.findById(groupId);
+      if (!group) {
+        return res.status(404).json({ message: "Group not found" });
+      }
+  
+      // Create a new post and add it to the group
+      const newPost = new Post({ message, group: group._id });
+      await newPost.save();
+  
+      group.posts.push(newPost._id);
+      await group.save();
+  
+      const token = await TokenGenerator.jsonwebtoken(req.user_id);
+      res.status(201).json({ message: "Post created successfully", token });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Failed to create post" });
+    }
+  }  
+};
 
 module.exports = GroupController;
