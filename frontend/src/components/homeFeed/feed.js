@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Post from '../post/Post'
+
 const Feed = ({ navigate }) => {
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
@@ -40,10 +41,6 @@ const Feed = ({ navigate }) => {
       })
     }
   }, [token])
-  const logout = () => {
-    window.localStorage.removeItem("token")
-    navigate('/login')
-  }
   const createGroup = () => {
     // Logic to handle creating a group and redirect to another page
     navigate('/create-group')
@@ -124,7 +121,7 @@ const Feed = ({ navigate }) => {
             <Post post={post} key={post._id} />
           ))}
         </div>
-        <br></br><button onClick={logout}>Logout</button>
+        
       </>
     )
   } else {
