@@ -27,12 +27,14 @@ const GroupController = {
     let { name, category, subcategory, level, partySize, groupType } = req.body;
 
     const isPrivate = groupType === 'private'
+    const userId = req.user_id;
 
 
      category = mongoose.Types.ObjectId(category)
      subcategory = mongoose.Types.ObjectId(subcategory)
   
     const group = new Group({ name, category, subcategory, level, partySize, private: isPrivate});
+    group.members.push(userId);
     group.save(async (err) => {
       if (err) {
         throw err;
