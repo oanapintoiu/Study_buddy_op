@@ -76,7 +76,10 @@ const CreateGroup = () => {
       console.error('Error creating group:', error);
       // Handle the unauthorized error here, e.g., redirect to login page
     }
+    
   };
+
+
 
   return (
     <div>
@@ -115,14 +118,11 @@ const CreateGroup = () => {
           Level:
           <select value={level} onChange={(event) => setLevel(event.target.value)} required>
             <option value="">Select Level</option>
-            <option value="0">0 - EARLY CHILDHOOD EDUCATION</option>
-            <option value="1">1 - PRIMARY EDUCATION</option>
-            <option value="2">2 - LOWER SECONDARY EDUCATION</option>
-            <option value="3">3 - UPPER SECONDARY EDUCATION</option>
-            <option value="4">4 - POST-SECONDARY NON-TERTIARY EDUCATION</option>
-            <option value="5">5 - SHORT-CYCLE TERTIARY EDUCATION</option>
-            <option value="6">6 - BACHELOR'S OR EQUIVALENT LEVEL</option>
-            <option value="7">7 - MASTER'S OR EQUIVALENT LEVEL</option>
+            <option value="novice">NOVICE</option>
+            <option value="intermediate">INTERMEDIATE</option>
+            <option value="proficient">PROFICIENT</option>
+            <option value="advanced">ADVANCED</option>
+            <option value="expert">EXPERT</option>
           </select>
         </label>
         <br />
