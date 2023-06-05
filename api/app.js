@@ -1,3 +1,8 @@
+const openai = require('openai');
+require('dotenv').config();
+openai.apiKey = process.env.OPENAI_API_KEY;
+
+
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
@@ -20,6 +25,30 @@ app.use(cookieParser());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
+
+app.post('/ai', async (req, res) => {
+  const { message } = req.body;
+
+  try {
+    const response = await openai.ChatCompletion.create({
+      model: 'text-davinci-003',
+      messages: [
+        {
+          role: 'system',
+          content: 'You are a helpful assistant.',
+        },
+        {
+          role: 'user',
+          content: message,
+        },
+      ],
+    });
+
+    res.json(response.data.choices[0].message.content);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
 
 // middleware function to check for valid tokens
 const tokenChecker = (req, res, next) => {
@@ -79,5 +108,7 @@ app.put('/userRouter/:id', async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
+
+
 
 module.exports = app;

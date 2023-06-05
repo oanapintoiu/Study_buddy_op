@@ -1,21 +1,12 @@
 import React, { useState } from 'react';
 
 const PostForm = ({ handlePostChange, handleSubmit, newPost, handleAskAI, loading }) => {
-  const [postText, setPostText] = useState('');
-
-  const submitForm = (event) => {
-    event.preventDefault();
-    handleSubmit(event);
-    setPostText('');
-  };
-
   const handleAskButtonClick = () => {
-    handleAskAI(newPost);
-    setPostText('');
+    handleAskAI(newPost); // You pass newPost into handleAskAI here
   };
 
   return (
-    <form onSubmit={submitForm}>
+    <form onSubmit={handleSubmit}>
       <textarea
         value={newPost}
         onChange={handlePostChange}
@@ -27,5 +18,6 @@ const PostForm = ({ handlePostChange, handleSubmit, newPost, handleAskAI, loadin
     </form>
   );
 };
+
 
 export default PostForm;

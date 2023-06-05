@@ -55,28 +55,26 @@ const StudyGroup = () => {
   const handleAskAI = async (postText) => {
     setLoading(true);
   
-    const response = await fetch('https://api.openai.com/v1/engines/text-davinci-003/completions', {
+    const response = await fetch('/ai', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`
       },
       body: JSON.stringify({
-        prompt: postText,
-        max_tokens: 600
-      })
+        message: postText,
+      }),
     });
   
     const data = await response.json();
   
-    const newPostAI = {
-      message: data.choices[0].text
+    console.log(data);
+    const newPost = {
+      message: data.message,
     };
-  
-    setPosts([...posts, newPostAI]);
-    setNewPost('');
+
+    setPosts([...posts, newPost]);
     setLoading(false);
-  };  
+  };    
 
   const logout = () => {
     window.localStorage.removeItem("token");
