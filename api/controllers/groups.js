@@ -24,8 +24,6 @@ const GroupController = {
   Create: (req, res) => {
 
     let { name, category, subcategory } = req.body;
-    console.log(category)
-    console.log(subcategory)
 
 
      category = mongoose.Types.ObjectId(category)
