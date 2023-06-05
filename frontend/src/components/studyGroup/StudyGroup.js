@@ -67,14 +67,15 @@ const StudyGroup = () => {
   
     const data = await response.json();
   
-    console.log(data);
-    const newPost = {
-      message: data,
+    const newPostAI = {
+      message: data,  // data directly contains the AI message.
     };
-
-    setPosts([...posts, newPost]);
+  
+    setPosts([...posts, newPostAI]);
+    setNewPost('');  // Clear the input box by setting newPost to an empty string.
     setLoading(false);
-  };    
+  };
+      
 
   const logout = () => {
     window.localStorage.removeItem("token");
