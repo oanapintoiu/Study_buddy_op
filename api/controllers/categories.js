@@ -12,11 +12,10 @@ const getAllCategories = async (req, res) => {
 };
 
 const getSubcategoriesByCategory = async (req, res) => {
-  const selectedCategory = req.query.category;
+  const selectedCategory = req.params.category;
 
   try {
-    const category = await Category.findOne({ name: selectedCategory })
-      .populate('subcategories', 'name');
+    const category = await Category.findById(selectedCategory).populate('subcategories', 'name');
 
     if (!category) {
       return res.status(404).json({ error: 'Category not found' });
@@ -29,7 +28,4 @@ const getSubcategoriesByCategory = async (req, res) => {
   }
 };
 
-
 module.exports = { getAllCategories, getSubcategoriesByCategory };
-
-

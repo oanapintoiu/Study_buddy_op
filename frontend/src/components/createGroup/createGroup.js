@@ -27,14 +27,13 @@ const CreateGroup = () => {
 
   const fetchSubcategories = async (selectedCategory) => {
     try {
-      const response = await fetch(`/subcategories?category=${selectedCategory}`);
+      const response = await fetch(`/categories/${selectedCategory}/subcategories`);
       const data = await response.json();
       setSubcategories(data);
     } catch (error) {
       console.error('Error fetching subcategories:', error);
     }
   };
-  
 
   const handleCategoryChange = (event) => {
     const selectedCategory = event.target.value;
@@ -42,7 +41,6 @@ const CreateGroup = () => {
     setSubCategory('');
     fetchSubcategories(selectedCategory); // Call fetchSubcategories after updating subjectCategory
   };
-  
 
   const handleCreateGroup = async (event) => {
     event.preventDefault();
