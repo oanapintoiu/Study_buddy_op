@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const CreateGroup = () => {
   const [groupName, setGroupName] = useState('');
@@ -7,7 +7,42 @@ const CreateGroup = () => {
   const [level, setLevel] = useState('');
   const [partySize, setPartySize] = useState(1);
   const [groupType, setGroupType] = useState('private');
-  const [token, setToken] = useState(window.localStorage.getItem("token"));
+  const [categories, setCategories] = useState([]);
+  const [subcategories, setSubcategories] = useState([]);
+  const [token, setToken] = useState(window.localStorage.getItem('token'));
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await fetch('/categories');
+      const data = await response.json();
+      setCategories(data);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  };
+
+  const fetchSubcategories = async (selectedCategory) => {
+    try {
+      const response = await fetch(`/subcategories?category=${selectedCategory}`);
+      const data = await response.json();
+      setSubcategories(data);
+    } catch (error) {
+      console.error('Error fetching subcategories:', error);
+    }
+  };
+  
+
+  const handleCategoryChange = (event) => {
+    const selectedCategory = event.target.value;
+    setSubjectCategory(selectedCategory);
+    setSubCategory('');
+    fetchSubcategories(selectedCategory); // Call fetchSubcategories after updating subjectCategory
+  };
+  
 
   const handleCreateGroup = async (event) => {
     event.preventDefault();
@@ -26,7 +61,7 @@ const CreateGroup = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}` // Include the authorization token in the request headers
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(groupData),
       });
@@ -51,62 +86,36 @@ const CreateGroup = () => {
       <form onSubmit={handleCreateGroup}>
         <label>
           Study Group Name:
-          <input
-            type="text"
-            value={groupName}
-            onChange={(event) => setGroupName(event.target.value)}
-            required
-          />
+          <input type="text" value={groupName} onChange={(event) => setGroupName(event.target.value)} required />
         </label>
         <br />
         <label>
           Subject Category:
-          <select
-            value={subjectCategory}
-            onChange={(event) => setSubjectCategory(event.target.value)}
-            required
-          >
+          <select value={subjectCategory} onChange={handleCategoryChange} required>
             <option value="">Select Category</option>
-            {/* Render options dynamically from a database */}
-            <option value='647a0d6037c214801c7534bc'>Science, Technology, Engineering, and Mathematics (STEM)</option>
-            <option value="category2">Category 2</option>
-            {/* Add more options as needed */}
+            {categories.map((category) => (
+              <option key={category._id} value={category._id}>
+                {category.name}
+              </option>
+            ))}
           </select>
         </label>
         <br />
         <label>
           Sub-Category:
-          <select
-            value={subCategory}
-            onChange={(event) => setSubCategory(event.target.value)}
-            required
-          >
+          <select value={subCategory} onChange={(event) => setSubCategory(event.target.value)} required>
             <option value="">Select Sub-Category</option>
-            {/* Render options dynamically based on selected subject category */}
-            {/* You can conditionally render the sub-categories based on the selected subject category */}
-            {subjectCategory === '647a0d6037c214801c7534bc' && (
-              <>
-                <option value='647a0d6037c214801c7534dc'>Nanotechnology</option>
-                <option value="subCategory2">Sub-Category 2</option>
-              </>
-            )}
-            {subjectCategory === 'category2' && (
-              <>
-                <option value="subCategory3">Sub-Category 3</option>
-                <option value="subCategory4">Sub-Category 4</option>
-              </>
-            )}
-            {/* Add more options as needed */}
+            {subcategories.map((subcategory) => (
+              <option key={subcategory._id} value={subcategory._id}>
+                {subcategory.name}
+              </option>
+            ))}
           </select>
         </label>
         <br />
         <label>
           Level:
-          <select
-            value={level}
-            onChange={(event) => setLevel(event.target.value)}
-            required
-          >
+          <select value={level} onChange={(event) => setLevel(event.target.value)} required>
             <option value="">Select Level</option>
             <option value="0">0 - EARLY CHILDHOOD EDUCATION</option>
             <option value="1">1 - PRIMARY EDUCATION</option>
@@ -121,10 +130,7 @@ const CreateGroup = () => {
         <br />
         <label>
           Group Party Size:
-          <select
-            value={partySize}
-            onChange={(event) => setPartySize(parseInt(event.target.value))}
-          >
+          <select value={partySize} onChange={(event) => setPartySize(parseInt(event.target.value))}>
             {[...Array(10)].map((_, index) => (
               <option key={index} value={index + 1}>
                 {index + 1}
@@ -135,10 +141,7 @@ const CreateGroup = () => {
         <br />
         <label>
           Group Type:
-          <select
-            value={groupType}
-            onChange={(event) => setGroupType(event.target.value)}
-          >
+          <select value={groupType} onChange={(event) => setGroupType(event.target.value)}>
             <option value="private">Private</option>
             <option value="public">Public</option>
           </select>
