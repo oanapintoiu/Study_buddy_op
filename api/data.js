@@ -130,6 +130,8 @@ const categories = [
   },
 ];
 
+// run this version when database is correct
+
 const populateDatabase = async () => {
   try {
     // Check if the database is already populated
@@ -170,6 +172,45 @@ const populateDatabase = async () => {
     console.error('Error populating database:', error);
   }
 };
+
+//  run this version to reset the databse:
+
+// const populateDatabase = async () => {
+//   try {
+//     // Delete all existing categories and subcategories
+//     await Category.deleteMany();
+//     await Subcategory.deleteMany();
+
+//     for (const categoryData of categories) {
+//       // Create a new category
+//       const category = new Category({ name: categoryData.name });
+
+//       // Save the category to the database
+//       await category.save();
+
+//       for (const subcategoryName of categoryData.subcategories) {
+//         // Create a new subcategory with the category reference
+//         const subcategory = new Subcategory({
+//           name: subcategoryName,
+//           category: category._id,
+//         });
+
+//         // Save the subcategory to the database
+//         await subcategory.save();
+
+//         // Add the subcategory to the category's subcategories array
+//         category.subcategories.push(subcategory);
+//       }
+
+//       // Save the updated category with subcategories to the database
+//       await category.save();
+//     }
+
+//     console.log('Database populated successfully.');
+//   } catch (error) {
+//     console.error('Error populating database:', error);
+//   }
+// };
 
 
 module.exports = populateDatabase;
