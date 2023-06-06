@@ -10,6 +10,8 @@ const UserProfileForm = ({ navigate }) => {
   const [successMessage, setSuccessMessage] = useState("");
   const [categories, setCategories] = useState([]);
   const [subjectCategory, setSubjectCategory] = useState('');
+  const [subCategory, setSubCategory] = useState('');
+  const [subcategories, setSubcategories] = useState([]); 
   const [token, setToken] = useState(window.localStorage.getItem('token'));
 
   const handleSubmit = async (event) => {
@@ -53,7 +55,7 @@ const UserProfileForm = ({ navigate }) => {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ category: subjectCategory }),
+      body: JSON.stringify({ category: subjectCategory, subcategory: subCategory, }),
     })
       .then((response) => {
         if (response.ok) {
@@ -82,9 +84,22 @@ const UserProfileForm = ({ navigate }) => {
     }
   };
 
+  const fetchSubcategories = async (selectedCategory) => {
+    try {
+      const response = await fetch(`/categories/${selectedCategory}/subcategories`);
+      const data = await response.json();
+      console.log("selectedCategory: ",data);
+      setSubcategories(data.subcategories);
+    } catch (error) {
+      console.error('Error fetching subcategories:', error);
+    }
+  };
+
   const handleCategoryChange = (event) => {
     const selectedCategory = event.target.value;
     setSubjectCategory(selectedCategory);
+    setSubCategory('');
+    fetchSubcategories(selectedCategory);
   };
 
   const handleEmailChange = (event) => {
@@ -135,6 +150,18 @@ const UserProfileForm = ({ navigate }) => {
           ))}
         </select>
       </label>
+      <br />
+        <label>
+          Sub-Category:
+          <select value={subCategory} onChange={(event) => setSubCategory(event.target.value)} required>
+            <option value="">Select Sub-Category</option>
+            {subcategories.map((subcategory) => (
+              <option key={subcategory._id} value={subcategory._id}>
+                {subcategory.name}
+              </option>
+            ))}
+          </select>
+        </label>
     </>
   );
 };
