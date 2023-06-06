@@ -1,25 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const UserProfileForm = ({ navigate }) => {
 
   const [email, setEmail] = useState("");
-  const[username, setUsername] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [subjectCategory, setSubjectCategory] = useState('');
+  const [token, setToken] = useState(window.localStorage.getItem('token'));
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    fetch( '/users', {
+    fetch('/users', {
       method: 'put',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email: email, username: username, password: password, firstName: firstName, lastName: lastName, })
+      body: JSON.stringify({
+        email: email,
+        username: username,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+      })
     })
-    .then((response) => {
+      .then((response) => {
         console.log(response.status);
         if (response.status === 200) {
           setSuccessMessage("Your changes have been updated successfully.");
@@ -37,6 +46,45 @@ const UserProfileForm = ({ navigate }) => {
       .catch((error) => {
         setSuccessMessage("Changes failed, please try again.");
       });
+
+    fetch('/groups', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ category: subjectCategory }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          setSuccessMessage("Preferences updated successfully");
+
+        } else {
+          setSuccessMessage("Error encountered in setting preferences");
+        }
+      })
+      .catch((error) => {
+        setSuccessMessage("Error encountered in setting preferences");
+      });
+  };
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await fetch('/categories');
+      const data = await response.json();
+      setCategories(data);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  };
+
+  const handleCategoryChange = (event) => {
+    const selectedCategory = event.target.value;
+    setSubjectCategory(selectedCategory);
   };
 
   const handleEmailChange = (event) => {
@@ -52,13 +100,12 @@ const UserProfileForm = ({ navigate }) => {
   }
 
   const handleFirstNameChange = (event) => {
-    setUsername(event.target.value)
+    setFirstName(event.target.value)
   }
 
   const handleLastNameChange = (event) => {
-    setUsername(event.target.value)
+    setLastName(event.target.value)
   }
-
 
   const logout = () => {
     window.localStorage.removeItem("token");
@@ -77,6 +124,17 @@ const UserProfileForm = ({ navigate }) => {
         <input id='submit' type="submit" value="Submit" />
       </form>
       <button onClick={logout}>Logout</button>
+      <label>
+        Subject Category:
+        <select value={subjectCategory} onChange={handleCategoryChange} required>
+          <option value="">Select Category</option>
+          {categories.map((category) => (
+            <option key={category._id} value={category._id}>
+              {category.name}
+            </option>
+          ))}
+        </select>
+      </label>
     </>
   );
 };
