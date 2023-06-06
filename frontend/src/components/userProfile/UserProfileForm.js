@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "./UserProfileForm.css"
 
 const UserProfileForm = ({ navigate }) => {
 
@@ -132,28 +133,28 @@ const UserProfileForm = ({ navigate }) => {
     <>
       <form onSubmit={handleSubmit}>
         {successMessage && <p>{successMessage}</p>}
-        <input placeholder="Email" id="email" type='text' value={email} onChange={handleEmailChange} />
-        <input placeholder="Username" id="username" type='username' value={username} onChange={handleUsernameChange} />
-        <input placeholder="Password" id="password" type='password' value={password} onChange={handlePasswordChange} />
-        <input placeholder="First Name" id="firstName" type='firstName' value={firstName} onChange={handleFirstNameChange} />
-        <input placeholder="Last Name" id="lastName" type='lastName' value={lastName} onChange={handleLastNameChange} />
-        <input id='submit' type="submit" value="Submit" />
+        <input placeholder="Email" id="email" type="text" value={email} onChange={handleEmailChange} />
+        <input placeholder="Username" id="username" type="username" value={username} onChange={handleUsernameChange} />
+        <input placeholder="Password" id="password" type="password" value={password} onChange={handlePasswordChange} />
+        <input placeholder="First Name" id="firstName" type="firstName" value={firstName} onChange={handleFirstNameChange} />
+        <input placeholder="Last Name" id="lastName" type="lastName" value={lastName} onChange={handleLastNameChange} />
+        <input id="submit" type="submit" value="Submit" />
       </form>
       <button onClick={logout}>Logout</button>
-      <label>
-        Subject Category:
-        <select value={subjectCategory} onChange={handleCategoryChange} required>
-          <option value="">Select Category</option>
-          {categories.map((category) => (
-            <option key={category._id} value={category._id}>
-              {category.name}
-            </option>
-          ))}
-        </select>
-      </label>
-      <br />
-        <label>
-          Sub-Category:
+      <div className="row">
+        <div className="form-group">
+          <label>Subject Category:</label>
+          <select value={subjectCategory} onChange={handleCategoryChange} required>
+            <option value="">Select Category</option>
+            {categories.map((category) => (
+              <option key={category._id} value={category._id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="form-group">
+          <label>Sub-Category:</label>
           <select value={subCategory} onChange={(event) => setSubCategory(event.target.value)} required>
             <option value="">Select Sub-Category</option>
             {subcategories.map((subcategory) => (
@@ -162,10 +163,9 @@ const UserProfileForm = ({ navigate }) => {
               </option>
             ))}
           </select>
-        </label>
-        <br />
-        <label>
-          Level:
+        </div>
+        <div className="form-group">
+          <label>Level:</label>
           <select value={level} onChange={(event) => setLevel(event.target.value)} required>
             <option value="">Select Level</option>
             <option value="novice">NOVICE</option>
@@ -174,7 +174,8 @@ const UserProfileForm = ({ navigate }) => {
             <option value="advanced">ADVANCED</option>
             <option value="expert">EXPERT</option>
           </select>
-        </label>
+        </div>
+      </div>
     </>
   );
 };
