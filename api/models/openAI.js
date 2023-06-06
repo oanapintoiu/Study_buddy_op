@@ -1,7 +1,15 @@
-// question
-// response
-// user id  (pulled from the user posting)
-// group id (pulled from the group you are in)
-// time and date (automatically generated)
+// once schema is created and have tests, create a controller for openAI to store questions/responses to database
 
-// once the schema is created and you have some tests you want a openAI controller that saves the question and response to the database
+const mongoose = require("mongoose");
+
+const OpenAISchema = new mongoose.Schema({
+  question: { type: String, required: true },
+  response: { type: String, required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  groupId: { type: mongoose.Schema.Types.ObjectId, ref: 'Group', required: true },
+  timestamp: { type: Date, default: Date.now }
+});
+
+const OpenAI = mongoose.model("OpenAI", OpenAISchema);
+
+module.exports = OpenAI;
