@@ -1,0 +1,30 @@
+.table {
+  min-width: 650
+}
+.chatSection {
+  height: 600px;
+  overflow-y: auto;
+}
+
+.headBG{
+    background-color: #e0e0e0
+}
+.borderRight500 {
+    border-right: 1px solid #e0e0e0
+}
+.messageArea {
+  height: 70vh;
+  overflow-y: auto
+}
+.avatar{
+  border-radius: 10%;
+  max-width: 10px;
+  height: auto;
+  width: auto;
+}
+
+.username-avatar {
+  font-weight: bold;
+  font: bold;
+  color: rgb(60, 148, 232);
+}

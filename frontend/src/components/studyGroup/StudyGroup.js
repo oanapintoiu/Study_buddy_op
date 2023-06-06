@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Post from '../post/Post';
-import PostForm from '../postForm/PostForm';
 import { useParams, useNavigate } from "react-router-dom";
 import './StudyGroup.css';
+import Chat from '../chat/chat';
 
 const StudyGroup = () => {
   const { groupId } = useParams();
@@ -11,6 +10,7 @@ const StudyGroup = () => {
   const [posts, setPosts] = useState([]);
   const [newPost, setNewPost] = useState("");
   const [token, setToken] = useState(window.localStorage.getItem("token"));
+  const [username, setUsername] = useState(window.localStorage.getItem("username"));
   const [loading, setLoading] = useState(false);
   const [group, setGroup] = useState({});
   const [isMembersBoxOpen, setIsMembersBoxOpen] = useState(false);
@@ -43,14 +43,14 @@ const StudyGroup = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-
+    console.log("newPost: ", newPost)
     fetch("/groups/" + groupId + "/posts", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       },
-      body: JSON.stringify({ message: newPost, group: groupId }) // Add the group ID when creating a new post
+      body: JSON.stringify({ message: newPost, group: groupId, user: username}) // Add the group ID when creating a new post
     })
       .then(response => response.json())
       .then(async data => {
@@ -68,7 +68,7 @@ const StudyGroup = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`
+        'Authorization': `Bearer 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`
       },
       body: JSON.stringify({
         prompt: postText,
@@ -87,11 +87,6 @@ const StudyGroup = () => {
     setLoading(false);
   };  
 
-  // const logout = () => {
-  //   window.localStorage.removeItem("token");
-  //   navigate('/login');
-  // };
-
   if (token) {
     return (
       <>
@@ -101,22 +96,32 @@ const StudyGroup = () => {
     <div className={`members-panel ${isMembersBoxOpen ? 'open' : ''}`}>
             <h3>Members</h3>
             {group.members && group.members.length > 0 ? group.members
-      .map((member, index) => (<p className='member' key={index}>{member.username}</p>)) : null}
+  .map((member, index) => (
+    <p className='member' key={index} onClick={() => navigate(`/profile/${member._id}`)}>{member.username}</p>
+)) : null}
         </div>
         <button onClick={handleMembersBoxToggle} className="members-toggle-button">
             {isMembersBoxOpen ? 'Close Members' : 'Open Members'}
         </button>
         <div id='feed' role="feed">
-        {group.posts && group.posts.length > 0 ?
-          group.posts.map((post, index) => (<Post post={post} key={index} />)) : null}
+        {group.posts ?
+           (<Chat posts={group.posts}
+            username={username}
+            handlePostChange={handlePostChange}
+            handleSubmit={handleSubmit}
+            newPost={newPost}
+            handleAskAI={handleAskAI}
+            loading={loading}
+           
+           />) : null}
         </div>
-        <PostForm
+        {/* <PostForm
           handlePostChange={handlePostChange}
           handleSubmit={handleSubmit}
           newPost={newPost}
           handleAskAI={handleAskAI}
           loading={loading}
-        />
+        /> */}
       </>
     )
   } else {

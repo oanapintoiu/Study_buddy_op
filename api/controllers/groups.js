@@ -1,5 +1,6 @@
 const Group = require("../models/group");
 const Post = require("../models/post");
+const User = require("../models/user");
 const TokenGenerator = require("../models/token_generator");
 const mongoose = require('mongoose');
 
@@ -17,7 +18,10 @@ const GroupController = {
   Show: async (req, res) => {
     try {
       const group = await Group.findById(req.params.id)
-      .populate("posts")
+      .populate({
+        path: 'posts',
+        populate: { path: 'user' }}
+      )
       .populate("members")
       .exec();
       const token = await TokenGenerator.jsonwebtoken(req.user_id);
@@ -112,15 +116,19 @@ const GroupController = {
   CreatePost: async (req, res) => {
     try {
       const groupId = req.params.id;
-      const { message } = req.body;
-  
+      const { message, user } = req.body;
+      console.log("user: ", user)
+      const userProjection = await User.findOne({ username: user },'_id').exec();
+      console.log("userId: ", userProjection)
+
       const group = await Group.findById(groupId).exec();
       if (!group) {
         return res.status(404).json({ message: "Group not found" });
       }
   
       // Create a new post and add it to the group
-      const newPost = new Post({ message, group: group._id });
+    
+      const newPost = new Post({ message, group: group._id, user: userProjection._id });
       await newPost.save();
   
       group.posts.push(newPost._id);
