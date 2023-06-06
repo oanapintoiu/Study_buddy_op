@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Post from '../post/Post'
+import './feed.css'
 
 const Feed = ({ navigate }) => {
   const [posts, setPosts] = useState([]);
@@ -61,7 +62,7 @@ const Feed = ({ navigate }) => {
         <h1>Homepage</h1>
         <div>
           <br></br>
-          <button onClick={createGroup} style={{ fontSize: '18px', color: 'red' }}>Create a Study Group</button><br></br><br></br>
+          <button onClick={createGroup}>Create a Study Group</button><br></br><br></br>
           <br></br><p>Search for a Study Group</p>
           <label>
             Public/Private:

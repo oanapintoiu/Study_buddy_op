@@ -1,7 +1,7 @@
 .sidebar {
-  width: 200px;
+  width: 180px;
   height: 100vh;
-  background-color: #eeeef5;
+  background-color: #f8f8f8;
   position: fixed;
   top: 0;
   left: 0;
@@ -17,6 +17,7 @@
 
   margin-bottom: 20px;
   font-size: 20px;
+  color: #070707;
 }
 
 .side-bar-item, .dropbtn {

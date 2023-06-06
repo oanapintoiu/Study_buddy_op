@@ -76,7 +76,7 @@ const UserProfileForm = ({ navigate }) => {
         <input placeholder="Last Name" id="lastName" type='lastName' value={lastName} onChange={handleLastNameChange} />
         <input id='submit' type="submit" value="Submit" />
       </form>
-      <button onClick={logout}>Logout</button>
+     
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import './PostForm.css';
 const PostForm = ({ handlePostChange, handleSubmit, newPost, handleAskAI, loading }) => {
   const [postText, setPostText] = useState('');
 
@@ -21,8 +21,8 @@ const PostForm = ({ handlePostChange, handleSubmit, newPost, handleAskAI, loadin
         onChange={handlePostChange}
         placeholder="Ask your group or Sheldon a question!"
       />
-      <button type="submit">Post to the group</button>
-      <button type="button" onClick={handleAskButtonClick}>Ask Sheldon AI</button>
+      <button className="feedButton" type="submit">Post to the group</button>
+      <button className="feedButton" type="button" onClick={handleAskButtonClick}>Ask Sheldon AI</button>
       {loading && <p>Sheldon is thinking...</p>}
     </form>
   );

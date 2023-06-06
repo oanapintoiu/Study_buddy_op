@@ -16,7 +16,10 @@ const GroupController = {
   },
   Show: async (req, res) => {
     try {
-      const group = await Group.findById(req.params.id).exec();
+      const group = await Group.findById(req.params.id)
+      .populate("posts")
+      .populate("members")
+      .exec();
       const token = await TokenGenerator.jsonwebtoken(req.user_id);
       res.status(200).json({ group: group, token: token });
     } catch (error) {
