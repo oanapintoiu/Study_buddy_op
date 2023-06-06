@@ -11,7 +11,8 @@ const UserProfileForm = ({ navigate }) => {
   const [categories, setCategories] = useState([]);
   const [subjectCategory, setSubjectCategory] = useState('');
   const [subCategory, setSubCategory] = useState('');
-  const [subcategories, setSubcategories] = useState([]); 
+  const [subcategories, setSubcategories] = useState([]);
+  const [level, setLevel] = useState('');
   const [token, setToken] = useState(window.localStorage.getItem('token'));
 
   const handleSubmit = async (event) => {
@@ -55,7 +56,7 @@ const UserProfileForm = ({ navigate }) => {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ category: subjectCategory, subcategory: subCategory, }),
+      body: JSON.stringify({ category: subjectCategory, subcategory: subCategory, level: level,}),
     })
       .then((response) => {
         if (response.ok) {
@@ -160,6 +161,18 @@ const UserProfileForm = ({ navigate }) => {
                 {subcategory.name}
               </option>
             ))}
+          </select>
+        </label>
+        <br />
+        <label>
+          Level:
+          <select value={level} onChange={(event) => setLevel(event.target.value)} required>
+            <option value="">Select Level</option>
+            <option value="novice">NOVICE</option>
+            <option value="intermediate">INTERMEDIATE</option>
+            <option value="proficient">PROFICIENT</option>
+            <option value="advanced">ADVANCED</option>
+            <option value="expert">EXPERT</option>
           </select>
         </label>
     </>
