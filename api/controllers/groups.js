@@ -2,6 +2,7 @@ const Group = require("../models/group");
 const Post = require("../models/post");
 const TokenGenerator = require("../models/token_generator");
 const mongoose = require('mongoose');
+const User = require("../models/user")
 
 const GroupController = {
   Index: async (req, res) => {
@@ -35,6 +36,11 @@ const GroupController = {
       const group = new Group({ name, category, subcategory, level, partySize, private: isPrivate });
       group.members.push(userId);
       await group.save();
+
+      const user = await User.findById(userId).exec();
+    user.groups.push(group._id);
+    await user.save();
+
   
       const token = await TokenGenerator.jsonwebtoken(req.user_id);
       res.status(201).json({ group: group, token: token });

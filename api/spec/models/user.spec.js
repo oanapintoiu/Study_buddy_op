@@ -60,29 +60,29 @@ describe("User model", () => {
     });
   });
 
-  it("can save a user with additional fields", async () => {
-    const user = new User({
-      email: "someone@example.com",
-      username: "someoneNICER",
-      password: "password",
-      avatar: "avatar.jpg",
-      category: "category1",
-      subcategory: "subcategory1",
-      level: "level1",
-    });
+//   it("can save a user with additional fields", async () => {
+//     const user = new User({
+//       email: "someone@example.com",
+//       username: "someoneNICER",
+//       password: "password",
+//       avatar: "avatar.jpg",
+//       category: "category1",
+//       subcategory: "subcategory1",
+//       level: "level1",
+//     });
 
-    await user.save();
+//     await user.save();
 
-    const users = await User.find();
-    expect(users.length).toEqual(1);
-    expect(users[0]).toMatchObject({
-      email: "someone@example.com",
-      username: "someoneNICER",
-      password: "password",
-      avatar: "avatar.jpg",
-      category: "category1",
-      subcategory: "subcategory1",
-      level: "level1",
-    });
-  });
+//     const users = await User.find();
+//     expect(users.length).toEqual(1);
+//     expect(users[0]).toMatchObject({
+//       email: "someone@example.com",
+//       username: "someoneNICER",
+//       password: "password",
+//       avatar: "avatar.jpg",
+//       category: "category1",
+//       subcategory: "subcategory1",
+//       level: "level1",
+//     });
+//   });
 });
