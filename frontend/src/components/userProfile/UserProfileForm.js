@@ -15,6 +15,7 @@ const UserProfileForm = ({ navigate }) => {
   const [subcategories, setSubcategories] = useState([]);
   const [level, setLevel] = useState('');
   const [token, setToken] = useState(window.localStorage.getItem('token'));
+  const [saved, setSaved] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -104,6 +105,34 @@ const UserProfileForm = ({ navigate }) => {
     fetchSubcategories(selectedCategory);
   };
 
+  const handleSave = async () => {
+    if (subjectCategory && subCategory && level) {
+      try {
+        const response = await fetch('/users', {
+          method: 'put',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            category: subjectCategory,
+            subcategory: subCategory,
+            level: level,
+          })
+        });
+  
+        if (response.status === 200) {
+          setSuccessMessage("Your changes have been updated successfully.");
+        setSaved(true);
+        } else {
+          setSuccessMessage("Changes failed, please try again.");
+        }
+      } catch (error) {
+        setSuccessMessage("Changes failed, please try again.");
+      }
+    }
+  };
+  
+
   const handleEmailChange = (event) => {
     setEmail(event.target.value)
   }
@@ -129,6 +158,10 @@ const UserProfileForm = ({ navigate }) => {
     navigate('/login');
   };
 
+  const handleUpdatePreferences = () => {
+    setSaved(false);
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -138,46 +171,62 @@ const UserProfileForm = ({ navigate }) => {
         <input placeholder="Password" id="password" type="password" value={password} onChange={handlePasswordChange} />
         <input placeholder="First Name" id="firstName" type="firstName" value={firstName} onChange={handleFirstNameChange} />
         <input placeholder="Last Name" id="lastName" type="lastName" value={lastName} onChange={handleLastNameChange} />
-        <input id="submit" type="submit" value="Submit" />
+        {!saved && <input id="submit" type="submit" value="Submit" />}
       </form>
       <button onClick={logout}>Logout</button>
       <div className="row">
-        <div className="form-group">
-          <label>Subject Category:</label>
-          <select value={subjectCategory} onChange={handleCategoryChange} required>
-            <option value="">Select Category</option>
-            {categories.map((category) => (
-              <option key={category._id} value={category._id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="form-group">
-          <label>Sub-Category:</label>
-          <select value={subCategory} onChange={(event) => setSubCategory(event.target.value)} required>
-            <option value="">Select Sub-Category</option>
-            {subcategories.map((subcategory) => (
-              <option key={subcategory._id} value={subcategory._id}>
-                {subcategory.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="form-group">
-          <label>Level:</label>
-          <select value={level} onChange={(event) => setLevel(event.target.value)} required>
-            <option value="">Select Level</option>
-            <option value="novice">NOVICE</option>
-            <option value="intermediate">INTERMEDIATE</option>
-            <option value="proficient">PROFICIENT</option>
-            <option value="advanced">ADVANCED</option>
-            <option value="expert">EXPERT</option>
-          </select>
-        </div>
+        {saved ? (
+          <div>
+            <p>Subject Category: {subjectCategory}</p>
+            <p>Sub-Category: {subCategory}</p>
+            <p>Level: {level}</p>
+            <button onClick={handleUpdatePreferences}>Update Preferences</button>
+          </div>
+        ) : (
+          <div className="form-group">
+            <label>Subject Category:</label>
+            <select value={subjectCategory} onChange={handleCategoryChange} required>
+              <option value="">Select Category</option>
+              {categories.map((category) => (
+                <option key={category._id} value={category._id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+            <label>Sub-Category:</label>
+            <select value={subCategory} onChange={(event) => setSubCategory(event.target.value)} required>
+              <option value="">Select Sub-Category</option>
+              {subcategories.map((subcategory) => (
+                <option key={subcategory._id} value={subcategory._id}>
+                  {subcategory.name}
+                </option>
+              ))}
+            </select>
+            <label>Level:</label>
+            <select value={level} onChange={(event) => setLevel(event.target.value)} required>
+              <option value="">Select Level</option>
+              <option value="novice">NOVICE</option>
+              <option value="intermediate">INTERMEDIATE</option>
+              <option value="proficient">PROFICIENT</option>
+              <option value="advanced">ADVANCED</option>
+              <option value="expert">EXPERT</option>
+            </select>
+            {saved ? (
+              <div>
+                <p>Subject Category: {subjectCategory}</p>
+                <p>Sub-Category: {subCategory}</p>
+                <p>Level: {level}</p>
+                <button onClick={handleUpdatePreferences}>Update Preferences</button>
+              </div>
+            ) : (
+              <button onClick={handleSave}>Save</button>
+            )}
+          </div>
+        )}
       </div>
     </>
   );
-};
+            };
+  
 
 export default UserProfileForm;
