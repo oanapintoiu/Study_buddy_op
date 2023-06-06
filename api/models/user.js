@@ -8,9 +8,11 @@ const UserSchema = new mongoose.Schema({
   lastName: { type: String, required: false },
   avatar: { type: String, required: false },
   groups: [{ type: mongoose.Schema.Types.ObjectId, ref: "Group", default: [] }],
-  // category: [{ type: String, required: false }],
-  // subcategory: [{ type: String, required: false }],
-  // level: [{ type: String, required: false }],
+  preferences: [{
+    category: { type: mongoose.Schema.Types.ObjectId, ref: "Categories" },
+    subcategory: { type: mongoose.Schema.Types.ObjectId, ref: "Subcategories" },
+    level: { type: String, required: false },
+  }] 
 });
 
 const User = mongoose.model("User", UserSchema);

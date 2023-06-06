@@ -1,9 +1,30 @@
 const mongoose = require("mongoose");
+const Category = require("../../models/category")
+const Subcategory = require("../../models/subcategory")
 
 require("../mongodb_helper");
 const User = require("../../models/user");
 
 describe("User model", () => {
+  let category;
+  let subcategory;
+
+  beforeAll( async () => {
+    category = new Category({name: "test category"});
+    await category.save();
+
+    subcategory = new Subcategory({name: "test subcategory", category: category._id});
+    await subcategory.save();
+
+    category.subcategories = [subcategory._id]
+    category.save();
+  });
+
+  afterAll( async () => {
+    await Category.deleteMany({});
+    await Subcategory.deleteMany({});
+  })
+
   beforeEach((done) => {
     mongoose.connection.collections.users.drop(() => {
       done();
@@ -42,6 +63,11 @@ describe("User model", () => {
       email: "someone@example.com",
       username: "someoneNICER",
       password: "password",
+      preferences: [{
+        category: category._id,
+        subcategory: subcategory._id,
+        level: "test level"
+      }]
     });
 
     user.save((err) => {
@@ -54,35 +80,15 @@ describe("User model", () => {
           email: "someone@example.com",
           username: "someoneNICER",
           password: "password",
+          preferences: [{
+            category: category._id,
+            subcategory: subcategory._id,
+            level: "test level"
+          }]
         });
         done();
       });
     });
   });
 
-//   it("can save a user with additional fields", async () => {
-//     const user = new User({
-//       email: "someone@example.com",
-//       username: "someoneNICER",
-//       password: "password",
-//       avatar: "avatar.jpg",
-//       category: "category1",
-//       subcategory: "subcategory1",
-//       level: "level1",
-//     });
-
-//     await user.save();
-
-//     const users = await User.find();
-//     expect(users.length).toEqual(1);
-//     expect(users[0]).toMatchObject({
-//       email: "someone@example.com",
-//       username: "someoneNICER",
-//       password: "password",
-//       avatar: "avatar.jpg",
-//       category: "category1",
-//       subcategory: "subcategory1",
-//       level: "level1",
-//     });
-//   });
 });
