@@ -174,18 +174,85 @@ const UserProfileForm = ({ navigate }) => {
         {!saved && <input id="submit" type="submit" value="Submit" />}
       </form>
       <button onClick={logout}>Logout</button>
-      <div className="row">
-        {saved ? (
-          <div>
-            <p>Subject Category: {subjectCategory}</p>
-            <p>Sub-Category: {subCategory}</p>
-            <p>Level: {level}</p>
-            <button onClick={handleUpdatePreferences}>Update Preferences</button>
+      {saved ? (
+        <div>
+          <p>Subject Category: {subjectCategory}</p>
+          <p>Sub-Category: {subCategory}</p>
+          <p>Level: {level}</p>
+          <button onClick={handleUpdatePreferences}>Update Preferences</button>
+        </div>
+      ) : (
+        <div className="form-group">
+          <div className="row">
+            <div className="column">
+              <label>Category:</label>
+              <select value={subjectCategory} onChange={handleCategoryChange} required>
+                <option value="">Select Category</option>
+                {categories.map((category) => (
+                  <option key={category._id} value={category._id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="column">
+              <label>Sub-Category:</label>
+              <select value={subCategory} onChange={(event) => setSubCategory(event.target.value)} required>
+                <option value="">Select Sub-Category</option>
+                {subcategories.map((subcategory) => (
+                  <option key={subcategory._id} value={subcategory._id}>
+                    {subcategory.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="column">
+              <label>Level:</label>
+              <select value={level} onChange={(event) => setLevel(event.target.value)} required>
+                <option value="">Select Level</option>
+                <option value="novice">NOVICE</option>
+                <option value="intermediate">INTERMEDIATE</option>
+                <option value="proficient">PROFICIENT</option>
+                <option value="advanced">ADVANCED</option>
+                <option value="expert">EXPERT</option>
+              </select>
+            </div>
           </div>
-        ) : (
-          <div className="form-group">
-            <label>Subject Category:</label>
-            <select value={subjectCategory} onChange={handleCategoryChange} required>
+          <div className="row">
+            <div className="column">
+              <select>
+                <option value="">Select Category</option>
+                {categories.map((category) => (
+                  <option key={category._id} value={category._id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="column">
+              <select>
+                <option value="">Select Sub-Category</option>
+                {subcategories.map((subcategory) => (
+                  <option key={subcategory._id} value={subcategory._id}>
+                    {subcategory.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="column">
+              <select>
+                <option value="">Select Level</option>
+                <option value="novice">NOVICE</option>
+              <option value="intermediate">INTERMEDIATE</option>
+              <option value="proficient">PROFICIENT</option>
+              <option value="advanced">ADVANCED</option>
+              <option value="expert">EXPERT</option>
+            </select>
+          </div>
+        </div>
+        <div className="row">
+          <div className="column">
+            <select>
               <option value="">Select Category</option>
               {categories.map((category) => (
                 <option key={category._id} value={category._id}>
@@ -193,8 +260,9 @@ const UserProfileForm = ({ navigate }) => {
                 </option>
               ))}
             </select>
-            <label>Sub-Category:</label>
-            <select value={subCategory} onChange={(event) => setSubCategory(event.target.value)} required>
+          </div>
+          <div className="column">
+            <select>
               <option value="">Select Sub-Category</option>
               {subcategories.map((subcategory) => (
                 <option key={subcategory._id} value={subcategory._id}>
@@ -202,8 +270,9 @@ const UserProfileForm = ({ navigate }) => {
                 </option>
               ))}
             </select>
-            <label>Level:</label>
-            <select value={level} onChange={(event) => setLevel(event.target.value)} required>
+          </div>
+          <div className="column">
+            <select>
               <option value="">Select Level</option>
               <option value="novice">NOVICE</option>
               <option value="intermediate">INTERMEDIATE</option>
@@ -211,22 +280,14 @@ const UserProfileForm = ({ navigate }) => {
               <option value="advanced">ADVANCED</option>
               <option value="expert">EXPERT</option>
             </select>
-            {saved ? (
-              <div>
-                <p>Subject Category: {subjectCategory}</p>
-                <p>Sub-Category: {subCategory}</p>
-                <p>Level: {level}</p>
-                <button onClick={handleUpdatePreferences}>Update Preferences</button>
-              </div>
-            ) : (
-              <button onClick={handleSave}>Save</button>
-            )}
           </div>
-        )}
+        </div>
+        <button onClick={handleSave}>Save</button>
       </div>
-    </>
-  );
-            };
-  
+    )}
+  </>
+);
+              };
+
 
 export default UserProfileForm;
