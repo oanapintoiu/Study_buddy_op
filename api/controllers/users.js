@@ -55,7 +55,7 @@ const UsersController = {
     console.log("decoded_user_id", UserId);
 
     console.log("Request data:", req.body);
-    const { email, username, password, firstName, lastName } = req.body;
+    const { email, username, password, firstName, lastName, } = req.body;
 
     const updateFields = {};
     if (email) updateFields.email = email;
