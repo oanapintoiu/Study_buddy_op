@@ -68,7 +68,7 @@ const StudyGroup = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer '
+        'Authorization': 'Bearer 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'
       },
       body: JSON.stringify({
         prompt: postText,

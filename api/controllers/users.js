@@ -33,20 +33,30 @@ const UsersController = {
           message: "Error processing request",
         });
       }
+      console.log("req.body.email", req.body.email)
 
-      const user = new User(req.body);
-      if (req.file) {
-        user.avatar = `${req.protocol}://${req.get("host")}/avatars/${
-          req.file.filename
-        }`;
-      }
-      user.save((err) => {
-        if (err) {
-          res.status(400).json({ message: "Bad request" });
-        } else {
-          res.status(201).json({ message: "OK" });
+      User.findOne({email: req.body.email}, (err, userCheck) => {
+        if (userCheck) {
+          return res.status(400).json({ message: "Email already exists" });
         }
-      });
+        console.log("userCheck", userCheck)
+
+        const user = new User(req.body);
+        console.log("user", user)
+
+        if (req.file) {
+          user.avatar = `${req.protocol}://${req.get("host")}/avatars/${req.file.filename}`;
+        }
+        user.save((err) => {
+          if (err) {
+            res.status(400).json({ message: "Bad request" });
+          } else {
+            res.status(201).json({ message: "OK" });
+          }
+        });
+
+      
+      })
     });
   },
 
@@ -104,6 +114,21 @@ const UsersController = {
         }
       });
   },
+  FindUserProfile: (req, res) => {
+    User.findById(req.params.id, { password: 0 })
+    .populate("groups")
+    .exec(async (err, user) => { 
+      if (err) {
+        res.status(400).json({ message: "Bad request" });
+      } else if (!user) {
+        res.status(404).json({ message: "User not found" });
+      } else {
+        res.status(200).json({ message: "OK", user });
+      }
+    })
+  }
+  
+ 
 };
 
 module.exports = UsersController;

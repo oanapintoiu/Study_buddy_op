@@ -6,6 +6,7 @@ const SignUpForm = ({ navigate }) => {
   const[username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [avatar, setAvatar] = useState(null);
+  const[error, setError] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -21,13 +22,21 @@ const SignUpForm = ({ navigate }) => {
       method: 'post',
       body: formData
     })
-      .then(response => {
-        if(response.status === 201) {
-          navigate('/login')
-        } else {
-          navigate('/signup')
+    .then((response) => {
+      if (response.status === 201) {
+        navigate('/login');
+      } else {
+        if (response.status === 400) {
+          response.json().then((data) => {
+            setError(data.message);
+          });
         }
-      })
+        navigate('/signup');
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
 
   const handleEmailChange = (event) => {
@@ -54,6 +63,9 @@ const SignUpForm = ({ navigate }) => {
           <input placeholder="Password" id="password" type='password' value={ password } onChange={handlePasswordChange} />
           <label htmlFor='avatar'>Avatar (optional):</label>
           <input id='avatar' type='file' onChange={handleAvatarChange} />
+          
+          <div id="error-message">{error}</div>
+
 
         <input id='submit' type="submit" value="Submit" />
       </form>
