@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './SignUpForm.css';
 
 const SignUpForm = ({ navigate }) => {
 
@@ -39,6 +40,7 @@ const SignUpForm = ({ navigate }) => {
     });
   }
 
+ 
   const handleEmailChange = (event) => {
     setEmail(event.target.value)
   }
@@ -51,25 +53,44 @@ const SignUpForm = ({ navigate }) => {
   }
   const handleAvatarChange = (event) => {
     setAvatar(event.target.files[0]);
-    //console.log(event.target.files[0]);
-
   }
 
 
-    return (
-      <form onSubmit={handleSubmit}>
-          <input placeholder="Email" id="email" type='text' value={ email } onChange={handleEmailChange} />
-          <input placeholder="Username" id="username" type='username' value={ username } onChange={handleUsernameChange} />
-          <input placeholder="Password" id="password" type='password' value={ password } onChange={handlePasswordChange} />
-          <label htmlFor='avatar'>Avatar (optional):</label>
-          <input id='avatar' type='file' onChange={handleAvatarChange} />
-          
-          <div id="error-message">{error}</div>
-
-
-        <input id='submit' type="submit" value="Submit" />
-      </form>
-    );
+ return (
+   <form onSubmit={handleSubmit}>
+     <header className="my-card">
+       <h1>STUDY BUDDY</h1>
+     </header>
+     <div className="my-form-group">
+       <div className="my-input-row">
+         <div className="my-input-group">
+           <input placeholder="Email" id="email" type="text" value={email} onChange={handleEmailChange} />
+         </div>
+         <div className="my-input-group">
+           <input placeholder="Username" id="username" type="text" value={username} onChange={handleUsernameChange} />
+         </div>
+       </div>
+       <div className="my-input-row">
+        <div className="my-input-group">
+          <input placeholder="Password" id="password" type="password" value={password} onChange={handlePasswordChange} />
+        </div>
+       </div>
+       <div className="my-input-row">
+        <div className="my-input-group">
+          <span>Choose your avatar</span>
+        </div>
+      </div>
+       <div className="my-input-row">
+        <div className="my-input-group">
+          <input placeholder="Avatar" id="avatar-user" type="file" onChange={handleAvatarChange} />
+        </div>
+      </div>
+     </div>
+     <div className="my-form-group">
+       <input id="submit" type="submit" value="Submit" />
+     </div>
+   </form>
+ );
 }
 
 export default SignUpForm;
