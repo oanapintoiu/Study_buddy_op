@@ -44,6 +44,7 @@ const StudyGroup = () => {
   const handleSubmit = event => {
     event.preventDefault();
     console.log("newPost: ", newPost)
+    console.log("username: ", username)
     fetch("/groups/" + groupId + "/posts", {
       method: 'POST',
       headers: {
@@ -78,9 +79,6 @@ const StudyGroup = () => {
 
     const data = await response.json();
     
-
-    
-
     const newPostAI = {
         user: { 
             username: "Sheldon AI", 
@@ -89,7 +87,8 @@ const StudyGroup = () => {
         message: data.message
     };
 
-    setNewPost('');
+    setGroup(prevGroup => ({...prevGroup, posts: [...prevGroup.posts, newPostAI]}));
+    setNewPost("");
     setLoading(false);
 };  
 

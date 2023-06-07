@@ -36,7 +36,7 @@ app.post('/ask', async (req, res) => {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
-          'Authorization': "Bearer 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"
+          'Authorization': `Bearer ${openai.apiKey}`
       },
       body: JSON.stringify({
           prompt: postText,

@@ -195,7 +195,7 @@ const GroupController = {
       }
   
       // Create a new post and add it to the group
-      const newPost = new Post({ message, group: group._id});
+      const newPost = new Post({ message, group: group._id, user: userProjection._id});
       await newPost.save();
   
       group.posts.push(newPost._id);
