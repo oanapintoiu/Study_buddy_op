@@ -4,6 +4,7 @@ const path = require("path");
 const logger = require("morgan");
 const JWT = require("jsonwebtoken");
 
+
 const postsRouter = require("./routes/posts");
 const tokensRouter = require("./routes/tokens");
 const usersRouter = require("./routes/users");
@@ -21,6 +22,36 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use('/avatars', express.static(path.join(__dirname, 'avatars')));
+
+
+app.post('/ask', async (req, res) => {
+  const postText = req.body.text;
+
+  const response = await fetch('https://api.openai.com/v1/engines/text-davinci-003/completions', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer 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'
+      },
+      body: JSON.stringify({
+          prompt: postText,
+          max_tokens: 600
+      })
+  });
+
+  const data = await response.json();
+
+  if (!data.choices || data.choices.length === 0) {
+      console.error("Unexpected response from OpenAI API:", data);
+      res.status(500).send('Unexpected response from OpenAI API');
+      return;
+  }
+
+  res.json({ message: data.choices[0].text });
+  
+});
+
+app.listen(3000, () => console.log('Server is running on port 3000'));
 
 
 // middleware function to check for valid tokens

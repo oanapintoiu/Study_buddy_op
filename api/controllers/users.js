@@ -1,5 +1,5 @@
 const TokenDecoder = require("../models/token_decoder");
-const User = require("../models/user");
+const User = require("../models/user")
 const multer = require("multer");
 
 // Configure multer storage
