@@ -54,7 +54,7 @@ const StudyGroup = () => {
 
   const handleAskAI = async (postText) => {
     setLoading(true);
-  
+
     const response = await fetch('/ai', {
       method: 'POST',
       headers: {
@@ -64,18 +64,38 @@ const StudyGroup = () => {
         message: postText,
       }),
     });
-  
+
+
     const data = await response.json();
-  
+
     const newPostAI = {
       message: data,  // data directly contains the AI message.
+      group: groupId, // Add the group ID when creating an AI post
+      ai_question: postText.toString(),
     };
-  
-    setPosts([...posts, newPostAI]);
-    setNewPost('');  // Clear the input box by setting newPost to an empty string.
+
+    fetch("/groups/" + groupId + "/postsAI", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(newPostAI)  // Wrap newPostAI inside an object
+    })
+      .then(response => response.json())
+      .then(async data => {
+        window.localStorage.setItem("token", data.token);
+        setToken(window.localStorage.getItem("token"));
+        setPosts([...posts, newPostAI]);
+        setNewPost("");
+      })
+      .catch(error => {
+        console.error('Error saving AI chat data:', error);
+      });
+    
+
     setLoading(false);
   };
-      
 
   const logout = () => {
     window.localStorage.removeItem("token");
@@ -108,3 +128,4 @@ const StudyGroup = () => {
 };
 
 export default StudyGroup;
+
