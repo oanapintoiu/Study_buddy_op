@@ -52,7 +52,7 @@ app.post('/ask', async (req, res) => {
       return;
   }
 
-  res.json({ message: data.choices[0].text });
+  res.json({ message: data.choices[0].text.replace(/(\r\n|\n|\r)/gm, "") });
 });
 
 //app.listen(3000, () => console.log('Server is running on port 3000'));

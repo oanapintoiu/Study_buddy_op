@@ -80,7 +80,7 @@ const StudyGroup = () => {
     const data = await response.json();
 
     const PostAI = {
-      message: data,  // data directly contains the AI message.
+      message: data.message,  // data directly contains the AI message.
       group: groupId, // Add the group ID when creating an AI post
       ai_question: postText.toString(),
     };
