@@ -31,9 +31,8 @@ app.post('/ask', async (req, res) => {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer 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'
-      },
-      body: JSON.stringify({
+          'Authorization': 'Bearer ' + process.env.OPENAI_API_KEY,
+          body: JSON.stringify({
           prompt: postText,
           max_tokens: 600
       })
