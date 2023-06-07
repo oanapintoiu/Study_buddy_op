@@ -31,8 +31,9 @@ app.post('/ask', async (req, res) => {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + process.env.OPENAI_API_KEY,
-          body: JSON.stringify({
+          'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
           prompt: postText,
           max_tokens: 600
       })
@@ -47,7 +48,6 @@ app.post('/ask', async (req, res) => {
   }
 
   res.json({ message: data.choices[0].text });
-  
 });
 
 app.listen(3000, () => console.log('Server is running on port 3000'));
