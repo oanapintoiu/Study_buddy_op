@@ -55,7 +55,7 @@ const UsersController = {
     console.log("decoded_user_id", UserId);
 
     console.log("Request data:", req.body);
-    const { email, username, password, firstName, lastName, category, subcategory, level } = req.body;
+    const { email, username, password, firstName, lastName, } = req.body;
 
     const updateFields = {};
     if (email) updateFields.email = email;
@@ -63,9 +63,6 @@ const UsersController = {
     if (password) updateFields.password = password;
     if (firstName) updateFields.firstName = firstName;
     if (lastName) updateFields.lastName = lastName;
-    if (category) updateFields.category = category;
-    if (subcategory) updateFields.subcategory = subcategory;
-    if (level) updateFields.level = level;
 
     User.findByIdAndUpdate(
       UserId,

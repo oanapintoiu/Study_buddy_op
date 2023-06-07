@@ -8,11 +8,6 @@ const UserSchema = new mongoose.Schema({
   lastName: { type: String, required: false },
   avatar: { type: String, required: false },
   groups: [{ type: mongoose.Schema.Types.ObjectId, ref: "Group", default: [] }],
-  preferences: [{
-    category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
-    subcategory: { type: mongoose.Schema.Types.ObjectId, ref: "Subcategory" },
-    level: { type: String, required: false },
-  }] 
 });
 
 const User = mongoose.model("User", UserSchema);
