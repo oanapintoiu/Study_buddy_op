@@ -3,14 +3,16 @@ const TokenGenerator = require("../models/token_generator");
 
 const PostsController = {
   Index: (req, res) => {
-    Post.find({ group: req.query.group }, async (err, posts) => {
+    Post.find({ group: req.query.group })
+      .populate('user')
+      .exec(async (err, posts) => {
       if (err) {
-        throw err;
-      }
-      const token = await TokenGenerator.jsonwebtoken(req.user_id)
-      res.status(200).json({ posts: posts, token: token });
-    });
-  },
+        throw err;}
+        const token = await TokenGenerator.jsonwebtoken(req.user_id)
+       res.status(200).json({ posts: posts, token: token });
+
+      })
+    },
   Create: (req, res) => {
     const post = new Post(req.body);
     post.group = req.body.group; 
@@ -23,6 +25,7 @@ const PostsController = {
       res.status(201).json({ message: 'OK', token: token });
     });
   },
+
 };
 
 module.exports = PostsController;
