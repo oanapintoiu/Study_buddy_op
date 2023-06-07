@@ -115,6 +115,42 @@ const GroupController = {
       res.status(500).json({ message: 'Failed to join group' });
     }
   },
+  LeaveGroup: async (req, res) => {
+    try {
+      const groupId = req.params.id;
+      const userId = req.user_id;
+  
+      const group = await Group.findById(groupId).exec();
+      if (!group) {
+        return res.status(404).json({ message: 'Group not found' });
+      }
+  
+      if (!group.members.includes(userId)) {
+        return res.status(400).json({ message: 'User is not a member of this group' });
+      }
+  
+      // Remove the user from the group's members
+      const index = group.members.indexOf(userId);
+      if (index > -1) {
+        group.members.splice(index, 1);
+      }
+      await group.save();
+  
+      // Remove the group from the user's groups
+      const user = await User.findById(userId).exec();
+      const userGroupIndex = user.groups.indexOf(groupId);
+      if (userGroupIndex > -1) {
+        user.groups.splice(userGroupIndex, 1);
+      }
+      await user.save();
+  
+      const token = await TokenGenerator.jsonwebtoken(req.user_id);
+      res.status(200).json({ message: 'Left group successfully', token });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Failed to leave group' });
+    }
+  },
   RemoveMember: async (req, res) => {
     try {
       const userId = req.body.userId;
