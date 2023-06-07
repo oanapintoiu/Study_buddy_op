@@ -12,6 +12,8 @@ const Feed = ({ navigate }) => {
   const [subCategory, setSubCategory] = useState('');
   const [level, setLevel] = useState('');
   const [groupType, setGroupType] = useState('private');
+  const [name, setName] = useState('')
+  const [searchTimeout, setSearchTimeout] = useState(null);
   useEffect(() => {
     if(token) {
       fetch("/posts", {
@@ -78,32 +80,42 @@ const Feed = ({ navigate }) => {
   }
   // Frontend code
 
-const handleSearch = async () => {
-  console.log(subjectCategory)
-  console.log(subCategory)
-  console.log(level)
-  console.log(groupType)
-  try {
-    const response = await fetch('/groups/filter', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        category: subjectCategory,
-        subcategory: subCategory,
-        level: level,
-        groupType: groupType,
-      }),
-    });
-    const data = await response.json();
-    setGroups(data.groups);
-    console.log(data.groups)
-  } catch (error) {
-    console.error('Error searching groups:', error);
-  }
-};
+  const handleSearch = (value) => {
+    clearTimeout(searchTimeout); // Clear previous timeout
+    const timeout = setTimeout(() => {
+      performSearch(value);
+    }, 10); // Set a delay of 500 milliseconds before performing the search
+    setSearchTimeout(timeout);
+  };
+
+  const performSearch = async (value) => {
+    try {
+      // Perform the search request here
+      // Use the updated value from the input field
+      console.log(value);
+
+      const response = await fetch('/groups/filter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          category: subjectCategory,
+          subcategory: subCategory,
+          level: level,
+          groupType: groupType,
+          name: value,
+        }),
+      });
+
+      const data = await response.json();
+      setGroups(data.groups);
+      console.log(data.groups);
+    } catch (error) {
+      console.error('Error searching groups:', error);
+    }
+  };
 
   
   if(token) {
@@ -119,6 +131,10 @@ const handleSearch = async () => {
             Name:
             <input
               type="text"
+              onChange={(event) => {
+                setName(event.target.value);
+                handleSearch(event.target.value);
+              }}
             />
           </label>
           <br></br>
@@ -168,7 +184,7 @@ const handleSearch = async () => {
         </label>
         <br />
           <br></br><br></br>
-          <button onClick={handleSearch}>Search</button>
+          <button onClick={() => handleSearch(name)}>Search</button>
         </div>
         <div id='feed' role="feed">
           {groups.map((group) => (

@@ -133,7 +133,7 @@ const GroupController = {
   Filter: async (req, res) => {
     
     try {
-      const { category, subcategory, level, groupType } = req.body;
+      const { category, subcategory, level, groupType, name } = req.body;
       const isPrivate = groupType === 'private';
       console.log(category)
       let query = {};
@@ -148,6 +148,9 @@ const GroupController = {
       }
       if (groupType) {
         query.private = isPrivate
+      }
+      if (name) {
+        query.name = { $regex: name, $options: 'i' };
       }
 
   
