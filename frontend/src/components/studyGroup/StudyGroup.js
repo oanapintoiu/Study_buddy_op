@@ -68,7 +68,7 @@ const StudyGroup = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer {process.env.REACT_APP_OPENAI_API_KEY}}`
+        'Authorization': 'Bearer '
       },
       body: JSON.stringify({
         prompt: postText,
@@ -77,12 +77,19 @@ const StudyGroup = () => {
     });
   
     const data = await response.json();
-  
+    if (!data.choices || data.choices.length === 0) {
+      console.error("Unexpected response from OpenAI API:", data);
+      return;
+    }
+    console.log(data)
     const newPostAI = {
+      user: { username: "Sheldon AI", avatar: "https://res.cloudinary.com/dmkipvd8d/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1686121855/sheldon_640x480_41478610926_d6r4bh.jpg" },
       message: data.choices[0].text
     };
-  
-    setPosts([...posts, newPostAI]);
+    setGroup(prevGroup => ({...prevGroup, posts: [...prevGroup.posts, newPostAI]}));
+
+    //setPosts([...posts, { message: newPostAI }]);
+
     setNewPost('');
     setLoading(false);
   };  
@@ -97,7 +104,7 @@ const StudyGroup = () => {
             <h3>Members</h3>
             {group.members && group.members.length > 0 ? group.members
   .map((member, index) => (
-    <p className='member' key={index} onClick={() => navigate(`/profile/${member._id}`)}>{member.username}</p>
+    <p className='member' key={index} onClick={() => navigate(`/users/${member._id}`)}>{member.username}</p>
 )) : null}
         </div>
         <button onClick={handleMembersBoxToggle} className="members-toggle-button">
