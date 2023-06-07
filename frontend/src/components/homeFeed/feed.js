@@ -27,7 +27,7 @@ const Feed = ({ navigate }) => {
         setPosts(data.posts);
       })
     }
-  }, [])
+  }, [token])
   useEffect(() => {
     if (token) {
       fetch("/groups", {
