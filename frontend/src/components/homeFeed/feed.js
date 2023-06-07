@@ -161,6 +161,7 @@ const handleSearch = async () => {
         <label>
           Group Type:
           <select value={groupType} onChange={(event) => setGroupType(event.target.value)}>
+            <option value="">Select type</option>
             <option value="private">Private</option>
             <option value="public">Public</option>
           </select>

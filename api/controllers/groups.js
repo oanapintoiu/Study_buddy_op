@@ -134,6 +134,7 @@ const GroupController = {
     
     try {
       const { category, subcategory, level, groupType } = req.body;
+      const isPrivate = groupType === 'private';
       console.log(category)
       let query = {};
       if (category) {
@@ -142,6 +143,13 @@ const GroupController = {
       if (subcategory) {
         query.subcategory = subcategory;
       }
+      if (level) {
+        query.level = level
+      }
+      if (groupType) {
+        query.private = isPrivate
+      }
+
   
       const groups = await Group.find(query).exec();
       res.status(200).json({ groups });
