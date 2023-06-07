@@ -28,7 +28,7 @@ const Feed = ({ navigate }) => {
         setPosts(data.posts);
       })
     }
-  }, [])
+  }, [token])
   useEffect(() => {
     if (token) {
       fetch("/groups", {
@@ -56,8 +56,36 @@ const Feed = ({ navigate }) => {
     );
     setGroups(filteredGroups);
   }
+  const joinGroup = (groupId) => {
+    // Retrieve the user ID from the cookie
+    const cookies = document.cookie.split("; ");
+    let currentUserId = '';
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].split("=");
+      if (cookie[0] === "userId") {
+        currentUserId = cookie[1];
+        break;
+      }
+    }
+  
+    // Send a request to the backend to join the group
+    fetch(`/groups/${groupId}/join`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ userId: currentUserId })
+    })
+      .then(response => response.json())
+      .then(data => {
+        // Handle the response if needed
+        console.log(data);
+      })
+  };
+  
   if(token) {
-    return(
+    return (
       <>
         <h1>Homepage</h1>
         <div>
@@ -116,15 +144,18 @@ const Feed = ({ navigate }) => {
         </div>
         <div id='feed' role="feed">
           {groups.map((group) => (
-            <div key={group._id}>{group.name}</div>
+            <div key={group._id}>
+              {group.name}
+              <button onClick={() => joinGroup(group._id)}>Join</button>
+            </div>
           ))}
           {posts.map((post) => (
             <Post post={post} key={post._id} />
           ))}
         </div>
-        
       </>
-    )
+    );
+    
   } else {
     navigate('/signin')
     return null;
