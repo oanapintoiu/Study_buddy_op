@@ -3,7 +3,6 @@ const Post = require("../models/post");
 const User = require("../models/user");
 const TokenGenerator = require("../models/token_generator");
 const mongoose = require('mongoose');
-const User = require("../models/user")
 
 const GroupController = {
   Index: async (req, res) => {
@@ -196,7 +195,7 @@ const GroupController = {
       }
   
       // Create a new post and add it to the group
-      const newPost = new Post({ message, group: group._id});
+      const newPost = new Post({ message, group: group._id, user: userProjection._id});
       await newPost.save();
   
       group.posts.push(newPost._id);

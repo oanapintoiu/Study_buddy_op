@@ -9,6 +9,7 @@ const path = require("path");
 const logger = require("morgan");
 const JWT = require("jsonwebtoken");
 
+
 const postsRouter = require("./routes/posts");
 const tokensRouter = require("./routes/tokens");
 const usersRouter = require("./routes/users");
@@ -28,33 +29,34 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use('/avatars', express.static(path.join(__dirname, 'avatars')));
 
 
-app.post('/ai', async (req, res) => {
-  const { message } = req.body;
+app.post('/ask', async (req, res) => {
+  const postText = req.body.text;
 
-  try {
-    const response = await fetch('https://api.openai.com/v1/engines/text-davinci-003/completions', {  //better to find out how to use the open ai library in future
+  const response = await fetch('https://api.openai.com/v1/engines/text-davinci-003/completions', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${openai.apiKey}`
       },
       body: JSON.stringify({
-        prompt: message,
-        max_tokens: 60
+          prompt: postText,
+          max_tokens: 600
       })
-    });
+  });
 
-    if (!response.ok) throw new Error(`Server response: ${response.status}`);
+  const data = await response.json();
 
-    const data = await response.json();
-
-    
-    res.json(data.choices[0].text.replace(/(\r\n|\n|\r)/gm, ""));
-  } catch (error) {
-    console.error(error);
-    res.status(500).send(error);
+  if (!data.choices || data.choices.length === 0) {
+      console.error("Unexpected response from OpenAI API:", data);
+      res.status(500).send('Unexpected response from OpenAI API');
+      return;
   }
+
+  res.json({ message: data.choices[0].text });
 });
+
+//app.listen(3000, () => console.log('Server is running on port 3000'));
+
 
 // middleware function to check for valid tokens
 const tokenChecker = (req, res, next) => {

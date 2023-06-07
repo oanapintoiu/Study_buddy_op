@@ -2,6 +2,7 @@ import './App.css';
 import LoginForm from '../auth/LoginForm'
 import SignUpForm from '../user/SignUpForm'
 import UserProfileForm from '../userProfile/UserProfileForm'
+import Budy from '../budy/Budy'
 import React, { useEffect, useState } from 'react';
 
 import Sidebar from '../sidebar/Sidebar'
@@ -38,6 +39,7 @@ const App = () => {
           <Route path='/signup' element={<SignUpForm navigate={ useNavigate() }/>}/>
           <Route path="/create-group" element={<CreateGroup navigate={navigate} />} />
           <Route path='/profile' element={<UserProfileForm navigate={ useNavigate() }/>}/>
+          <Route path='/users/:id' element={<Budy navigate={ useNavigate() }/>}/>
         </Routes>
         </div>
       </>

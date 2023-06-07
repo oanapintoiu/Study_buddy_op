@@ -55,8 +55,8 @@ const LogInForm = ({ navigate }) => {
   };
 
   return (
-<<<<<<< HEAD
-     <><div className="study-buddy-heading">
+     <>
+     <div className="study-buddy-heading">
       <h1>Study Buddy.</h1>
     </div>
     <div className="additional-text">
@@ -64,7 +64,7 @@ const LogInForm = ({ navigate }) => {
       </p>
   </div>
     <div className="container">
-        <form onSubmit={handleSubmit} className="form">
+        <form onSubmit={handleSubmit} className="form" >
           <div className="input-group">
             <input
               placeholder="Username"
@@ -86,42 +86,13 @@ const LogInForm = ({ navigate }) => {
             id="submit"
             type="submit"
             value="Log in" />
-          <div className="forgot-password">
-            <a href="#">Forgotten password?</a>
-          </div>
-          <button className="create-account-button">
-            Create new account
-          </button>
         </form>
-      </div></>
-=======
-    <>
-    <form onSubmit={handleSubmit}>
-      <input
-        placeholder="Username"
-        id="username"
-        type="text"
-        value={username}
-        onChange={handleUsernameChange}
-      />
-      <input
-        placeholder="Password"
-        id="password"
-        type="password"
-        value={password}
-        onChange={handlePasswordChange}
-      />
-      <input role="submit-button" id="submit" type="submit" value="Submit" />
-    </form>
-    <div>
-      <br></br>
-      <button onClick={() => navigate("/signup")}>Sign Up</button>
-    </div>
-    </>
->>>>>>> main
+        <button className="create-account-button" onClick={() => navigate("/signup")}>
+            Create new account
+        </button>
+      </div>
+      </>
   );
 };
-
-  
 
 export default LogInForm;
