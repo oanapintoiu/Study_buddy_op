@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CreateGroup = () => {
   const [groupName, setGroupName] = useState('');
@@ -10,6 +11,7 @@ const CreateGroup = () => {
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem('token'));
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchCategories();
@@ -27,14 +29,14 @@ const CreateGroup = () => {
 
   const fetchSubcategories = async (selectedCategory) => {
     try {
-      const response = await fetch(`/subcategories?category=${selectedCategory}`);
+      const response = await fetch(`/categories/${selectedCategory}/subcategories`);
       const data = await response.json();
-      setSubcategories(data);
+      console.log("selectedCategory: ",data);
+      setSubcategories(data.subcategories);
     } catch (error) {
       console.error('Error fetching subcategories:', error);
     }
   };
-  
 
   const handleCategoryChange = (event) => {
     const selectedCategory = event.target.value;
@@ -42,7 +44,6 @@ const CreateGroup = () => {
     setSubCategory('');
     fetchSubcategories(selectedCategory); // Call fetchSubcategories after updating subjectCategory
   };
-  
 
   const handleCreateGroup = async (event) => {
     event.preventDefault();
@@ -67,6 +68,7 @@ const CreateGroup = () => {
       });
 
       if (response.ok) {
+        navigate('/posts');
         // Group creation was successful
         // Handle any necessary logic or show a success message
       } else if (response.status === 401) {
@@ -78,7 +80,10 @@ const CreateGroup = () => {
       console.error('Error creating group:', error);
       // Handle the unauthorized error here, e.g., redirect to login page
     }
+    
   };
+
+
 
   return (
     <div>
@@ -117,14 +122,11 @@ const CreateGroup = () => {
           Level:
           <select value={level} onChange={(event) => setLevel(event.target.value)} required>
             <option value="">Select Level</option>
-            <option value="0">0 - EARLY CHILDHOOD EDUCATION</option>
-            <option value="1">1 - PRIMARY EDUCATION</option>
-            <option value="2">2 - LOWER SECONDARY EDUCATION</option>
-            <option value="3">3 - UPPER SECONDARY EDUCATION</option>
-            <option value="4">4 - POST-SECONDARY NON-TERTIARY EDUCATION</option>
-            <option value="5">5 - SHORT-CYCLE TERTIARY EDUCATION</option>
-            <option value="6">6 - BACHELOR'S OR EQUIVALENT LEVEL</option>
-            <option value="7">7 - MASTER'S OR EQUIVALENT LEVEL</option>
+            <option value="novice">NOVICE</option>
+            <option value="intermediate">INTERMEDIATE</option>
+            <option value="proficient">PROFICIENT</option>
+            <option value="advanced">ADVANCED</option>
+            <option value="expert">EXPERT</option>
           </select>
         </label>
         <br />

@@ -6,6 +6,10 @@ const GroupSchema = new mongoose.Schema({
   subcategory: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Subcategory' }],
   members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }], 
+  partySize: {type: Number, required: false},
+  level: {type: String, required: false},
+  private: { type: Boolean, default: false },
+
 });
 
 const Group = mongoose.model("Group", GroupSchema);

@@ -12,24 +12,22 @@ const getAllCategories = async (req, res) => {
 };
 
 const getSubcategoriesByCategory = async (req, res) => {
-  const selectedCategory = req.query.category;
-
+  const selectedCategory = req.params.category;
+  console.log("selectedCategory: ",selectedCategory);
   try {
-    const category = await Category.findOne({ name: selectedCategory })
-      .populate('subcategories', 'name');
+    const subcategories = await Subcategory.find({category: selectedCategory})
+    ;
+    console.log("subcategories: ",subcategories);
 
-    if (!category) {
+    if (!subcategories) {
       return res.status(404).json({ error: 'Category not found' });
     }
 
-    res.json(category.subcategories);
+    res.json({subcategories: subcategories});
   } catch (error) {
     console.error('Error fetching subcategories:', error);
     res.status(500).json({ error: 'An error occurred while fetching subcategories.' });
   }
 };
 
-
 module.exports = { getAllCategories, getSubcategoriesByCategory };
-
-

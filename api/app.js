@@ -25,6 +25,8 @@ app.use(cookieParser());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
+app.use('/avatars', express.static(path.join(__dirname, 'avatars')));
+
 
 app.post('/ai', async (req, res) => {
   const { message } = req.body;
