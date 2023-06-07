@@ -11,5 +11,7 @@ router.delete("/:id", GroupController.Delete);
 router.post("/:id/members", GroupController.AddMember);
 router.delete("/:id/members", GroupController.RemoveMember);
 router.post("/:id/posts", GroupController.CreatePost);
+router.post("/:id/postsAI", GroupController.CreateAIPost);
+
 
 module.exports = router;

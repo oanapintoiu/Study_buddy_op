@@ -46,7 +46,8 @@ app.post('/ai', async (req, res) => {
 
     const data = await response.json();
 
-    res.json(data.choices[0].text);
+    
+    res.json(data.choices[0].text.replace(/(\r\n|\n|\r)/gm, ""));
   } catch (error) {
     console.error(error);
     res.status(500).send(error);
