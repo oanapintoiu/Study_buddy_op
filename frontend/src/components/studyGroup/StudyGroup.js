@@ -10,10 +10,10 @@ const StudyGroup = () => {
   const [posts, setPosts] = useState([]);
   const [newPost, setNewPost] = useState("");
   const [token, setToken] = useState(window.localStorage.getItem("token"));
-  const [username, setUsername] = useState(window.localStorage.getItem("username"));
   const [loading, setLoading] = useState(false);
   const [group, setGroup] = useState({});
   const [isMembersBoxOpen, setIsMembersBoxOpen] = useState(false);
+  const [username, setUsername] = useState(window.localStorage.getItem("username"));
 
   useEffect(() => {
     if (token) {
@@ -44,13 +44,14 @@ const StudyGroup = () => {
   const handleSubmit = event => {
     event.preventDefault();
     console.log("newPost: ", newPost)
+    console.log("username: ", username)
     fetch("/groups/" + groupId + "/posts", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       },
-      body: JSON.stringify({ message: newPost, group: groupId, user: username}) // Add the group ID when creating a new post
+      body: JSON.stringify({ message: newPost, group: groupId, user: username }) // Add the group ID when creating a new post
     })
       .then(response => response.json())
       .then(async data => {
@@ -68,13 +69,16 @@ const StudyGroup = () => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({
             text: postText
         })
     });
-  
+
+
     const data = await response.json();
+    
 
     
 
@@ -84,12 +88,21 @@ const StudyGroup = () => {
             avatar: "https://res.cloudinary.com/dmkipvd8d/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1686121855/sheldon_640x480_41478610926_d6r4bh.jpg" 
         },
         message: data.message
+        user: { 
+            username: "Sheldon AI", 
+            avatar: "https://res.cloudinary.com/dmkipvd8d/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1686121855/sheldon_640x480_41478610926_d6r4bh.jpg" 
+        },
+        message: data.message
     };
+
     setGroup(prevGroup => ({...prevGroup, posts: [...prevGroup.posts, newPostAI]}));
+    setNewPost("");
 
     setNewPost('');
     setLoading(false);
 };  
+};  
+
 
 
   if (token) {
@@ -111,7 +124,6 @@ const StudyGroup = () => {
         <div id='feed' role="feed">
         {group.posts ?
            (<Chat posts={group.posts}
-            username={username}
             handlePostChange={handlePostChange}
             handleSubmit={handleSubmit}
             newPost={newPost}
@@ -136,3 +148,4 @@ const StudyGroup = () => {
 };
 
 export default StudyGroup;
+

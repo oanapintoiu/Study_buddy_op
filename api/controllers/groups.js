@@ -195,8 +195,34 @@ const GroupController = {
       }
   
       // Create a new post and add it to the group
-    
-      const newPost = new Post({ message, group: group._id, user: userProjection._id });
+      const newPost = new Post({ message, group: group._id, user: userProjection._id});
+      await newPost.save();
+  
+      group.posts.push(newPost._id);
+      await group.save();
+  
+      const token = await TokenGenerator.jsonwebtoken(req.user_id);
+      res.status(201).json({ message: "Post created successfully", token });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Failed to create post" });
+    }
+  },  
+
+  CreateAIPost: async (req, res) => {
+    console.log(req.body)
+    const groupId = req.params.id;
+    const { message } = req.body;
+    const ai_question = req.body.ai_question;
+  
+    try {
+      const group = await Group.findById(groupId);
+      if (!group) {
+        return res.status(404).json({ message: "Group not found" });
+      }
+  
+      // Create a new post and add it to the group
+      const newPost = new Post({ message, group: group._id, ai_question });
       await newPost.save();
   
       group.posts.push(newPost._id);

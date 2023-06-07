@@ -1,3 +1,8 @@
+const openai = require('openai');
+require('dotenv').config();
+openai.apiKey = process.env.OPENAI_API_KEY;
+
+
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
@@ -31,7 +36,7 @@ app.post('/ask', async (req, res) => {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
+          'Authorization': `Bearer ${openai.apiKey}`
       },
       body: JSON.stringify({
           prompt: postText,
@@ -50,7 +55,7 @@ app.post('/ask', async (req, res) => {
   res.json({ message: data.choices[0].text });
 });
 
-app.listen(3000, () => console.log('Server is running on port 3000'));
+//app.listen(3000, () => console.log('Server is running on port 3000'));
 
 
 // middleware function to check for valid tokens
@@ -111,5 +116,7 @@ app.put('/userRouter/:id', async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
+
+
 
 module.exports = app;
