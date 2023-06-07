@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './LoginForm.css';
 
 const LogInForm = ({ navigate }) => {
   const [username, setUsername] = useState("");
@@ -54,6 +55,46 @@ const LogInForm = ({ navigate }) => {
   };
 
   return (
+<<<<<<< HEAD
+     <><div className="study-buddy-heading">
+      <h1>Study Buddy.</h1>
+    </div>
+    <div className="additional-text">
+    <p>Welcome to Study Buddy, your perfect companion for productive collaboration! 
+      </p>
+  </div>
+    <div className="container">
+        <form onSubmit={handleSubmit} className="form">
+          <div className="input-group">
+            <input
+              placeholder="Username"
+              id="username"
+              type="text"
+              value={username}
+              onChange={handleUsernameChange} />
+          </div>
+          <div className="input-group">
+            <input
+              placeholder="Password"
+              id="password"
+              type="password"
+              value={password}
+              onChange={handlePasswordChange} />
+          </div>
+          <input
+            role="submit-button"
+            id="submit"
+            type="submit"
+            value="Log in" />
+          <div className="forgot-password">
+            <a href="#">Forgotten password?</a>
+          </div>
+          <button className="create-account-button">
+            Create new account
+          </button>
+        </form>
+      </div></>
+=======
     <>
     <form onSubmit={handleSubmit}>
       <input
@@ -77,7 +118,10 @@ const LogInForm = ({ navigate }) => {
       <button onClick={() => navigate("/signup")}>Sign Up</button>
     </div>
     </>
+>>>>>>> main
   );
 };
+
+  
 
 export default LogInForm;
