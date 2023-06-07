@@ -13,6 +13,7 @@ const StudyGroup = () => {
   const [loading, setLoading] = useState(false);
   const [group, setGroup] = useState({});
   const [isMembersBoxOpen, setIsMembersBoxOpen] = useState(false);
+  const [username, setUsername] = useState(window.localStorage.getItem("username"));
 
   useEffect(() => {
     if (token) {
@@ -49,7 +50,7 @@ const StudyGroup = () => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       },
-      body: JSON.stringify({ message: newPost, group: groupId }) // Add the group ID when creating a new post
+      body: JSON.stringify({ message: newPost, group: groupId, user: username }) // Add the group ID when creating a new post
     })
       .then(response => response.json())
       .then(async data => {
