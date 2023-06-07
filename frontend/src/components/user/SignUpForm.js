@@ -6,16 +6,21 @@ const SignUpForm = ({ navigate }) => {
   const [email, setEmail] = useState("");
   const[username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [avatar, setAvatar] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('username', username);
+    formData.append('password', password);
+    if (avatar) {
+      formData.append('avatar', avatar);
+    }
     fetch( '/users', {
       method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email: email, username: username, password: password })
+      body: formData
     })
       .then(response => {
         if(response.status === 201) {
@@ -37,8 +42,14 @@ const SignUpForm = ({ navigate }) => {
   const handleUsernameChange = (event) => {
     setUsername(event.target.value)
   }
+  const handleAvatarChange = (event) => {
+    setAvatar(event.target.files[0]);
+    //console.log(event.target.files[0]);
+
+  }
 
 
+<<<<<<< HEAD
   return (
     <form onSubmit={handleSubmit}>
       <header className="my-card">
@@ -73,6 +84,19 @@ const SignUpForm = ({ navigate }) => {
     
   
    
+=======
+    return (
+      <form onSubmit={handleSubmit}>
+          <input placeholder="Email" id="email" type='text' value={ email } onChange={handleEmailChange} />
+          <input placeholder="Username" id="username" type='username' value={ username } onChange={handleUsernameChange} />
+          <input placeholder="Password" id="password" type='password' value={ password } onChange={handlePasswordChange} />
+          <label htmlFor='avatar'>Avatar (optional):</label>
+          <input id='avatar' type='file' onChange={handleAvatarChange} />
+
+        <input id='submit' type="submit" value="Submit" />
+      </form>
+    );
+>>>>>>> main
 }
 
 export default SignUpForm;

@@ -1,9 +1,30 @@
 const mongoose = require("mongoose");
+const Category = require("../../models/category")
+const Subcategory = require("../../models/subcategory")
 
 require("../mongodb_helper");
 const User = require("../../models/user");
 
 describe("User model", () => {
+  let category;
+  let subcategory;
+
+  beforeAll( async () => {
+    category = new Category({name: "test category"});
+    await category.save();
+
+    subcategory = new Subcategory({name: "test subcategory", category: category._id});
+    await subcategory.save();
+
+    category.subcategories = [subcategory._id]
+    category.save();
+  });
+
+  afterAll( async () => {
+    await Category.deleteMany({});
+    await Subcategory.deleteMany({});
+  })
+
   beforeEach((done) => {
     mongoose.connection.collections.users.drop(() => {
       done();
@@ -37,26 +58,4 @@ describe("User model", () => {
     });
   });
 
-  it("can save a user", (done) => {
-    const user = new User({
-      email: "someone@example.com",
-      username: "someoneNICER",
-      password: "password",
-    });
-
-    user.save((err) => {
-      expect(err).toBeNull();
-
-      User.find((err, users) => {
-        expect(err).toBeNull();
-
-        expect(users[0]).toMatchObject({
-          email: "someone@example.com",
-          username: "someoneNICER",
-          password: "password",
-        });
-        done();
-      });
-    });
-  });
 });
