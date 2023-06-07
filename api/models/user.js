@@ -9,8 +9,8 @@ const UserSchema = new mongoose.Schema({
   avatar: { type: String, required: false },
   groups: [{ type: mongoose.Schema.Types.ObjectId, ref: "Group", default: [] }],
   preferences: [{
-    category: { type: mongoose.Schema.Types.ObjectId, ref: "Categories" },
-    subcategory: { type: mongoose.Schema.Types.ObjectId, ref: "Subcategories" },
+    category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
+    subcategory: { type: mongoose.Schema.Types.ObjectId, ref: "Subcategory" },
     level: { type: String, required: false },
   }] 
 });
