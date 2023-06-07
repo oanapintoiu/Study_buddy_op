@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Post from '../post/Post'
 import './feed.css'
+import GroupCard from './GroupCard';
+import { Grid } from "@mui/material";
+
 
 const Feed = ({ navigate }) => {
   const [posts, setPosts] = useState([]);
@@ -143,12 +146,13 @@ const Feed = ({ navigate }) => {
           <button onClick={handleSearch}>Search</button>
         </div>
         <div id='feed' role="feed">
-          {groups.map((group) => (
-            <div key={group._id}>
-              {group.name}
-              <button onClick={() => joinGroup(group._id)}>Join</button>
-            </div>
-          ))}
+        <Grid container spacing={3}>
+      {groups.map((group) => (
+        <Grid item xs={12} sm={6} md={4} lg={3} key={group.id}>
+          <GroupCard group={group} />
+        </Grid>
+      ))}
+    </Grid>
           {posts.map((post) => (
             <Post post={post} key={post._id} />
           ))}

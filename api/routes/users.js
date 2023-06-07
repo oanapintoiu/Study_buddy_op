@@ -7,5 +7,6 @@ router.post("/", UsersController.Create);
 router.put("/", UsersController.Update);
 router.get("/:username/avatars", UsersController.FindAvatar);
 router.get("/:username/groups", UsersController.FindUserGroups);
+router.get("/:id", UsersController.FindUserProfile);
 
 module.exports = router;

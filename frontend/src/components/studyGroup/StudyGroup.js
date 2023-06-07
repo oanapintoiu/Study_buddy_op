@@ -63,63 +63,34 @@ const StudyGroup = () => {
 
   const handleAskAI = async (postText) => {
     setLoading(true);
-
-    const response = await fetch('/ai', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer '
-      },
-      body: JSON.stringify({
-        message: postText,
-      }),
+  
+    const response = await fetch('/ask', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            text: postText
+        })
     });
 
 
     const data = await response.json();
 
-    const newPostAI = {
-      message: data,  // data directly contains the AI message.
-      group: groupId, // Add the group ID when creating an AI post
-      ai_question: postText.toString(),
-    };
-
-    fetch("/groups/" + groupId + "/postsAI", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify(newPostAI)  // Wrap newPostAI inside an object
-    })
-      .then(response => response.json())
-      .then(async data => {
-        window.localStorage.setItem("token", data.token);
-        setToken(window.localStorage.getItem("token"));
-        setPosts([...posts, newPostAI]);
-        setNewPost("");
-      })
-      .catch(error => {
-        console.error('Error saving AI chat data:', error);
-      });
     
 
-    // if (!data.choices || data.choices.length === 0) {
-    //   console.error("Unexpected response from OpenAI API:", data);
-    //   return;
-    // }
-    // console.log(data)
-    // const newPostAI = {
-    //   user: { username: "Sheldon AI", avatar: "https://res.cloudinary.com/dmkipvd8d/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1686121855/sheldon_640x480_41478610926_d6r4bh.jpg" },
-    //   message: data.choices[0].text
-    // };
-    // setGroup(prevGroup => ({...prevGroup, posts: [...prevGroup.posts, newPostAI]}));
+    const newPostAI = {
+        user: { 
+            username: "Sheldon AI", 
+            avatar: "https://res.cloudinary.com/dmkipvd8d/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1686121855/sheldon_640x480_41478610926_d6r4bh.jpg" 
+        },
+        message: data.message
+    };
 
-    // //setPosts([...posts, { message: newPostAI }]);
-
-    // setNewPost('');
+    setNewPost('');
     setLoading(false);
-  };
+};  
+
 
   if (token) {
     return (
