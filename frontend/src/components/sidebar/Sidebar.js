@@ -3,7 +3,7 @@ import './Sidebar.css';
 import Logout from '../auth/Logout';
 import React, { useEffect, useState } from "react";
 import Avatar from '@mui/material/Avatar';
-import SidebarGroups from './SibebarGroups';
+import SidebarGroups from './SidebarGroups';
 
 const Sidebar = ({navigate}) => {
   const [username, setUsername] = useState("");
