@@ -10,7 +10,6 @@ const StudyGroup = () => {
   const [posts, setPosts] = useState([]);
   const [newPost, setNewPost] = useState("");
   const [token, setToken] = useState(window.localStorage.getItem("token"));
-  const [username, setUsername] = useState(window.localStorage.getItem("username"));
   const [loading, setLoading] = useState(false);
   const [group, setGroup] = useState({});
   const [isMembersBoxOpen, setIsMembersBoxOpen] = useState(false);
@@ -50,7 +49,7 @@ const StudyGroup = () => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       },
-      body: JSON.stringify({ message: newPost, group: groupId, user: username}) // Add the group ID when creating a new post
+      body: JSON.stringify({ message: newPost, group: groupId }) // Add the group ID when creating a new post
     })
       .then(response => response.json())
       .then(async data => {
@@ -68,6 +67,7 @@ const StudyGroup = () => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({
             text: postText
@@ -76,6 +76,7 @@ const StudyGroup = () => {
 
 
     const data = await response.json();
+    
 
     
 
@@ -111,7 +112,6 @@ const StudyGroup = () => {
         <div id='feed' role="feed">
         {group.posts ?
            (<Chat posts={group.posts}
-            username={username}
             handlePostChange={handlePostChange}
             handleSubmit={handleSubmit}
             newPost={newPost}

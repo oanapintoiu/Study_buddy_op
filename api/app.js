@@ -36,7 +36,7 @@ app.post('/ask', async (req, res) => {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
+          'Authorization': "Bearer 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"
       },
       body: JSON.stringify({
           prompt: postText,
@@ -55,7 +55,7 @@ app.post('/ask', async (req, res) => {
   res.json({ message: data.choices[0].text });
 });
 
-app.listen(3000, () => console.log('Server is running on port 3000'));
+//app.listen(3000, () => console.log('Server is running on port 3000'));
 
 
 // middleware function to check for valid tokens

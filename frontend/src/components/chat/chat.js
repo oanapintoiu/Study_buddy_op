@@ -49,11 +49,12 @@ const Chat = ({posts, username, handlePostChange, handleSubmit, newPost, handleA
                        
                       <ListItem key={index}>
                       <Grid container>
-                          <Grid item xs={12} align={post.user.username === username ? "left" : "right"}>
+                        <Grid>
+                          {/* <Grid> item xs={12} align={post.user.username === username ? "left" : "right"}>
                               <ListItemIcon>
                                   <Avatar sx={{ width: 24, height: 24 }}alt={post.user.username} src={post.user.avatar} />
                               </ListItemIcon>
-                              <ListItemText sx={{color: 'cornflowerblue'}} primary={post.user.username}>{post.user.username}</ListItemText>
+                              <ListItemText sx={{color: 'cornflowerblue'}} primary={post.user.username}>{post.user.username}</ListItemText> */}
                               <ListItemText  primary={post.message}></ListItemText>
                           </Grid>
                       </Grid>
