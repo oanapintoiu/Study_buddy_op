@@ -11,5 +11,6 @@ router.delete("/:id", GroupController.Delete);
 router.post("/:id/members", GroupController.AddMember);
 router.delete("/:id/members", GroupController.RemoveMember);
 router.post("/:id/posts", GroupController.CreatePost);
+router.post("/filter", GroupController.Filter)
 
 module.exports = router;

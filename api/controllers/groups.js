@@ -129,6 +129,26 @@ const GroupController = {
       console.error(error);
       throw new Error("Failed to create post");
     }
+  },
+  Filter: async (req, res) => {
+    
+    try {
+      const { category, subcategory, level, groupType } = req.body;
+      console.log(category)
+      let query = {};
+      if (category) {
+        query.category = category;
+      }
+      if (subcategory) {
+        query.subcategory = subcategory;
+      }
+  
+      const groups = await Group.find(query).exec();
+      res.status(200).json({ groups });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Failed to fetch groups' });
+    }
   }
 };
 
