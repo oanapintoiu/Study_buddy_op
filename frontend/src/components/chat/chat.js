@@ -39,9 +39,7 @@ const Chat = ({posts, username, handlePostChange, handleSubmit, newPost, handleA
   return (
       <div>
         <Grid container>
-            <Grid item xs={15} >
-                <Typography variant="h5" className="header-message"></Typography>
-            </Grid>
+           
         </Grid>
         <Grid container component={Paper} className='chatSection'>
             <Grid item xs={20}>
@@ -72,6 +70,7 @@ const Chat = ({posts, username, handlePostChange, handleSubmit, newPost, handleA
                         <TextField id="outlined-basic-email" label="Type Something"
                         value={newPost}
                         onChange={handlePostChange}
+
                         placeholder="Ask your group or Sheldon a question!"
                         fullWidth />
                     </Grid>
