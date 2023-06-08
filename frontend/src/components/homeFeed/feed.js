@@ -16,9 +16,11 @@ const Feed = ({ navigate }) => {
   const [subjectCategory, setSubjectCategory] = useState('');
   const [subCategory, setSubCategory] = useState('');
   const [level, setLevel] = useState('');
-  const [groupType, setGroupType] = useState('private');
+  const [groupType, setGroupType] = useState('');
   const [name, setName] = useState('')
   const [searchTimeout, setSearchTimeout] = useState(null);
+  const [showFilters, setShowFilters] = useState(false);
+
   useEffect(() => {
     if(token) {
       fetch("/posts", {
@@ -146,88 +148,107 @@ const Feed = ({ navigate }) => {
   if(token) {
     return (
       <>
-        <h1>Homepage</h1>
-        <div>
-          <br></br>
-          <button onClick={createGroup}>Create a Study Group</button><br></br><br></br>
-          <br></br><p>Search for a Study Group</p>
-          <br></br>
-          <label>
-            Name:
-            <input
-              type="text"
-              onChange={(event) => {
-                setName(event.target.value);
-                handleSearch(event.target.value);
-              }}
-            />
-          </label>
-          <br></br>
-          <label>
-          Subject Category:
-          <select value={subjectCategory} onChange={handleCategoryChange} required>
-            <option value="">Select Category</option>
-            {categories.map((category) => (
-              <option key={category._id} value={category._id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        <br />
-        <label>
-          Sub-Category:
-          <select value={subCategory} onChange={(event) => setSubCategory(event.target.value)} required>
-            <option value="">Select Sub-Category</option>
-            {subcategories.map((subcategory) => (
-              <option key={subcategory._id} value={subcategory._id}>
-                {subcategory.name}
-              </option>
-            ))}
-          </select>
-        </label>
-          <br></br>
-          <label>
-          Level:
-          <select value={level} onChange={(event) => setLevel(event.target.value)} required>
-            <option value="">Select Level</option>
-            <option value="novice">NOVICE</option>
-            <option value="intermediate">INTERMEDIATE</option>
-            <option value="proficient">PROFICIENT</option>
-            <option value="advanced">ADVANCED</option>
-            <option value="expert">EXPERT</option>
-          </select>
-        </label>
-        <br />
-        <label>
-          Group Type:
-          <select value={groupType} onChange={(event) => setGroupType(event.target.value)}>
-            <option value="">Select type</option>
-            <option value="private">Private</option>
-            <option value="public">Public</option>
-          </select>
-        </label>
-        <br />
-          <br></br><br></br>
-          <button onClick={() => handleSearch(name)}>Search</button>
+      <h1>Study Buddy</h1>
+      <div>
+        <button onClick={createGroup}>Create a Study Group</button><br></br><br></br>
+  
+        {/* Search Bar */}
+        <div className="search-box">
+          <input placeholder='Search for a Study Group'
+            className="search-input"
+            type="text"
+            onChange={(event) => {
+              setName(event.target.value);
+              handleSearch(event.target.value);
+
+
+            }}
+          />
+                        <button className="search-button" onClick={() => handleSearch(name)}>🔍</button>
+
+
         </div>
+  
+        {/* Filter Button */}
+        <button className="filter-button" onClick={() => setShowFilters(!showFilters)}>
+          FILTER
+        </button>
+  
+        {showFilters && (
+          // Only show this filter box if showFilters is true
+          <div className="filter-box">
+            {/* Category Select */}
+            <label>
+              Subject Category:
+              <select className="select" value={subjectCategory} onChange={handleCategoryChange} required>
+                <option value="">Select Category</option>
+                {categories.map((category) => (
+                  <option key={category._id} value={category._id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+  
+            {/* Sub-Category Select */}
+            <label>
+              Sub-Category:
+              <select className="select" value={subCategory} onChange={(event) => setSubCategory(event.target.value)} required>
+                <option value="">Select Sub-Category</option>
+                {subcategories.map((subcategory) => (
+                  <option key={subcategory._id} value={subcategory._id}>
+                    {subcategory.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+  
+            <label>
+              Level:
+              <br/>
+              <br/>
+              <select className="select-level" value={level} onChange={(event) => setLevel(event.target.value)} required>
+                <option value="">Select Level</option>
+                <option value="novice">NOVICE</option>
+                <option value="intermediate">INTERMEDIATE</option>
+                <option value="proficient">PROFICIENT</option>
+                <option value="advanced">ADVANCED</option>
+                <option value="expert">EXPERT</option>
+              </select>
+            </label>
+  
+            {/* Group Type Select */}
+            <label>
+              Group Type:
+              <select className="select" value={groupType} onChange={(event) => setGroupType(event.target.value)}>
+                <option value="">Select type</option>
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+
+              </select>
+            </label>
+          </div>
+        )}
+  
         <div id='feed' role="feed">
-        <Grid container spacing={3}>
-      {groups.map((group) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} key={group._id}>
-          <GroupCard group={group} onJoin={joinGroup}/>
-        </Grid>
-      ))}
-    </Grid>
+          <Grid container spacing={3}>
+            {groups.map((group) => (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={group._id}>
+                <GroupCard group={group} onJoin={joinGroup}/>
+              </Grid>
+            ))}
+          </Grid>
           {posts.map((post) => (
             <Post post={post} key={post._id} />
           ))}
         </div>
-      </>
-    );
+      </div>
+    </>
+    )
+          
     
   } else {
-    navigate('/signin')
+    navigate('/signup')
     return null;
     // consider returning something if the user is not logged in??
   }

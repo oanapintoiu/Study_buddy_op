@@ -64,3 +64,106 @@ textarea {
 }
 
 
+
+/* Styling for search bar, similar to Google's search bar */
+.search-input {
+  width: 50%;
+  height: 35px;
+  padding: 3px;
+  font-size: 16px;
+  border: 1px solid #dcdcdc;
+  border-radius: 20px;
+  margin: 0 auto 20px auto;
+  display: block;
+}
+
+/* Styling for filter box */
+.filter-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.filter-box label {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
+/* Styling for dropdown select elements within filter box */
+.filter-box select-level {
+  width: 100%;
+}
+
+/* Styling for the button */
+.filter-box button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: #4CAF50; /* Green */
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Add a hover effect for the button */
+.filter-box button:hover {
+  background-color: #45a049;
+}
+
+
+
+.search-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-input {
+  width: 70%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.search-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: rgb(255 255 255); /* background color set to white */
+  color: #000;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.filter-button {
+  display: block;
+  width: 200px;
+  margin: 20px auto;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  background-color: rgb(180, 178, 178); /* background color set to white */
+  color: #000;
+  border-radius: 15px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.filter-box {
+  margin-top: 20px;
+}
+/* All your other CSS rules... */
+
+
+/* Style the Grid container to center its contents
+#feed .Grid {
+  justify-content: center;
+} */
+
+
+
