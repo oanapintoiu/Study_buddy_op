@@ -11,13 +11,14 @@ const Feed = ({ navigate }) => {
   const [username, setUsername] = useState(window.localStorage.getItem("username"));
   const [groups, setGroups] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchFilter, setSearchFilter] = useState({
-    isPublic: '',
-    name: '',
-    category: '',
-    subCategory: '',
-    level: '',
-  });
+  const [categories, setCategories] = useState([]);
+  const [subcategories, setSubcategories] = useState([]);
+  const [subjectCategory, setSubjectCategory] = useState('');
+  const [subCategory, setSubCategory] = useState('');
+  const [level, setLevel] = useState('');
+  const [groupType, setGroupType] = useState('private');
+  const [name, setName] = useState('')
+  const [searchTimeout, setSearchTimeout] = useState(null);
   useEffect(() => {
     if(token) {
       fetch("/posts", {
@@ -46,20 +47,82 @@ const Feed = ({ navigate }) => {
       })
     }
   }, [token])
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await fetch('/categories');
+      const data = await response.json();
+      setCategories(data);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  };
+
+  const fetchSubcategories = async (selectedCategory) => {
+    try {
+      const response = await fetch(`/categories/${selectedCategory}/subcategories`);
+      const data = await response.json();
+      setSubcategories(data.subcategories);
+    } catch (error) {
+      console.error('Error fetching subcategories:', error);
+    }
+  };
+
+  const handleCategoryChange = (event) => {
+    const selectedCategory = event.target.value;
+    setSubjectCategory(selectedCategory);
+    setSubCategory('');
+    fetchSubcategories(selectedCategory); // Call fetchSubcategories after updating subjectCategory
+  };
+
   const createGroup = () => {
     // Logic to handle creating a group and redirect to another page
     navigate('/create-group')
   }
-  const handleSearch = () => {
-    const filteredGroups = groups.filter(group =>
-      (searchFilter.isPublic === '' || group.isPublic === searchFilter.isPublic) &&
-      (searchFilter.name === '' || group.name.toLowerCase().includes(searchFilter.name.toLowerCase())) &&
-      (searchFilter.category === '' || group.category.toLowerCase().includes(searchFilter.category.toLowerCase())) &&
-      (searchFilter.subCategory === '' || group.subCategory.toLowerCase().includes(searchFilter.subCategory.toLowerCase())) &&
-      (searchFilter.level === '' || group.level === searchFilter.level)
-    );
-    setGroups(filteredGroups);
-  }
+  // Frontend code
+
+  const handleSearch = (value) => {
+    clearTimeout(searchTimeout); // Clear previous timeout
+    const timeout = setTimeout(() => {
+      performSearch(value);
+    }, 10); // Set a delay of 500 milliseconds before performing the search
+    setSearchTimeout(timeout);
+  };
+
+  const performSearch = async (value) => {
+    try {
+      // Perform the search request here
+      // Use the updated value from the input field
+      console.log(value);
+
+      const response = await fetch('/groups/filter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          category: subjectCategory,
+          subcategory: subCategory,
+          level: level,
+          groupType: groupType,
+          name: value,
+        }),
+      });
+
+      const data = await response.json();
+      setGroups(data.groups);
+      console.log(data.groups);
+    } catch (error) {
+      console.error('Error searching groups:', error);
+    }
+  };
+
+  
   const joinGroup = (groupId) => {
   
     // Send a request to the backend to join the group
@@ -88,55 +151,65 @@ const Feed = ({ navigate }) => {
           <br></br>
           <button onClick={createGroup}>Create a Study Group</button><br></br><br></br>
           <br></br><p>Search for a Study Group</p>
-          <label>
-            Public/Private:
-            <select
-              value={searchFilter.isPublic}
-              onChange={(event) => setSearchFilter({ ...searchFilter, isPublic: event.target.value })}
-            >
-              <option value="">All</option>
-              <option value="public">Public</option>
-              <option value="private">Private</option>
-            </select>
-          </label>
           <br></br>
           <label>
             Name:
             <input
               type="text"
-              value={searchFilter.name}
-              onChange={(event) => setSearchFilter({ ...searchFilter, name: event.target.value })}
+              onChange={(event) => {
+                setName(event.target.value);
+                handleSearch(event.target.value);
+              }}
             />
           </label>
           <br></br>
           <label>
-            Category:
-            <input
-              type="text"
-              value={searchFilter.category}
-              onChange={(event) => setSearchFilter({ ...searchFilter, category: event.target.value })}
-            />
-          </label>
+          Subject Category:
+          <select value={subjectCategory} onChange={handleCategoryChange} required>
+            <option value="">Select Category</option>
+            {categories.map((category) => (
+              <option key={category._id} value={category._id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+        </label>
+        <br />
+        <label>
+          Sub-Category:
+          <select value={subCategory} onChange={(event) => setSubCategory(event.target.value)} required>
+            <option value="">Select Sub-Category</option>
+            {subcategories.map((subcategory) => (
+              <option key={subcategory._id} value={subcategory._id}>
+                {subcategory.name}
+              </option>
+            ))}
+          </select>
+        </label>
           <br></br>
           <label>
-            Sub-Category:
-            <input
-              type="text"
-              value={searchFilter.subCategory}
-              onChange={(event) => setSearchFilter({ ...searchFilter, subCategory: event.target.value })}
-            />
-          </label>
-          <br></br>
-          <label>
-            Level:
-            <input
-              type="text"
-              value={searchFilter.level}
-              onChange={(event) => setSearchFilter({ ...searchFilter, level: event.target.value })}
-            />
-          </label>
+          Level:
+          <select value={level} onChange={(event) => setLevel(event.target.value)} required>
+            <option value="">Select Level</option>
+            <option value="novice">NOVICE</option>
+            <option value="intermediate">INTERMEDIATE</option>
+            <option value="proficient">PROFICIENT</option>
+            <option value="advanced">ADVANCED</option>
+            <option value="expert">EXPERT</option>
+          </select>
+        </label>
+        <br />
+        <label>
+          Group Type:
+          <select value={groupType} onChange={(event) => setGroupType(event.target.value)}>
+            <option value="">Select type</option>
+            <option value="private">Private</option>
+            <option value="public">Public</option>
+          </select>
+        </label>
+        <br />
           <br></br><br></br>
-          <button onClick={handleSearch}>Search</button>
+          <button onClick={() => handleSearch(name)}>Search</button>
         </div>
         <div id='feed' role="feed">
         <Grid container spacing={3}>
