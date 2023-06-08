@@ -3,9 +3,8 @@ import { useParams } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import './Budy.css';
 
-const Budy = ({ navigate }) => {
+const Budy = ({ navigate, id }) => {
   const[user, setUser] = useState("");
-  const { id } = useParams();
 
   useEffect(() => {
 
@@ -33,7 +32,7 @@ const Budy = ({ navigate }) => {
       <Avatar
         id="logo"
         src={user.avatar}
-        sx={{ width: 56, height: 56 }}
+        sx={{ width: 150, height: 150, right: 40, top: 40, position: 'absolute' }}
       />
       <h2 className="user-fullname">{`${user.firstName ? user.firstName : ''} ${user.lastName ? user.lastName : ''}`}</h2>
       <h3 className="user-username">{user.username}</h3>

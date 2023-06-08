@@ -9,8 +9,9 @@
   overflow: auto;
   padding: 1em;
   margin: 1em 0;
+  width: 100%;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 7px;
   background-color: rgba(255, 255, 255, 0.8);
 }
 #feed article {
@@ -20,18 +21,20 @@
 .feedButton {
   background-color: #4097FA;
   border: none;
-  color: black;
+  color: white;
   padding: 9px 25px;
   text-align: center;
   text-decoration: dotted;
   display: inline-block;
   margin: 4px 2px;
+  border-radius: 4px;
+  box-shadow: 0px 4px 4px rgb(172, 171, 171);
    /* Green */
 }
 .feedButton:hover {
-  background-color: #78787A; /* Slightly darker variant of the original color */
-  box-shadow: 0px 15px 20px rgb(36, 36, 35); /* Changes shadow color to create a “glow” effect */
+  box-shadow: 0px 5px 5px rgb(36, 36, 35); /* Changes shadow color to create a “glow” effect */
   color: #F8F4F4;
+  cursor: pointer;
 }
 .textarea-wrapper {
   position: relative;

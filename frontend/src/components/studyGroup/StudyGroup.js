@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./StudyGroup.css";
 import Chat from "../chat/chat";
+import Modal from "../budy/Modal";
+import Budy from "../budy/Budy";
 
 const StudyGroup = () => {
   const { groupId } = useParams();
   const navigate = useNavigate();
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedMemberId, setSelectedMemberId] = useState(null);
   const [posts, setPosts] = useState([]);
   const [newPost, setNewPost] = useState("");
   const [token, setToken] = useState(window.localStorage.getItem("token"));
@@ -41,6 +44,15 @@ const StudyGroup = () => {
 
   const handlePostChange = (event) => {
     setNewPost(event.target.value);
+  };
+
+  const handleMemberClick = (memberId) => {
+    setSelectedMemberId(memberId);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   const handleSubmit = (event) => {
@@ -111,13 +123,8 @@ const StudyGroup = () => {
           <h3>Members</h3>
           {group.members && group.members.length > 0
             ? group.members.map((member, index) => (
-                <p
-                  className="member"
-                  key={index}
-                  onClick={() => navigate(`/users/${member._id}`)}
-                >
-                  {member.username}
-                </p>
+              <p className="member" key={index} onClick={() => handleMemberClick(member._id)}>{member.username}</p>
+
               ))
             : null}
         </div>
@@ -140,6 +147,11 @@ const StudyGroup = () => {
             />
           ) : null}
         </div>
+        {isModalOpen && (
+      <Modal onClose={handleCloseModal}>
+        <Budy navigate={navigate} id={selectedMemberId}/>
+      </Modal>
+    )}
       </>
     );
   } else {
