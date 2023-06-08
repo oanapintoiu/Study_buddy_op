@@ -193,17 +193,17 @@ const StudyGroup = () => {
             />
           ) : null}
         </div>
-        <div>
-          <button onClick={leaveGroup}
-          className="leave-group-button">
-            leave group
-          </button>
-        </div>
+       
         {isModalOpen && (
       <Modal onClose={handleCloseModal}>
         <Budy navigate={navigate} id={selectedMemberId}/>
       </Modal>
     )}
+    <div className="leave-button-container">
+  <button onClick={leaveGroup} className="leave-group-button">
+    leave group
+  </button>
+</div>
       </>
     );
   } else {

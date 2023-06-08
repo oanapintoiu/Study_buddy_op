@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect, useRef } from 'react';
 
-//import './UserProfileForm.css';
+import './UserProfileForm.css';
 
 const UserProfileForm = ({ navigate }) => {
   const [email, setEmail] = useState("");
@@ -14,7 +14,11 @@ const UserProfileForm = ({ navigate }) => {
   const [showCloseButton, setShowCloseButton] = useState(false);
 
 
+
   const dropdownRef = useRef(null);
+  useEffect(() => {
+    setUsername(window.localStorage.getItem("username"))
+  })
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -115,8 +119,10 @@ const UserProfileForm = ({ navigate }) => {
 
   return (
     <>
-    <h1>Update Profile: {username}</h1>
-    <div className="dropdown-container" ref={dropdownRef}>
+    <div className="updateprofile">
+    <h1> Update Profile: {username}</h1>
+    </div>
+    {/* <div className="dropdown-container" ref={dropdownRef}>
       <button onClick={() => { setDropdownVisible(true); setShowCloseButton(true); }}>User Info</button>
       {dropdownVisible && (
         <div className="dropdown-menu">
@@ -128,8 +134,8 @@ const UserProfileForm = ({ navigate }) => {
           )}
         </div>
       )}
-    </div>
-      <form onSubmit={handleSubmit}>
+    </div> */}
+      <form1 onSubmit={handleSubmit}>
         {successMessage && <p>{successMessage}</p>}
         <input placeholder="Email" id="email" type='text' value={email} onChange={handleEmailChange} />
         <input placeholder="Username" id="username" type='username' value={username} onChange={handleUsernameChange} />
@@ -137,7 +143,7 @@ const UserProfileForm = ({ navigate }) => {
         <input placeholder="First Name" id="firstName" type='text' value={firstName} onChange={handleFirstNameChange} />
         <input placeholder="Last Name" id="lastName" type='text' value={lastName} onChange={handleLastNameChange} />
         <input id='submit' type="submit" value="Update" />
-      </form>
+      </form1>
     </>
   );
 };

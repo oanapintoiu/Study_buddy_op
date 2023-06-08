@@ -5,6 +5,18 @@
   border-radius: 10px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px; /* Increase the max-width to make the container wider */
+  width: 90%; /* Add a width property to ensure responsiveness */
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #797373;  /* border  */
+  padding: 20px;
+  /* Adjust positioning */
+  margin: 30px auto;
 }
 
 .study-buddy-heading {
