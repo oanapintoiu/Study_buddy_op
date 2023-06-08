@@ -84,6 +84,31 @@ const StudyGroup = () => {
 
     const data = await response.json();
 
+    const PostAI = {
+      message: data.message,  // data directly contains the AI message.
+      group: groupId, // Add the group ID when creating an AI post
+      ai_question: postText.toString(),
+    };
+
+    fetch("/groups/" + groupId + "/postsAI", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(PostAI)  // Wrap newPostAI inside an object
+    })
+      .then(response => response.json())
+      .then(async data => {
+        window.localStorage.setItem("token", data.token);
+        setToken(window.localStorage.getItem("token"));
+        setPosts([...posts, newPostAI]);
+        setNewPost("");
+      })
+      .catch(error => {
+        console.error('Error saving AI chat data:', error);
+      });
+    
     const newPostAI = {
       user: {
         username: "Sheldon AI",
