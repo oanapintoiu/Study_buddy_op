@@ -1,0 +1,31 @@
+
+.user-fullname {
+  margin-top: 15px;
+  font-size: 2em; /* Increase the font size */
+  font-weight: bold;
+  padding-right: 180px;
+}
+
+.user-username, .user-email {
+  margin: 10px 0;
+  font-size: 1.2em; /* Increase the font size */
+  color: gray;
+}
+
+.groups-title {
+  margin-top: 25px;
+  font-size: 1.3em; /* Increase the font size */
+  font-weight: bold;
+  font-style: oblique;
+}
+
+.user-groups {
+  list-style-type: none;
+  padding: 0;
+}
+
+.group-name {
+  margin: 6px 0;
+  font-size: 1.1em; /* Increase the font size */
+  color: darkblue;
+}

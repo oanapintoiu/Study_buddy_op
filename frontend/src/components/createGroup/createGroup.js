@@ -10,8 +10,11 @@ const CreateGroup = () => {
   const [groupType, setGroupType] = useState('private');
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
+  const [description, setDescription] = useState('');
   const [token, setToken] = useState(window.localStorage.getItem('token'));
   const navigate = useNavigate();
+  const [imageUrl, setImageUrl] = useState('');
+
 
   useEffect(() => {
     fetchCategories();
@@ -44,6 +47,9 @@ const CreateGroup = () => {
     setSubCategory('');
     fetchSubcategories(selectedCategory); // Call fetchSubcategories after updating subjectCategory
   };
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
+  }
 
   const handleCreateGroup = async (event) => {
     event.preventDefault();
@@ -56,6 +62,7 @@ const CreateGroup = () => {
         level: level,
         partySize: partySize,
         groupType: groupType,
+        imageUrl: imageUrl
       };
 
       const response = await fetch('/groups', {
@@ -92,6 +99,11 @@ const CreateGroup = () => {
         <label>
           Study Group Name:
           <input type="text" value={groupName} onChange={(event) => setGroupName(event.target.value)} required />
+        </label>
+        <br />
+        <label>
+          Description:
+          <input type="text" value={description} onChange={(event) => setDescription(event.target.value)} required />
         </label>
         <br />
         <label>
@@ -148,6 +160,11 @@ const CreateGroup = () => {
             <option value="public">Public</option>
           </select>
         </label>
+        <label>
+  Image URL:
+  <input type="text" value={imageUrl} onChange={(event) => setImageUrl(event.target.value)} required />
+</label>
+<br />
         <br />
         <button type="submit">Create</button>
       </form>

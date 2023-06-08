@@ -12,7 +12,9 @@ describe("/users", () => {
     test("the response code is 201", async () => {
       let response = await request(app)
         .post("/users")
-        .send({username: "poppy_flower", email: "poppy@email.com", password: "1234"})
+        .send({username: "poppy_flower", 
+        email: "poppy@email.com", 
+        password: "1234",})
       expect(response.statusCode).toBe(201)
     })
 

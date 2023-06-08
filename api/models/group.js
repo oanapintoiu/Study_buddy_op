@@ -9,6 +9,7 @@ const GroupSchema = new mongoose.Schema({
   partySize: {type: Number, required: false},
   level: {type: String, required: false},
   private: { type: Boolean, default: false },
+  description: { type: String, required: false },
 
 });
 

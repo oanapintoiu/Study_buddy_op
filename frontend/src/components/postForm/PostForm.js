@@ -1,21 +1,15 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
+// import './PostForm.css';
+// import Button from '@mui/material/Button'
+// import SendIcon from '@mui/icons-material/Send' 
 
 const PostForm = ({ handlePostChange, handleSubmit, newPost, handleAskAI, loading }) => {
-  const [postText, setPostText] = useState('');
-
-  const submitForm = (event) => {
-    event.preventDefault();
-    handleSubmit(event);
-    setPostText('');
-  };
-
   const handleAskButtonClick = () => {
-    handleAskAI(newPost);
-    setPostText('');
+    handleAskAI(newPost); // You pass newPost into handleAskAI here
   };
 
   return (
-    <form onSubmit={submitForm}>
+    <form onSubmit={handleSubmit}>
       <textarea
         value={newPost}
         onChange={handlePostChange}
@@ -28,4 +22,26 @@ const PostForm = ({ handlePostChange, handleSubmit, newPost, handleAskAI, loadin
   );
 };
 
+
 export default PostForm;
+// const PostForm = ({ handlePostChange, handleSubmit, newPost, handleAskAI, loading }) => {
+
+//   return (
+//     <form onSubmit={submitForm}>
+//       <div className="textarea-wrapper">
+//         <textarea
+//           value={newPost}
+//           onChange={handlePostChange}
+//           placeholder="Ask your group or Sheldon a question!"
+          
+//         />
+//         <Button className='sendButton' type="submit" variant="text" onClick={handleAskButtonClick} endIcon={<SendIcon />} >
+//         </Button>
+//       </div>   
+//            <button className="feedButton" type="button" onClick={handleAskButtonClick}>Ask Sheldon AI</button>
+//       {loading && <p>Sheldon is thinking...</p>}
+//     </form>
+//   );
+// };
+
+// export default PostForm;

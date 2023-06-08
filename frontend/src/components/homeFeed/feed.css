@@ -1,0 +1,66 @@
+.group {
+  font-size: 2em;
+  text-align: center;
+  margin-top: 1em;
+  color: #444;
+}
+#feed {
+  flex: 1;
+  overflow: auto;
+  padding: 1em;
+  margin: 1em 0;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+#feed article {
+  border-bottom: 1px solid #FBF8F8;
+  padding: 1em 0;
+}
+.feedButton {
+  background-color: #4097FA;
+  border: none;
+  color: white;
+  padding: 9px 25px;
+  text-align: center;
+  text-decoration: dotted;
+  display: inline-block;
+  margin: 4px 2px;
+  border-radius: 4px;
+  box-shadow: 0px 4px 4px rgb(172, 171, 171);
+   /* Green */
+}
+.feedButton:hover {
+  box-shadow: 0px 5px 5px rgb(36, 36, 35); /* Changes shadow color to create a “glow” effect */
+  color: #F8F4F4;
+  cursor: pointer;
+}
+.textarea-wrapper {
+  position: relative;
+  width: 100%;
+}
+.sendButton {
+  color: white;
+  text-align: center;
+  font-size: 1em;
+  cursor: pointer;
+  float: right;
+  margin-right: 1em;
+}
+.textarea-wrapper {
+  position: relative;
+  width: 100%;
+}
+textarea {
+  width: 100%;
+  height: 150px;
+  padding-right: 50px; /* To ensure the text doesn’t go under the button */
+}
+.sendButton {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+

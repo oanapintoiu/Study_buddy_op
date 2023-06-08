@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Post from '../post/Post'
+import './feed.css'
+import GroupCard from './GroupCard';
+import { Grid } from "@mui/material";
+
 
 const Feed = ({ navigate }) => {
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
+  const [username, setUsername] = useState(window.localStorage.getItem("username"));
   const [groups, setGroups] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [categories, setCategories] = useState([]);
@@ -28,7 +33,7 @@ const Feed = ({ navigate }) => {
         setPosts(data.posts);
       })
     }
-  }, [])
+  }, [token])
   useEffect(() => {
     if (token) {
       fetch("/groups", {
@@ -118,13 +123,33 @@ const Feed = ({ navigate }) => {
   };
 
   
+  const joinGroup = (groupId) => {
+  
+    // Send a request to the backend to join the group
+    fetch(`/groups/${groupId}/join`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ userId: username })
+    })
+      .then(response => response.json())
+      .then(data => {
+        // Handle the response if needed
+        console.log(data);
+        handleSearch()
+        navigate(`/groups/${groupId}`)
+      })
+  };
+  
   if(token) {
     return (
       <>
         <h1>Homepage</h1>
         <div>
           <br></br>
-          <button onClick={createGroup} style={{ fontSize: '18px', color: 'red' }}>Create a Study Group</button><br></br><br></br>
+          <button onClick={createGroup}>Create a Study Group</button><br></br><br></br>
           <br></br><p>Search for a Study Group</p>
           <br></br>
           <label>
@@ -187,16 +212,20 @@ const Feed = ({ navigate }) => {
           <button onClick={() => handleSearch(name)}>Search</button>
         </div>
         <div id='feed' role="feed">
-          {groups.map((group) => (
-            <div key={group._id}>{group.name}</div>
-          ))}
+        <Grid container spacing={3}>
+      {groups.map((group) => (
+        <Grid item xs={12} sm={6} md={4} lg={3} key={group._id}>
+          <GroupCard group={group} onJoin={joinGroup}/>
+        </Grid>
+      ))}
+    </Grid>
           {posts.map((post) => (
             <Post post={post} key={post._id} />
           ))}
         </div>
-        
       </>
-    )
+    );
+    
   } else {
     navigate('/signin')
     return null;

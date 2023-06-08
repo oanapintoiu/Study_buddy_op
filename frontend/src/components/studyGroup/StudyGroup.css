@@ -1,0 +1,57 @@
+.group {
+  background-color: #8ca0ba;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5em;
+  padding: 10px;
+}
+.members-panel {
+  position: fixed;
+  bottom: 50px;
+  right: 20px;
+  width: 200px;
+  max-height: 400px;
+  background-color: #fdfdfd;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+  overflow-y: auto;
+  transform: translateY(100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  z-index: 10;
+}
+
+.members-panel.open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.member {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+.member:hover{
+  color:blue;
+  cursor:pointer;
+}
+
+.members-toggle-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #c1c1be;
+  color: #0d0d0d;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  z-index: 20;
+}
+
+.members-toggle-button:hover {
+  background-color: #6d7171;
+}

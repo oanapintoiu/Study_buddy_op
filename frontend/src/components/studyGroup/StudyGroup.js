@@ -1,50 +1,78 @@
-import React, { useEffect, useState } from 'react';
-import Post from '../post/Post';
-import PostForm from '../postForm/PostForm';
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import "./StudyGroup.css";
+import Chat from "../chat/chat";
+import Modal from "../budy/Modal";
+import Budy from "../budy/Budy";
 
 const StudyGroup = () => {
   const { groupId } = useParams();
   const navigate = useNavigate();
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedMemberId, setSelectedMemberId] = useState(null);
   const [posts, setPosts] = useState([]);
   const [newPost, setNewPost] = useState("");
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [loading, setLoading] = useState(false);
+  const [group, setGroup] = useState({});
+  const [isMembersBoxOpen, setIsMembersBoxOpen] = useState(false);
+  const [username, setUsername] = useState(
+    window.localStorage.getItem("username")
+  );
 
   useEffect(() => {
     if (token) {
-      fetch("/groups/" + groupId + "/posts", {
+      fetch("/groups/" + groupId, {
         headers: {
-          'Authorization': `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       })
-        .then(response => response.json())
-        .then(async data => {
+        .then((response) => response.json())
+        .then(async (data) => {
           window.localStorage.setItem("token", data.token);
           setToken(window.localStorage.getItem("token"));
-          setPosts(data.posts);
-        })
+          setPosts(data.group.posts);
+          setGroup(data.group);
+          console.log("group: ", data.group);
+        });
     }
   }, [token, groupId]);
 
-  const handlePostChange = event => {
+  const handleMembersBoxToggle = () => {
+    setIsMembersBoxOpen(!isMembersBoxOpen);
+  };
+
+  const handlePostChange = (event) => {
     setNewPost(event.target.value);
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
+  const handleMemberClick = (memberId) => {
+    setSelectedMemberId(memberId);
+    setIsModalOpen(true);
+  };
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("newPost: ", newPost);
+    console.log("username: ", username);
     fetch("/groups/" + groupId + "/posts", {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ message: newPost, group: groupId }) // Add the group ID when creating a new post
+      body: JSON.stringify({
+        message: newPost,
+        group: groupId,
+        user: username,
+      }), // Add the group ID when creating a new post
     })
-      .then(response => response.json())
-      .then(async data => {
+      .then((response) => response.json())
+      .then(async (data) => {
         window.localStorage.setItem("token", data.token);
         setToken(window.localStorage.getItem("token"));
         setPosts([...posts, { message: newPost }]);
@@ -54,56 +82,105 @@ const StudyGroup = () => {
 
   const handleAskAI = async (postText) => {
     setLoading(true);
-  
-    const response = await fetch('https://api.openai.com/v1/engines/text-davinci-003/completions', {
+
+    const response = await fetch("/ask", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        text: postText,
+      }),
+    });
+
+    const data = await response.json();
+
+    const PostAI = {
+      message: data.message,  // data directly contains the AI message.
+      group: groupId, // Add the group ID when creating an AI post
+      ai_question: postText.toString(),
+    };
+
+    fetch("/groups/" + groupId + "/postsAI", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`
+        'Authorization': `Bearer ${token}`
       },
-      body: JSON.stringify({
-        prompt: postText,
-        max_tokens: 600
+      body: JSON.stringify(PostAI)  // Wrap newPostAI inside an object
+    })
+      .then(response => response.json())
+      .then(async data => {
+        window.localStorage.setItem("token", data.token);
+        setToken(window.localStorage.getItem("token"));
+        setPosts([...posts, newPostAI]);
+        setNewPost("");
       })
-    });
-  
-    const data = await response.json();
-  
+      .catch(error => {
+        console.error('Error saving AI chat data:', error);
+      });
+    
     const newPostAI = {
-      message: data.choices[0].text
+      user: {
+        username: "Sheldon AI",
+        avatar:
+          "https://res.cloudinary.com/dmkipvd8d/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1686121855/sheldon_640x480_41478610926_d6r4bh.jpg",
+      },
+      message: data.message,
     };
-  
-    setPosts([...posts, newPostAI]);
-    setNewPost('');
-    setLoading(false);
-  };  
 
-  const logout = () => {
-    window.localStorage.removeItem("token");
-    navigate('/login');
+    setGroup((prevGroup) => ({
+      ...prevGroup,
+      posts: [...prevGroup.posts, newPostAI],
+    }));
+    setNewPost("");
+
+    setLoading(false);
   };
 
   if (token) {
     return (
       <>
-        <h2>Your Study Group Posts</h2>
-        <button onClick={logout}>
-          Logout
-        </button>
-        <div id='feed' role="feed">
-          {posts.map((post, index) => (<Post post={post} key={index} />))}
+        <div className="group">{group.name}</div>
+        <br />
+        <div className={`members-panel ${isMembersBoxOpen ? "open" : ""}`}>
+          <h3>Members</h3>
+          {group.members && group.members.length > 0
+            ? group.members.map((member, index) => (
+              <p className="member" key={index} onClick={() => handleMemberClick(member._id)}>{member.username}</p>
+
+              ))
+            : null}
         </div>
-        <PostForm
-          handlePostChange={handlePostChange}
-          handleSubmit={handleSubmit}
-          newPost={newPost}
-          handleAskAI={handleAskAI}
-          loading={loading}
-        />
+        <button
+          onClick={handleMembersBoxToggle}
+          className="members-toggle-button"
+        >
+          {isMembersBoxOpen ? "Close Members" : "Open Members"}
+        </button>
+        <div id="feed" role="feed">
+          {group.posts ? (
+            <Chat
+              posts={group.posts}
+              username={username}
+              handlePostChange={handlePostChange}
+              handleSubmit={handleSubmit}
+              newPost={newPost}
+              handleAskAI={handleAskAI}
+              loading={loading}
+            />
+          ) : null}
+        </div>
+        {isModalOpen && (
+      <Modal onClose={handleCloseModal}>
+        <Budy navigate={navigate} id={selectedMemberId}/>
+      </Modal>
+    )}
       </>
-    )
+    );
   } else {
-    navigate('/signin');
+    navigate("/signin");
     return null; // Return null if not logged in to avoid rendering anything
   }
 };
