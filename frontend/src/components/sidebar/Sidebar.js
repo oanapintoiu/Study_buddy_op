@@ -58,4 +58,3 @@ const Sidebar = ({navigate}) => {
 }
 
 export default Sidebar;
-//<article data-cy="post" key={ post._id }>{ post.message }</article>
