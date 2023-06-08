@@ -148,11 +148,13 @@ const Feed = ({ navigate }) => {
   if(token) {
     return (
       <>
-      <div className="background-planets"></div>
-      <h1>Study Buddy</h1>
+      <div className="studdybuddy">
+      <h1 className='studdybuddy-font'>Study Buddy</h1>
+      </div>
       <div>
-        <button className='create-group-button'onClick={createGroup}>Create a Study Group</button><br></br><br></br>
-  
+      <div>
+        <button className="create-study-group" onClick={createGroup}>Create a Study Group</button><br></br><br></br>
+        </div>
         {/* Search Bar */}
         <div className="search-box">
           <input placeholder='Search for a Study Group'

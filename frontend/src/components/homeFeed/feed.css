@@ -114,6 +114,13 @@ textarea {
   background-color: #45a049;
 }
 
+.studdybuddy {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 30px;
+  color: #1b4a05;
+}
+
 .search-box {
   display: flex;
   justify-content: space-between;
@@ -140,6 +147,7 @@ textarea {
 }
 
 .filter-button {
+  
   display: block;
   width: 60px;
   margin: 20px auto;
@@ -147,16 +155,37 @@ textarea {
   font-size: 12px;
   font-weight: bold; 
   border: none;
-  background-color: rgb(235, 232, 232); /* background color set to white */
-  color: #000000;
+  background-color: #5f81f2; /* background color set to white */
+  color: #ffffff;
   border-radius: 15px;
   cursor: pointer;
   text-align: center;
   float: right;
 }
 
+.filter-button:hover {
+  background-color: #45a049;
+}
+
 .filter-box {
   margin-top: 20px;
+}
+
+.create-study-group {
+
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #5f81f2;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create-study-group:hover {
+  background-color: #45a049;
 }
 /* All your other CSS rules... */
 
@@ -165,18 +194,3 @@ textarea {
 #feed .Grid {
   justify-content: center;
 } */
-
-.background-planets {
-  content: "";
-  background-image: url('http://localhost:3000/img/white.jpg');
-  background-size: cover;
-  opacity: 0.5;
-  top: 650px;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: fixed;
-  z-index: -1;
-}
-
-

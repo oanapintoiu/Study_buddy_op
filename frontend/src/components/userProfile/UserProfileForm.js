@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { MdEmail, MdLock, MdPerson } from 'react-icons/md';
 
 import './UserProfileForm.css';
+import './UserProfileForm.css';
 
 const UserProfileForm = ({ navigate }) => {
   const [email, setEmail] = useState("");
@@ -15,7 +16,11 @@ const UserProfileForm = ({ navigate }) => {
   const [showCloseButton, setShowCloseButton] = useState(false);
 
 
+
   const dropdownRef = useRef(null);
+  useEffect(() => {
+    setUsername(window.localStorage.getItem("username"))
+  })
 
   useEffect(() => {
     const handleClickOutside = (event) => {
