@@ -1,111 +1,127 @@
-body {
-  min-height: 100vh;
-  background: linear-gradient(to bottom, #e493d9, hsl(213, 85%, 65%));
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.login-container {
+  width: 350px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .study-buddy-heading {
-  text-align: left;
-  margin-left: 25px;
-  margin-top: 210px;
-  position: fixed;
-  font-family: "Arial", sans-serif; /* Change the font family */
-  font-size: 34px; /* Change the font size */
-  color: #000000; /* Change the text color */
-  text-transform: uppercase; /* Change the text to uppercase */
-  font-weight: bold; /* Add font weight */
+  font-size: 24px;
+  color: #0a0a0a;
+  margin-bottom: 20px;
+  font-style: initial;
 }
+
+
 
 .additional-text {
-  text-align: left;
-  margin-left: 25px;
-  margin-top: 335px;
-  position: fixed;
-  font-family: "Arial", sans-serif; /* Change the font family */
-  font-size: 13px; /* Change the font size */
-  color: #000000; /* Change the text color */
-  text-transform: uppercase; /* Change the text to uppercase */
-  font-weight: bold; /* Add font weight */
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 30px;
 }
 
-/* Center the container */
-.container {
-  width: 370px;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-  position: fixed;
-  right: 160px; /* Adjust the right value as needed */
-  top: 50%; /* Adjust the top value to center vertically */
-  transform: translateY(-50%); /* Center the container vertically */
+.form .input-group {
+  margin-bottom: 20px;
 }
 
-/* Style the input groups */
-.input-group {
-  margin-bottom: 10px;
-}
-
-.label {
-  font-weight: bold;
-}
-
-.input-group input[type="text"],
-.input-group input[type="password"] {
-  padding: 15px;
-  margin-top: 5px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-  width: 100%;
+.form input[type="text"], .form input[type="password"] {
+  width: 94%;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid #888;
   font-size: 16px;
-  width: calc(100% - 30px);
+  color: #333;
+  outline: none;
+  margin: 0 0 20px 0;
 }
 
-input[type="submit"] {
-  padding: 15px; /* Adjust the padding to make the button bigger */
-  background-color: #1c69e6;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
+.form input[type="submit"] {
   width: 100%;
-  font-size: 22px; /* Adjust the font-size to make the button bigger */
-}
-
-.input[type="submit"]:hover {
-  background-color: #0084ff;
-}
-
-.forgot-password {
-  text-align: center;
-  margin-top: 10px;
-  position: relative; /* Add position relative for proper positioning */
-}
-
-.separator {
+  padding: 10px;
   border: none;
-  height: 1px;
-  background-color: #cccccc4f;
-  margin: 10px 0; /* Adjust margin as needed */
+  background-color: #888;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
 
 .create-account-button {
-  padding: 15px;
-  background-color: #e6ce1c;
-  color: #fff;
   border: none;
-  border-radius: 5px;
+  background: none;
+  color: #888;
+  font-size: 14px;
   cursor: pointer;
-  font-weight: bold;
-  width: 100%;
-  font-size: 16px;
-  margin-top: 10px; /* Add margin-top for spacing */
+}
+.login-container {
+  width: 350px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-.create-account-button:hover {
-  background-color: #ffd500;
+.study-buddy-heading {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
 }
+
+.additional-text {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 30px;
+}
+
+.form .input-group {
+  margin-bottom: 20px;
+}
+
+/* .form input[type="text"], .form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid #888;
+  font-size: 16px;
+  color: #333;
+  outline: none;
+} */
+
+.form input[type="submit"] {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  background-color: #888;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.create-account-button {
+  border: none;
+  background: none;
+  color: #888;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+
+.background-login::before {
+  content: "";
+  background-image: url('http://localhost:3000/img/bg-login.webp');
+  background-size: cover;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
+

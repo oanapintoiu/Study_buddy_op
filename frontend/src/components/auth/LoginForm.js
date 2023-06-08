@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import './LoginForm.css';
-
 const LogInForm = ({ navigate }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -56,15 +55,13 @@ const LogInForm = ({ navigate }) => {
 
   return (
      <>
-     <div className="study-buddy-heading">
-      <h1>Study Buddy.</h1>
-    </div>
-    <div className="additional-text">
-    <p>Welcome to Study Buddy, your perfect companion for productive collaboration! 
-      </p>
-  </div>
-    <div className="container">
-        <form onSubmit={handleSubmit} className="form" >
+     
+     <div className="background-login"></div>
+
+      <div className="login-container">
+        <h1 className="study-buddy-heading">Study Buddy</h1>
+        <p className="additional-text">Welcome to Study Buddy, your perfect companion for productive collaboration!</p>
+        <form onSubmit={handleSubmit} className="form">
           <div className="input-group">
             <input
               placeholder="Username"
@@ -88,10 +85,10 @@ const LogInForm = ({ navigate }) => {
             value="Log in" />
         </form>
         <button className="create-account-button" onClick={() => navigate("/signup")}>
-            Create new account
+          Create new account
         </button>
       </div>
-      </>
+    </>
   );
 };
 
