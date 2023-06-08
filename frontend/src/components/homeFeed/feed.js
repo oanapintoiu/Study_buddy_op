@@ -152,8 +152,9 @@ const Feed = ({ navigate }) => {
       <h1>Study Buddy</h1>
       </div>
       <div>
-        <button onClick={createGroup}>Create a Study Group</button><br></br><br></br>
-  
+      <div>
+        <button className="create-study-group" onClick={createGroup}>Create a Study Group</button><br></br><br></br>
+        </div>
         {/* Search Bar */}
         <div className="search-box">
           <input placeholder='Search for a Study Group'

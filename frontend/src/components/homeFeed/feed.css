@@ -145,21 +145,43 @@ textarea {
 }
 
 .filter-button {
+  
   display: block;
   width: 200px;
   margin: 20px auto;
   padding: 10px;
   font-size: 16px;
   border: none;
-  background-color: rgb(180, 178, 178); /* background color set to white */
-  color: #000;
+  background-color: #5f81f2; /* background color set to white */
+  color: #ffffff;
   border-radius: 15px;
   cursor: pointer;
   text-align: center;
 }
 
+.filter-button:hover {
+  background-color: #45a049;
+}
+
 .filter-box {
   margin-top: 20px;
+}
+
+.create-study-group {
+
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #5f81f2;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create-study-group:hover {
+  background-color: #45a049;
 }
 /* All your other CSS rules... */
 

@@ -55,3 +55,27 @@
 .members-toggle-button:hover {
   background-color: #6d7171;
 }
+
+.leave-group-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #5f81f2;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  max-width: 200px;
+}
+
+.leave-button-container {
+  position: fixed;
+  bottom: 40px;
+  left: 50px; 
+}
+
+
+.leave-group-button:hover {
+  background-color: #e73838;
+}
