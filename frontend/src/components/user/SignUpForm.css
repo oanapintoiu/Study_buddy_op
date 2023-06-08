@@ -1,6 +1,5 @@
 body {
   min-height: 100vh;
-  background: linear-gradient(to bottom, #e493d9, hsl(213, 85%, 65%));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -90,3 +89,15 @@ input[type="submit"]:hover {
   background-color: #0084ff; /* Change background color on hover */
 }
 
+.background-signup {
+  content: "";
+  background-image: url('http://localhost:3000/img/bg-login.webp');
+  background-size: cover;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}

@@ -99,7 +99,6 @@ const GroupController = {
       const groupId = mongoose.Types.ObjectId(req.params.id);
       const userId = mongoose.Types.ObjectId(req.user_id);
 
-
       const group = await Group.findById(groupId).exec();
       if (!group) {
         return res.status(404).json({ message: "Group not found" });
@@ -124,6 +123,7 @@ const GroupController = {
   },
   LeaveGroup: async (req, res) => {
     try {
+
       const groupId = mongoose.Types.ObjectId(req.body.group);
       const userId = mongoose.Types.ObjectId(req.user_id);
       console.log(groupId)

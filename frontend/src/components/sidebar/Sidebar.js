@@ -50,7 +50,11 @@ const Sidebar = ({navigate}) => {
       <SidebarGroups username={username}/>
     </div>
   </div>
-  <br />
+  <br/>
+  <br/>
+  
+  <br/>
+
   <a href="#" onClick={logout} className="side-bar-item"><i className="fa fa-sign-out-alt"></i> Logout</a>
 </div>
 

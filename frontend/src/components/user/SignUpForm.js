@@ -57,39 +57,31 @@ const SignUpForm = ({ navigate }) => {
 
 
  return (
-   <form onSubmit={handleSubmit}>
-     <header className="my-card">
-       <h1>STUDY BUDDY</h1>
-     </header>
-     <div className="my-form-group">
-       <div className="my-input-row">
-         <div className="my-input-group">
-           <input placeholder="Email" id="email" type="text" value={email} onChange={handleEmailChange} />
-         </div>
-         <div className="my-input-group">
-           <input placeholder="Username" id="username" type="text" value={username} onChange={handleUsernameChange} />
-         </div>
-       </div>
-       <div className="my-input-row">
-        <div className="my-input-group">
-          <input placeholder="Password" id="password" type="password" value={password} onChange={handlePasswordChange} />
-        </div>
-       </div>
-       <div className="my-input-row">
-        <div className="my-input-group">
-          <span>Choose your avatar</span>
-        </div>
+    <>
+      <div className="background-signup"></div>
+      <div className="login-container">
+        <h1 className="study-buddy-heading">Study Buddy.</h1>
+        <p className="additional-text">Join Study Buddy, your perfect companion for productive collaboration!</p>
+        <form onSubmit={handleSubmit} className="form">
+          <div className="input-group">
+            <input placeholder="Email" id="email" type="text" value={email} onChange={handleEmailChange} />
+          </div>
+          <div className="input-group">
+            <input placeholder="Username" id="username" type="text" value={username} onChange={handleUsernameChange} />
+          </div>
+          <div className="input-group">
+            <input placeholder="Password" id="password" type="password" value={password} onChange={handlePasswordChange} />
+          </div>
+          <div className="input-group">
+            <span>Choose your avatar</span>
+          </div>
+          <div className="input-group">
+            <input placeholder="Avatar" id="avatar-user" type="file" onChange={handleAvatarChange} />
+          </div>
+          <input id="submit" type="submit" value="Submit" />
+        </form>
       </div>
-       <div className="my-input-row">
-        <div className="my-input-group">
-          <input placeholder="Avatar" id="avatar-user" type="file" onChange={handleAvatarChange} />
-        </div>
-      </div>
-     </div>
-     <div className="my-form-group">
-       <input id="submit" type="submit" value="Submit" />
-     </div>
-   </form>
+    </>
  );
 }
 
