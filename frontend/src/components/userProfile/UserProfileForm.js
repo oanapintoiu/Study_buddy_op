@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect, useRef } from 'react';
 
-//import './UserProfileForm.css';
+import './UserProfileForm.css';
 
 const UserProfileForm = ({ navigate }) => {
   const [email, setEmail] = useState("");
@@ -116,7 +116,7 @@ const UserProfileForm = ({ navigate }) => {
   return (
     <>
     <h1>Update Profile: {username}</h1>
-    <div className="dropdown-container" ref={dropdownRef}>
+    {/* <div className="dropdown-container" ref={dropdownRef}>
       <button onClick={() => { setDropdownVisible(true); setShowCloseButton(true); }}>User Info</button>
       {dropdownVisible && (
         <div className="dropdown-menu">
@@ -128,7 +128,7 @@ const UserProfileForm = ({ navigate }) => {
           )}
         </div>
       )}
-    </div>
+    </div> */}
       <form onSubmit={handleSubmit}>
         {successMessage && <p>{successMessage}</p>}
         <input placeholder="Email" id="email" type='text' value={email} onChange={handleEmailChange} />

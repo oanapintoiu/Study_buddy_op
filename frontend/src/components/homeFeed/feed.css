@@ -164,17 +164,4 @@ textarea {
   justify-content: center;
 } */
 
-.background-planets {
-  content: "";
-  background-image: url('http://localhost:3000/img/students.jpg');
-  background-size: cover;
-  opacity: 0.8;
-  top: 650px;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: fixed;
-  z-index: -1;
-}
-
 
