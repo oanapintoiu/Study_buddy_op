@@ -114,35 +114,45 @@ textarea {
   background-color: #45a049;
 }
 
+.search-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
 .search-input {
-  width: 70%;
+  width: 100%;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
   border: 1px solid #ccc;
 }
 
 .search-button {
-  padding: 10px 20px;
+  padding: 10px 0;
   font-size: 16px;
   border: none;
   background-color: rgb(255 255 255); /* background color set to white */
   color: #000;
   border-radius: 15px;
   cursor: pointer;
+
 }
 
 .filter-button {
   display: block;
-  width: 200px;
+  width: 60px;
   margin: 20px auto;
   padding: 10px;
-  font-size: 16px;
+  font-size: 12px;
+  font-weight: bold; 
   border: none;
-  background-color: rgb(180, 178, 178); /* background color set to white */
-  color: #000;
+  background-color: rgb(235, 232, 232); /* background color set to white */
+  color: #000000;
   border-radius: 15px;
   cursor: pointer;
   text-align: center;
+  float: right;
 }
 
 .filter-box {
@@ -158,9 +168,9 @@ textarea {
 
 .background-planets {
   content: "";
-  background-image: url('http://localhost:3000/img/students.jpg');
+  background-image: url('http://localhost:3000/img/white.jpg');
   background-size: cover;
-  opacity: 0.8;
+  opacity: 0.5;
   top: 650px;
   left: 0;
   bottom: 0;

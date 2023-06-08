@@ -10,7 +10,7 @@ const GroupSchema = new mongoose.Schema({
   level: {type: String, required: false},
   private: { type: Boolean, default: false },
   description: { type: String, required: false },
-
+  groupCard: { type: String, required: false },
 });
 
 const Group = mongoose.model("Group", GroupSchema);

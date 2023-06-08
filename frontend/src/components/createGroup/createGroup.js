@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './createGroup.css';
 
 const CreateGroup = () => {
   const [groupName, setGroupName] = useState('');
@@ -13,7 +14,11 @@ const CreateGroup = () => {
   const [description, setDescription] = useState('');
   const [token, setToken] = useState(window.localStorage.getItem('token'));
   const navigate = useNavigate();
-  const [imageUrl, setImageUrl] = useState('');
+  const [groupCard, setGroupCard] = useState(null);
+
+  const handleCardGroupChange = (event) => {
+    setGroupCard(event.target.files[0]);
+  }
 
 
   useEffect(() => {
@@ -54,24 +59,24 @@ const CreateGroup = () => {
   const handleCreateGroup = async (event) => {
     event.preventDefault();
 
-    try {
-      const groupData = {
-        name: groupName,
-        category: subjectCategory,
-        subcategory: subCategory,
-        level: level,
-        partySize: partySize,
-        groupType: groupType,
-        imageUrl: imageUrl
-      };
+    const formData = new FormData();
+    formData.append('name', groupName);
+    formData.append('category', subjectCategory);
+    formData.append('subcategory', subCategory);
+    formData.append('level', level);
+    formData.append('partySize', partySize);
+    formData.append('groupType', groupType);
+    if (groupCard) {
+      formData.append('groupCard', groupCard);
+    }
 
+    try {
       const response = await fetch('/groups', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(groupData),
+        body: formData
       });
 
       if (response.ok) {
@@ -90,25 +95,25 @@ const CreateGroup = () => {
     
   };
 
-
-
   return (
-    <div>
+    <div className="create-group">
+      <div className="create-group-container">
       <h2>Create Group</h2>
       <form onSubmit={handleCreateGroup}>
-        <label>
-          Study Group Name:
-          <input type="text" value={groupName} onChange={(event) => setGroupName(event.target.value)} required />
+        <label htmlFor="create-group-name">
+          Study Group Name: 
         </label>
+        <input id="create-group-name" type="text" value={groupName} onChange={(event) => setGroupName(event.target.value)} required />
         <br />
-        <label>
-          Description:
-          <input type="text" value={description} onChange={(event) => setDescription(event.target.value)} required />
+        <label htmlFor="create-group-description">
+          Description: 
         </label>
+        <input id="create-group-description" type="text" value={description} onChange={(event) => setDescription(event.target.value)} required />
         <br />
-        <label>
+        <label htmlFor='create-group-categories'>
           Subject Category:
-          <select value={subjectCategory} onChange={handleCategoryChange} required>
+        </label>
+        <select id="create-group-categories" value={subjectCategory} onChange={handleCategoryChange} required>
             <option value="">Select Category</option>
             {categories.map((category) => (
               <option key={category._id} value={category._id}>
@@ -116,11 +121,11 @@ const CreateGroup = () => {
               </option>
             ))}
           </select>
-        </label>
         <br />
         <label>
           Sub-Category:
-          <select value={subCategory} onChange={(event) => setSubCategory(event.target.value)} required>
+        </label>
+        <select value={subCategory} onChange={(event) => setSubCategory(event.target.value)} required>
             <option value="">Select Sub-Category</option>
             {subcategories.map((subcategory) => (
               <option key={subcategory._id} value={subcategory._id}>
@@ -128,11 +133,11 @@ const CreateGroup = () => {
               </option>
             ))}
           </select>
-        </label>
         <br />
         <label>
           Level:
-          <select value={level} onChange={(event) => setLevel(event.target.value)} required>
+        </label>
+        <select value={level} onChange={(event) => setLevel(event.target.value)} required>
             <option value="">Select Level</option>
             <option value="novice">NOVICE</option>
             <option value="intermediate">INTERMEDIATE</option>
@@ -140,34 +145,35 @@ const CreateGroup = () => {
             <option value="advanced">ADVANCED</option>
             <option value="expert">EXPERT</option>
           </select>
-        </label>
         <br />
         <label>
           Group Party Size:
-          <select value={partySize} onChange={(event) => setPartySize(parseInt(event.target.value))}>
+        </label>
+        <select value={partySize} onChange={(event) => setPartySize(parseInt(event.target.value))}>
             {[...Array(10)].map((_, index) => (
               <option key={index} value={index + 1}>
                 {index + 1}
               </option>
             ))}
           </select>
-        </label>
         <br />
         <label>
           Group Type:
-          <select value={groupType} onChange={(event) => setGroupType(event.target.value)}>
+        </label>
+        <select value={groupType} onChange={(event) => setGroupType(event.target.value)}>
             <option value="private">Private</option>
             <option value="public">Public</option>
-          </select>
-        </label>
+        </select>
+        <br />
         <label>
-  Image URL:
-  <input type="text" value={imageUrl} onChange={(event) => setImageUrl(event.target.value)} required />
-</label>
-<br />
+          Image URL:
+        </label>
+        <input placeholder="Card Photo" id="group-card-file" type="file" onChange={handleCardGroupChange}  />
+        <br />
         <br />
         <button type="submit">Create</button>
       </form>
+    </div>
     </div>
   );
 };

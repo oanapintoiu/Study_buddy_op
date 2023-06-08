@@ -161,13 +161,9 @@ const Feed = ({ navigate }) => {
             onChange={(event) => {
               setName(event.target.value);
               handleSearch(event.target.value);
-
-
             }}
           />
-                        <button className="search-button" onClick={() => handleSearch(name)}>🔍</button>
-
-
+          <button className="search-button" onClick={() => handleSearch(name)}>🔍</button>
         </div>
   
         {/* Filter Button */}

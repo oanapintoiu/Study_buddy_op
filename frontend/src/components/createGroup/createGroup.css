@@ -1,0 +1,115 @@
+/* .create-group {
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.create-group-container .container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.create-group-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.create-group-container form {
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.create-group-container label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.create-group-container input[type="text"], .create-group-container select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.create-group-container button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.create-group-container button[type="submit"]:hover {
+  background-color: #45a049;
+}  */
+.create-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  background-color: #F8F9FA; /* Background color of your form's area */
+  box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Shadow around your form's area */
+}
+
+.create-group-container {
+  width: 60%; /* Adjust this if you want the form width to change */
+  background-color: #FFFFFF; /* Background color of the form */
+  padding: 2em;
+  border-radius: 10px; /* Rounded borders of the form */
+  box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Shadow around your form */
+}
+
+.create-group-container h2 {
+  text-align: center;
+  color: #000000; /* Color of the title */
+}
+
+.create-group-container form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+}
+
+.create-group-container label {
+  margin-bottom: 0.5em;
+  color: #000000; /* Color of the label */
+}
+
+.create-group-container input, .create-group-container select {
+  padding: 0.5em;
+  margin-top: 0.5em;
+  border: 1px solid #CCC; /* Border color of the inputs */
+  border-radius: 5px; /* Rounded borders of the inputs */
+  box-sizing: border-box;
+  font-size: 1em;
+}
+
+.create-group-container button {
+  padding: 0.5em 1em;
+  margin-top: 1em;
+  background-color: #007BFF; /* Background color of the button */
+  color: #FFFFFF; /* Color of the button's text */
+  border: none;
+  border-radius: 5px; /* Rounded borders of the button */
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease; /* Transition for button hover effect */
+}
+.create-group-container select {
+  width: 100%; /* Ensure the select box fits its container width */
+  overflow: hidden; /* Hide the overflowing text */
+  text-overflow: ellipsis; /* Add ellipsis (...) for overflowing text */
+  white-space: nowrap; /* Ensure text stays in one line */
+}
+
+.create-group-container button:hover {
+  background-color: #0056b3; /* Background color of the button on hover */
+}

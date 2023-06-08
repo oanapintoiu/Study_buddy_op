@@ -4,6 +4,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActions } from '@mui/material';
+import { FaRegComment } from 'react-icons/fa';  // Import the icon
+import './GroupCard.css'
 
 const GroupCard = ({ group, onJoin }) => {
 
@@ -12,12 +14,14 @@ const GroupCard = ({ group, onJoin }) => {
   };
 
   return (
-    <Card sx={{ maxWidth: 345, marginBottom: '1rem',borderRadius: '15px', boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.1)' }}>
+    <Card sx={{ maxWidth: 345, marginBottom: '1rem', borderRadius: '15px', boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.1)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <CardMedia
         component="img"
-        height="130"
+        height="90"
         width={'100%'}
-        image="https://res.cloudinary.com/dmkipvd8d/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1686121855/sheldon_640x480_41478610926_d6r4bh.jpg" // replace this with the image you want
+        
+
+        image={group.groupCard == null ? 'https://res.cloudinary.com/dmkipvd8d/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1686121855/sheldon_640x480_41478610926_d6r4bh.jpg' : group.groupCard}
         alt="Group"
       />
       <CardContent sx={{ marginBottom: '0rem' }}>
@@ -28,10 +32,11 @@ const GroupCard = ({ group, onJoin }) => {
           {/* Insert other group information here */}
         </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions sx={{ justifyContent: 'space-between' }}>
         <Button size="small" sx={{color: '#FFFFFF', backgroundColor: '#3f51b5', '&:hover': { backgroundColor: '#002984' } }} onClick={handleJoinClick}>
           Join
         </Button>
+        <FaRegComment size={20} /> {/* This is the chat symbol. Adjust the size as needed */}
       </CardActions>
     </Card>
   );

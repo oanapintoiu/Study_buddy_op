@@ -3,6 +3,25 @@ const Post = require("../models/post");
 const User = require("../models/user");
 const TokenGenerator = require("../models/token_generator");
 const mongoose = require('mongoose');
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    // Specify the destination directory to save the uploaded avatar images
+    cb(null, "avatars");
+  },
+  filename: (req, file, cb) => {
+    // Generate a unique filename for the uploaded file
+    //
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    const fileExtension = file.originalname.split(".").pop();
+    cb(null, "group-" + uniqueSuffix + "." + fileExtension);
+  },
+});
+
+// Create multer upload instance
+const upload = multer({ storage: storage });
+
 
 const GroupController = {
   Index: async (req, res) => {
@@ -32,6 +51,17 @@ const GroupController = {
     }
   },
   Create: async (req, res) => {
+    upload.single("groupCard")(req, res, async (err) => {
+      if (err instanceof multer.MulterError) {
+        res.status(500).json({
+          message: "Error uploading avatar image",
+        });
+      } else if (err) {
+        res.status(500).json({
+          message: "Error processing request",
+        });
+      }
+
     try {
       let { name, category, subcategory, level, partySize, groupType } = req.body;
       const isPrivate = groupType === 'private';
@@ -41,20 +71,66 @@ const GroupController = {
   
       const group = new Group({ name, category, subcategory, level, partySize, private: isPrivate });
       group.members.push(userId);
+      if (req.file) {
+        group.groupCard = `${req.protocol}://${req.get("host")}/avatars/${req.file.filename}`;
+      }
       await group.save();
 
       const user = await User.findById(userId).exec();
-    user.groups.push(group._id);
-    await user.save();
+      user.groups.push(group._id);
+      await user.save();
 
-  
       const token = await TokenGenerator.jsonwebtoken(req.user_id);
       res.status(201).json({ group: group, token: token });
     } catch (error) {
       console.error(error);
       throw new Error("Failed to create group");
     }
+  })
   },
+  // Create: (req, res) => {
+  //     upload.single("groupCard")(req, res, (err) => {
+  //       if (err instanceof multer.MulterError) {
+  //         res.status(500).json({
+  //           message: "Error uploading avatar image",
+  //         });
+  //       } else if (err) {
+  //         res.status(500).json({
+  //           message: "Error processing request",
+  //         });
+  //       }
+
+  //       let { name, category, subcategory, level, partySize, groupType } = req.body;
+  //       const isPrivate = groupType === 'private';
+  //       const userId = req.user_id;
+  //       category = mongoose.Types.ObjectId(category);
+  //       subcategory = mongoose.Types.ObjectId(subcategory);
+    
+  //       const group = new Group({ name, category, subcategory, level, partySize, private: isPrivate,
+  //        });
+  //        console.log("Req file", req.file)
+  //       if (req.file) {
+  //         group.groupCard = `${req.protocol}://${req.get("host")}/avatars/${req.file.filename}`;
+  //       }
+
+  //       group.members.push(userId);
+  //       group.save().
+  //         then((group) => {
+  //         User.findById(userId)
+  //         .then((user) => {
+  //           user.groups.push(group._id);
+  //           user.save()
+  //           .then((savedUser) => {
+  //             console.log("savedUser: ", savedUser)
+  //             const token = TokenGenerator.jsonwebtoken(req.user_id);
+  //             res.status(201).json({ group: group, token: token });
+  //           })
+  //         });
+  
+  //       });
+  
+  //     });
+  // },
   Update: async (req, res) => {
     try {
       const group = await Group.findByIdAndUpdate(req.params.id, req.body, { new: true }).exec();
