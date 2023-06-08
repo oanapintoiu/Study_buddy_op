@@ -113,7 +113,12 @@ textarea {
   background-color: #45a049;
 }
 
-
+.studdybuddy {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 30px;
+  color: #1b4a05;
+}
 
 .search-box {
   display: flex;
