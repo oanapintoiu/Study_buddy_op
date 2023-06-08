@@ -12,15 +12,16 @@ const GroupCard = ({ group, onJoin }) => {
   };
 
   return (
-    <Card sx={{ maxWidth: 345, marginBottom: '2rem', borderRadius: '15px', boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.1)' }}>
+    <Card sx={{ maxWidth: 345, marginBottom: '1rem',borderRadius: '15px', boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.1)' }}>
       <CardMedia
         component="img"
-        height="140"
+        height="130"
+        width={'100%'}
         image="https://res.cloudinary.com/dmkipvd8d/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1686121855/sheldon_640x480_41478610926_d6r4bh.jpg" // replace this with the image you want
         alt="Group"
       />
-      <CardContent sx={{ marginBottom: '1rem' }}>
-        <Typography gutterBottom variant="h5" component="div">
+      <CardContent sx={{ marginBottom: '0rem' }}>
+        <Typography gutterBottom variant="h6" component="div">
           {group.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">

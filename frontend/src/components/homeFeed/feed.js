@@ -8,6 +8,7 @@ import { Grid } from "@mui/material";
 const Feed = ({ navigate }) => {
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
+  const [username, setUsername] = useState(window.localStorage.getItem("username"));
   const [groups, setGroups] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchFilter, setSearchFilter] = useState({
@@ -60,16 +61,6 @@ const Feed = ({ navigate }) => {
     setGroups(filteredGroups);
   }
   const joinGroup = (groupId) => {
-    // Retrieve the user ID from the cookie
-    const cookies = document.cookie.split("; ");
-    let currentUserId = '';
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].split("=");
-      if (cookie[0] === "userId") {
-        currentUserId = cookie[1];
-        break;
-      }
-    }
   
     // Send a request to the backend to join the group
     fetch(`/groups/${groupId}/join`, {
@@ -78,12 +69,14 @@ const Feed = ({ navigate }) => {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ userId: currentUserId })
+      body: JSON.stringify({ userId: username })
     })
       .then(response => response.json())
       .then(data => {
         // Handle the response if needed
         console.log(data);
+        handleSearch()
+        navigate(`/groups/${groupId}`)
       })
   };
   
@@ -148,8 +141,8 @@ const Feed = ({ navigate }) => {
         <div id='feed' role="feed">
         <Grid container spacing={3}>
       {groups.map((group) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} key={group.id}>
-          <GroupCard group={group} />
+        <Grid item xs={12} sm={6} md={4} lg={3} key={group._id}>
+          <GroupCard group={group} onJoin={joinGroup}/>
         </Grid>
       ))}
     </Grid>

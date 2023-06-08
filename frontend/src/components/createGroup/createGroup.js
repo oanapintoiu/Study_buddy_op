@@ -10,6 +10,7 @@ const CreateGroup = () => {
   const [groupType, setGroupType] = useState('private');
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
+  const [description, setDescription] = useState('');
   const [token, setToken] = useState(window.localStorage.getItem('token'));
   const navigate = useNavigate();
   const [imageUrl, setImageUrl] = useState('');
@@ -46,6 +47,9 @@ const CreateGroup = () => {
     setSubCategory('');
     fetchSubcategories(selectedCategory); // Call fetchSubcategories after updating subjectCategory
   };
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
+  }
 
   const handleCreateGroup = async (event) => {
     event.preventDefault();
@@ -95,6 +99,11 @@ const CreateGroup = () => {
         <label>
           Study Group Name:
           <input type="text" value={groupName} onChange={(event) => setGroupName(event.target.value)} required />
+        </label>
+        <br />
+        <label>
+          Description:
+          <input type="text" value={description} onChange={(event) => setDescription(event.target.value)} required />
         </label>
         <br />
         <label>
