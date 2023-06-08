@@ -9,10 +9,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
 .studdybuddy-font {
   font-family: 'Kalam';
-  color: #3f51b5; /* You can change this to any color you prefer */
   text-align: center;
   padding: 20px;
   display: inline-block;
   margin: 0 auto;
   letter-spacing: 2px;
+}
+
+.studdybuddy-color-blue {
+  color: #5f81f2;
+}
+
+.studdybuddy-color-white {
+  color: white;
 }

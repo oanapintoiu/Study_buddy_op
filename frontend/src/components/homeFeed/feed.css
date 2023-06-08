@@ -18,7 +18,7 @@
   padding: 1em 0;
 }
 .create-group-button{
-  background-color: #4097FA;
+  background-color: #5f81f2;
   border: none;
   color: rgb(12, 12, 12);
   padding: 9px 25px;
@@ -32,7 +32,7 @@
 
 }
 .feedButton {
-  background-color: #4097FA;
+  background-color: #5f81f2;
   border: none;
   color: white;
   padding: 9px 25px;
@@ -118,7 +118,8 @@ textarea {
   text-align: center;
   margin-bottom: 20px;
   font-size: 30px;
-  color: #1b4a05;
+  background-color: #5f81f2;
+  transition: background-color 0.3s;
 }
 
 .search-box {
@@ -186,6 +187,13 @@ textarea {
 
 .create-study-group:hover {
   background-color: #45a049;
+}
+
+.logo-container {
+  background-color: white;
+  border-radius: 50% 0 0 50%;
+  float: right;
+  padding: 45px;
 }
 /* All your other CSS rules... */
 
