@@ -55,6 +55,27 @@ const StudyGroup = () => {
     setIsModalOpen(false);
   };
 
+  const leaveGroup = () => {
+  
+    fetch(`/groups/${groupId}/leave`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ 
+        userId: username,
+        group: groupId
+       })
+    })
+      .then(response => response.json())
+      .then(data => {
+        // Handle the response if needed
+        console.log(data);
+        navigate(`/posts`)
+      })
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("newPost: ", newPost);
@@ -171,6 +192,12 @@ const StudyGroup = () => {
               loading={loading}
             />
           ) : null}
+        </div>
+        <div>
+          <button onClick={leaveGroup}
+          className="leave-group-button">
+            leave group
+          </button>
         </div>
         {isModalOpen && (
       <Modal onClose={handleCloseModal}>
