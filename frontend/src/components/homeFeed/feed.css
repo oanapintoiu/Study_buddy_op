@@ -18,6 +18,20 @@
   border-bottom: 1px solid #FBF8F8;
   padding: 1em 0;
 }
+.create-group-button{
+  background-color: #4097FA;
+  border: none;
+  color: rgb(12, 12, 12);
+  padding: 9px 25px;
+  text-align: center;
+  text-decoration: dotted;
+  display: inline-block;
+  margin: 4px 2px;
+  border-radius: 4px;
+  box-shadow: 0px 4px 4px rgb(172, 171, 171);
+   /* Green */
+
+}
 .feedButton {
   background-color: #4097FA;
   border: none;
@@ -36,18 +50,7 @@
   color: #F8F4F4;
   cursor: pointer;
 }
-.textarea-wrapper {
-  position: relative;
-  width: 100%;
-}
-.sendButton {
-  color: white;
-  text-align: center;
-  font-size: 1em;
-  cursor: pointer;
-  float: right;
-  margin-right: 1em;
-}
+
 .textarea-wrapper {
   position: relative;
   width: 100%;
@@ -62,8 +65,6 @@ textarea {
   right: 10px;
   bottom: 10px;
 }
-
-
 
 /* Styling for search bar, similar to Google's search bar */
 .search-input {
@@ -112,15 +113,6 @@ textarea {
 /* Add a hover effect for the button */
 .filter-box button:hover {
   background-color: #45a049;
-}
-
-
-
-.search-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
 }
 
 .search-input {

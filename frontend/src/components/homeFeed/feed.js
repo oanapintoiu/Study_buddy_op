@@ -150,7 +150,7 @@ const Feed = ({ navigate }) => {
       <>
       <h1>Study Buddy</h1>
       <div>
-        <button onClick={createGroup}>Create a Study Group</button><br></br><br></br>
+        <button className='create-group-button'onClick={createGroup}>Create a Study Group</button><br></br><br></br>
   
         {/* Search Bar */}
         <div className="search-box">
