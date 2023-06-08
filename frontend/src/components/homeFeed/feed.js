@@ -148,6 +148,7 @@ const Feed = ({ navigate }) => {
   if(token) {
     return (
       <>
+      <div className="background-planets"></div>
       <h1>Study Buddy</h1>
       <div>
         <button onClick={createGroup}>Create a Study Group</button><br></br><br></br>
