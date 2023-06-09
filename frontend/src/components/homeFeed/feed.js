@@ -149,7 +149,10 @@ const Feed = ({ navigate }) => {
     return (
       <>
       <div className="studdybuddy">
-      <h1>Study Buddy</h1>
+        <div className='logo-container'>
+          <i className="fa-solid fa-users" style={{fontSize:'50px', color: '#5f81f2'}}></i>
+        </div>
+        <h1 className='studdybuddy-color-white studdybuddy-font'>study buddy</h1>
       </div>
       <div>
       <div>
@@ -163,13 +166,9 @@ const Feed = ({ navigate }) => {
             onChange={(event) => {
               setName(event.target.value);
               handleSearch(event.target.value);
-
-
             }}
           />
-                        <button className="search-button" onClick={() => handleSearch(name)}>🔍</button>
-
-
+          <button className="search-button" onClick={() => handleSearch(name)}>🔍</button>
         </div>
   
         {/* Filter Button */}

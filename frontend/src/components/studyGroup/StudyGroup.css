@@ -1,9 +1,9 @@
 .group {
+  background-color: #8ca0ba;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5em;
   padding: 10px;
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 80px;
-  color: #1b4a05;
 }
 .members-panel {
   position: fixed;
@@ -66,15 +66,8 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
-  max-width: 200px;
+  max-width: 120px;
 }
-
-.leave-button-container {
-  position: fixed;
-  bottom: 40px;
-  left: 50px; 
-}
-
 
 .leave-group-button:hover {
   background-color: #e73838;

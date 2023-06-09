@@ -19,15 +19,6 @@
   margin: 30px auto;
 }
 
-.study-buddy-heading {
-  font-size: 24px;
-  color: #0a0a0a;
-  margin-bottom: 20px;
-  font-style: initial;
-}
-
-
-
 .additional-text {
   font-size: 14px;
   color: #888;
@@ -72,13 +63,13 @@
   width: 350px;
   padding: 20px;
   background-color: white;
-  border-radius: 10px;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
   text-align: center;
 }
 
 .study-buddy-heading {
-  font-size: 24px;
+  font-size: 36px;
   color: #333;
   margin-bottom: 20px;
 }

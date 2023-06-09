@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect, useRef } from 'react';
+import { MdEmail, MdLock, MdPerson } from 'react-icons/md';
 
+import './UserProfileForm.css';
 import './UserProfileForm.css';
 
 const UserProfileForm = ({ navigate }) => {
@@ -118,33 +120,36 @@ const UserProfileForm = ({ navigate }) => {
 
 
   return (
-    <>
-    <div className="updateprofile">
-    <h1> Update Profile: {username}</h1>
+    <div className="UserProfileForm-root">
+      <div className="UserProfileForm-card">
+        <h1 className="UserProfileForm-title">Update Profile: {username}</h1>
+        <form className="UserProfileForm-form" onSubmit={handleSubmit}>
+          {successMessage && <p>{successMessage}</p>}
+          <div className="UserProfileForm-input">
+            < MdPerson/>
+            <input placeholder="Username" id="username" type='username' value={username} onChange={handleUsernameChange} />
+          </div>
+          <div className="UserProfileForm-input">
+            <MdLock />
+            <input placeholder="Password" id="password" type='password' value={password} onChange={handlePasswordChange} />
+          </div>
+          <div className="UserProfileForm-input">
+  <MdEmail />
+  <input placeholder="Email" id="email" type='text' value={email} onChange={handleEmailChange} />
+</div>
+          
+          <div className="UserProfileForm-input">
+            <MdPerson />
+            <input placeholder="First Name" id="firstName" type='text' value={firstName} onChange={handleFirstNameChange} />
+          </div>
+          <div className="UserProfileForm-input">
+            <MdPerson />
+            <input placeholder="Last Name" id="lastName" type='text' value={lastName} onChange={handleLastNameChange} />
+          </div>
+          <button className="UserProfileForm-button" type="submit">Update</button>
+        </form>
+      </div>
     </div>
-    {/* <div className="dropdown-container" ref={dropdownRef}>
-      <button onClick={() => { setDropdownVisible(true); setShowCloseButton(true); }}>User Info</button>
-      {dropdownVisible && (
-        <div className="dropdown-menu">
-          <p>First Name: {firstName}</p>
-          <p>Last Name: {lastName}</p>
-          <p>Email: {email}</p>
-          {showCloseButton && (
-            <button onClick={() => { setDropdownVisible(false); setShowCloseButton(false); }}>Close</button>
-          )}
-        </div>
-      )}
-    </div> */}
-      <form1 onSubmit={handleSubmit}>
-        {successMessage && <p>{successMessage}</p>}
-        <input placeholder="Email" id="email" type='text' value={email} onChange={handleEmailChange} />
-        <input placeholder="Username" id="username" type='username' value={username} onChange={handleUsernameChange} />
-        <input placeholder="Password" id="password" type='password' value={password} onChange={handlePasswordChange} />
-        <input placeholder="First Name" id="firstName" type='text' value={firstName} onChange={handleFirstNameChange} />
-        <input placeholder="Last Name" id="lastName" type='text' value={lastName} onChange={handleLastNameChange} />
-        <input id='submit' type="submit" value="Update" />
-      </form1>
-    </>
   );
 };
 

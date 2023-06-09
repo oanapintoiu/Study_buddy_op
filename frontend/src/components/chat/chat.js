@@ -52,10 +52,12 @@ const Chat = ({ posts, username, handlePostChange, handleSubmit, newPost, handle
                 <Grid container>
                   <Grid item xs={12} align={post.user?.username === username ? 'left' : 'right'}>
                     <ListItemIcon>
-                      {post.user?.avatar ? (
-                        <Avatar sx={{ width: 24, height: 24 }} alt={post.user.username} src={post.user.avatar} />
+                      {post.ai_question ? <Avatar sx={{ width: 40, height: 40 }} alt="Sheldon AI" src="https://res.cloudinary.com/dmkipvd8d/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1686121855/sheldon_640x480_41478610926_d6r4bh.jpg" />
+                      :
+                      post.user?.avatar ? (
+                        <Avatar sx={{ width: 40, height: 40 }} alt={post.user.username} src={post.user.avatar} />
                       ) : (
-                        <Avatar sx={{ width: 24, height: 24 }}>N</Avatar>
+                        <Avatar sx={{ width: 40, height: 40 }}>N</Avatar>
                       )}
                     </ListItemIcon>
                     {post.user ? (
