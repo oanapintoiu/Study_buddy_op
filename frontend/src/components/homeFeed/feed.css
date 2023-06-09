@@ -17,20 +17,6 @@
   border-bottom: 1px solid #FBF8F8;
   padding: 1em 0;
 }
-.create-group-button{
-  background-color: #5f81f2;
-  border: none;
-  color: rgb(12, 12, 12);
-  padding: 9px 25px;
-  text-align: center;
-  text-decoration: dotted;
-  display: inline-block;
-  margin: 4px 2px;
-  border-radius: 4px;
-  box-shadow: 0px 4px 4px rgb(172, 171, 171);
-   /* Green */
-
-}
 .feedButton {
   background-color: #5f81f2;
   border: none;
@@ -49,7 +35,18 @@
   color: #F8F4F4;
   cursor: pointer;
 }
-
+.textarea-wrapper {
+  position: relative;
+  width: 100%;
+}
+.sendButton {
+  color: white;
+  text-align: center;
+  font-size: 1em;
+  cursor: pointer;
+  float: right;
+  margin-right: 1em;
+}
 .textarea-wrapper {
   position: relative;
   width: 100%;
@@ -82,9 +79,13 @@ textarea {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-top: 20px;
   margin-bottom: 20px;
   width: 50%;
   margin: 0 auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .filter-box label {
@@ -94,7 +95,7 @@ textarea {
 }
 
 /* Styling for dropdown select elements within filter box */
-.filter-box select-level {
+.filter-box select {
   width: 100%;
 }
 
@@ -132,45 +133,40 @@ textarea {
 .search-input {
   width: 100%;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 1px solid #ccc;
 }
 
 .search-button {
-  padding: 10px 0;
+  padding: 10px 20px;
   font-size: 16px;
   border: none;
   background-color: rgb(255 255 255); /* background color set to white */
   color: #000;
   border-radius: 15px;
   cursor: pointer;
-
+  margin-bottom: 10px;
 }
 
 .filter-button {
   
   display: block;
-  width: 60px;
+  width: 200px;
   margin: 20px auto;
   padding: 10px;
-  font-size: 12px;
-  font-weight: bold; 
+  font-size: 16px;
   border: none;
   background-color: #5f81f2; /* background color set to white */
   color: #ffffff;
   border-radius: 15px;
   cursor: pointer;
   text-align: center;
-  float: right;
 }
 
 .filter-button:hover {
   background-color: #45a049;
 }
 
-.filter-box {
-  margin-top: 20px;
-}
 
 .create-study-group {
 
