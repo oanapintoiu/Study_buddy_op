@@ -72,3 +72,10 @@
 .leave-group-button:hover {
   background-color: #e73838;
 }
+
+.leave-button-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50px;
+  
+}
