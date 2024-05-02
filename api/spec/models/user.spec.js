@@ -4,6 +4,7 @@ const Subcategory = require("../../models/subcategory")
 
 require("../mongodb_helper");
 const User = require("../../models/user");
+const { beforeEach } = require("mocha");
 
 describe("User model", () => {
   let category;
@@ -20,7 +21,7 @@ describe("User model", () => {
     category.save();
   });
 
-  afterAll( async () => {
+  beforeEach ( async () => {
     await Category.deleteMany({});
     await Subcategory.deleteMany({});
   })
