@@ -31,29 +31,23 @@ describe("Group Controller Integration Test", () => {
     await testGroup.save();
   });
 
-  // afterAll(async () => {
-  //   // Clean up the data created by this test suite
-  //   await User.deleteOne({ _id: testUser.id });
-  //   await Group.deleteOne({ _id: testGroup.id });
-  // });
-
   test("adds user to group and makes a post", async () => {
     // Add the user to the group
     await request(app)
-      .post(`/groups/${testGroup.id}/members`)
+      .post(`/groups/${testGroup._id}/members`)
       .set("Authorization", `Bearer ${token}`)
-      .send({ userId: testUser.id, token: token });
+      .send({ userId: testUser._id, user_id: token });
 
-    let updatedGroup = await Group.findById(testGroup.id);
-    expect(String(updatedGroup.members[0])).toEqual(String(testUser.id));
+    let updatedGroup = await Group.findById(testGroup._id);
+    expect(String(updatedGroup.members[0])).toEqual(String(testUser._id));
 
     // Add a post to the group
     const newPostMessage = "Integration Test Post";
 
     let response = await request(app)
-      .post(`/groups/${testGroup.id}/posts`)
+      .post(`/groups/${testGroup._id}/posts`)
       .set("Authorization", `Bearer ${token}`)
-      .send({ message: newPostMessage, token: token });
+      .send({ message: newPostMessage, user: 'integration' });
 
     expect(response.status).toEqual(201);
 
