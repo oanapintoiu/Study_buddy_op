@@ -3,6 +3,7 @@ const request = require("supertest");
 require("../mongodb_helper");
 const Group = require('../../models/group');
 const User = require('../../models/user');
+const Post = require('../../models/post');
 const JWT = require("jsonwebtoken");
 const secret = process.env.JWT_SECRET;
 
@@ -11,6 +12,10 @@ let token;
 describe("Group Controller Integration Test", () => {
   let testUser;
   let testGroup;
+
+  beforeEach (async () => {
+    await Post.deleteMany({});
+  })
 
   beforeAll( async () => {
     const user = new User({email: "test@test.com", username: "test", password: "12345678"});
