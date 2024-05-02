@@ -56,8 +56,8 @@
   background-color: #6d7171;
 }
 
-.leave-group-button {
-  width: 100%;
+.leave-group-button, .delete-group-button {
+  width: 130%;
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -66,16 +66,23 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
-  max-width: 120px;
+  max-width: 110px;
 }
 
-.leave-group-button:hover {
+.leave-group-button:hover, .delete-group-button:hover {
   background-color: #e73838;
 }
 
 .leave-button-container {
   position: fixed;
-  bottom: 20px;
+  bottom: 50px;
   left: 50px;
+  margin-bottom: 30px;
   
+}
+
+.delete-button-container {
+  position: fixed;
+  bottom: 30px;
+  left: 50px;
 }

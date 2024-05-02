@@ -91,8 +91,7 @@ const CreateGroup = () => {
     } catch (error) {
       console.error('Error creating group:', error);
       // Handle the unauthorized error here, e.g., redirect to login page
-    }
-    
+    } 
   };
 
   return (

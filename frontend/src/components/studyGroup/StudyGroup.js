@@ -74,6 +74,31 @@ const StudyGroup = () => {
         console.log(data);
         navigate(`/posts`)
       })
+      .catch(error => {
+        console.error('Error leaving group:', error);
+        // Handle errors
+      });
+  };
+
+  const deleteGroup = () => {
+  
+    fetch(`/groups/${groupId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        // Handle the response if needed
+        console.log(data);
+        navigate(`/posts`)
+      })
+      .catch(error => {
+        console.error('Error deleting group:', error);
+        // Handle errors
+      });
   };
 
   const handleSubmit = (event) => {
@@ -204,12 +229,18 @@ const StudyGroup = () => {
     leave group
   </button>
 </div>
+<div className="delete-button-container">
+          <button onClick={deleteGroup} className="delete-group-button">
+            delete group
+          </button>
+        </div>
       </>
     );
   } else {
     navigate("/signin");
     return null; // Return null if not logged in to avoid rendering anything
   }
+  
 };
 
 export default StudyGroup;
