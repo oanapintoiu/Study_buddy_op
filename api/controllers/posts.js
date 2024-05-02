@@ -20,7 +20,7 @@ const PostsController = {
     post.ai_question = req.body.ai_question;
     post.ai_response = req.body.ai_response;
     post.save(async (err) => {
-      if (err) {
+      if (err) { ac
         throw err;
       }
   

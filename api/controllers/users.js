@@ -36,10 +36,19 @@ const UsersController = {
       console.log("req.body.email", req.body.email)
 
       User.findOne({email: req.body.email}, (err, userCheck) => {
+        if (err) {
+          console.error('Error checking for existing user:', err);
+          return res.status(500).json({ message: "Internal Server Error" });
+        }
         if (userCheck) {
           return res.status(400).json({ message: "Email already exists" });
         }
         console.log("userCheck", userCheck)
+
+        const { email, username, password } = req.body;
+        if (!email || !username || !password) {
+          return res.status(400).json({ message: "Missing required fields" });
+        }
 
         const user = new User(req.body);
         console.log("user", user)
@@ -49,6 +58,7 @@ const UsersController = {
         }
         user.save((err) => {
           if (err) {
+            console.error('failed to create user', err)
             res.status(400).json({ message: "Bad request" });
           } else {
             res.status(201).json({ message: "OK" });
