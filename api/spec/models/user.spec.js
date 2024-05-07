@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const Category = require("../../models/category")
-const Subcategory = require("../../models/subcategory")
+const Category = require("../../models/category");
+const Subcategory = require("../../models/subcategory");
 
 require("../mongodb_helper");
 const User = require("../../models/user");
@@ -10,21 +10,24 @@ describe("User model", () => {
   let category;
   let subcategory;
 
-  beforeAll( async () => {
-    category = new Category({name: "test category"});
+  beforeAll(async () => {
+    category = new Category({ name: "test category" });
     await category.save();
 
-    subcategory = new Subcategory({name: "test subcategory", category: category._id});
+    subcategory = new Subcategory({
+      name: "test subcategory",
+      category: category._id,
+    });
     await subcategory.save();
 
-    category.subcategories = [subcategory._id]
+    category.subcategories = [subcategory._id];
     category.save();
   });
 
-  beforeEach ( async () => {
+  beforeEach(async () => {
     await Category.deleteMany({});
     await Subcategory.deleteMany({});
-  })
+  });
 
   beforeEach((done) => {
     mongoose.connection.collections.users.drop(() => {
@@ -39,7 +42,7 @@ describe("User model", () => {
       password: "password",
     });
     expect(user.email).toEqual("someone@example.com");
-    expect(user.username).toEqual("someoneNICER")
+    expect(user.username).toEqual("someoneNICER");
   });
 
   it("has a password", () => {
@@ -58,5 +61,4 @@ describe("User model", () => {
       done();
     });
   });
-
 });

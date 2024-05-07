@@ -11,9 +11,9 @@ router.delete("/:id", GroupController.Delete);
 router.post("/:id/members", GroupController.AddMember);
 router.delete("/:id/members", GroupController.RemoveMember);
 router.post("/:id/posts", GroupController.CreatePost);
-router.post("/filter", GroupController.Filter)
+router.post("/filter", GroupController.Filter);
 router.post("/:id/postsAI", GroupController.CreateAIPost);
-router.post('/:id/join', GroupController.JoinGroup);
-router.post('/:groupId/leave', GroupController.LeaveGroup);
+router.post("/:id/join", GroupController.JoinGroup);
+router.post("/:groupId/leave", GroupController.LeaveGroup);
 
 module.exports = router;

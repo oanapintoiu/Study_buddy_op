@@ -73,7 +73,7 @@ const UserProfileForm = ({ navigate }) => {
       }),
     })
       .then((response) => {
-        console.log("Response:", response); 
+        console.log("Response:", response);
         console.log("Response status:", response.status);
         if (response.status === 200) {
           setSuccessMessage("Your changes have been updated successfully.");
@@ -88,7 +88,7 @@ const UserProfileForm = ({ navigate }) => {
         }
       })
       .catch((error) => {
-        console.log("Error:", error); 
+        console.log("Error:", error);
         setSuccessMessage("Changes failed, please try again.");
       });
   };

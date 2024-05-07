@@ -21,10 +21,9 @@ describe("User Updates", () => {
     await user.save();
 
     new_token = TokenGenerator.jsonwebtoken(user._id);
+  });
 
-});
-
-describe("when updating email only", () => {
+  describe("when updating email only", () => {
     const updatedFields = {
       email: "newJohn@email.com",
     };
@@ -33,7 +32,7 @@ describe("when updating email only", () => {
     beforeEach(async () => {
       response = await request(app)
         .put(`/users/`)
-        .set('Cookie', [`token=${new_token}`])
+        .set("Cookie", [`token=${new_token}`])
         .send(updatedFields);
     });
 
@@ -51,14 +50,14 @@ describe("when updating email only", () => {
     const updatedFields = {
       username: "Johnny",
       password: "seven2",
-      firstName: "Johhny"
+      firstName: "Johhny",
     };
     let response;
 
     beforeEach(async () => {
       response = await request(app)
         .put(`/users/`)
-        .set('Cookie', [`token=${new_token}`])
+        .set("Cookie", [`token=${new_token}`])
         .send(updatedFields);
     });
 
@@ -75,30 +74,29 @@ describe("when updating email only", () => {
     });
   });
 
-  describe('when encountering an error during update', () => {
+  describe("when encountering an error during update", () => {
     const updatedFields = {
-      email: 'newemail@test.com',
+      email: "newemail@test.com",
     };
     let response;
 
     beforeEach(async () => {
       // Mock the error by setting UserId to an invalid value
-      const invalidUserId = 'invalid_user_id';
+      const invalidUserId = "invalid_user_id";
       const token = TokenGenerator.jsonwebtoken(invalidUserId);
 
       response = await request(app)
-        .put('/users')
-        .set('Cookie', [`token=${token}`])
+        .put("/users")
+        .set("Cookie", [`token=${token}`])
         .send(updatedFields);
     });
 
-    it('should return status 400', async () => {
+    it("should return status 400", async () => {
       expect(response.statusCode).toEqual(400);
     });
 
     it('should return "Bad request" message', async () => {
-      expect(response.body.message).toEqual('Bad request');
+      expect(response.body.message).toEqual("Bad request");
     });
   });
-
 });

@@ -56,44 +56,42 @@ const StudyGroup = () => {
   };
 
   const leaveGroup = () => {
-  
     fetch(`/groups/${groupId}/leave`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         userId: username,
-        group: groupId
-       })
+        group: groupId,
+      }),
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         console.log(data);
-        navigate(`/posts`)
+        navigate(`/posts`);
       })
-      .catch(error => {
-        console.error('Error leaving group:', error);
+      .catch((error) => {
+        console.error("Error leaving group:", error);
       });
   };
 
   const deleteGroup = () => {
-  
     fetch(`/groups/${groupId}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         console.log(data);
-        navigate(`/posts`)
+        navigate(`/posts`);
       })
-      .catch(error => {
-        console.error('Error deleting group:', error);
+      .catch((error) => {
+        console.error("Error deleting group:", error);
       });
   };
 
@@ -139,30 +137,30 @@ const StudyGroup = () => {
     const data = await response.json();
 
     const PostAI = {
-      message: data.message,  
-      group: groupId, 
+      message: data.message,
+      group: groupId,
       ai_question: postText.toString(),
     };
 
     fetch("/groups/" + groupId + "/postsAI", {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(PostAI)  
+      body: JSON.stringify(PostAI),
     })
-      .then(response => response.json())
-      .then(async data => {
+      .then((response) => response.json())
+      .then(async (data) => {
         window.localStorage.setItem("token", data.token);
         setToken(window.localStorage.getItem("token"));
         setPosts([...posts, newPostAI]);
         setNewPost("");
       })
-      .catch(error => {
-        console.error('Error saving AI chat data:', error);
+      .catch((error) => {
+        console.error("Error saving AI chat data:", error);
       });
-    
+
     const newPostAI = {
       user: {
         username: "Sheldon AI",
@@ -190,8 +188,13 @@ const StudyGroup = () => {
           <h3>Members</h3>
           {group.members && group.members.length > 0
             ? group.members.map((member, index) => (
-              <p className="member" key={index} onClick={() => handleMemberClick(member._id)}>{member.username}</p>
-
+                <p
+                  className="member"
+                  key={index}
+                  onClick={() => handleMemberClick(member._id)}
+                >
+                  {member.username}
+                </p>
               ))
             : null}
         </div>
@@ -214,18 +217,18 @@ const StudyGroup = () => {
             />
           ) : null}
         </div>
-       
+
         {isModalOpen && (
-      <Modal onClose={handleCloseModal}>
-        <Budy navigate={navigate} id={selectedMemberId}/>
-      </Modal>
-    )}
-    <div className="leave-button-container">
-  <button onClick={leaveGroup} className="leave-group-button">
-    leave group
-  </button>
-</div>
-<div className="delete-button-container">
+          <Modal onClose={handleCloseModal}>
+            <Budy navigate={navigate} id={selectedMemberId} />
+          </Modal>
+        )}
+        <div className="leave-button-container">
+          <button onClick={leaveGroup} className="leave-group-button">
+            leave group
+          </button>
+        </div>
+        <div className="delete-button-container">
           <button onClick={deleteGroup} className="delete-group-button">
             delete group
           </button>
@@ -234,9 +237,8 @@ const StudyGroup = () => {
     );
   } else {
     navigate("/signin");
-    return null; 
+    return null;
   }
-  
 };
 
 export default StudyGroup;

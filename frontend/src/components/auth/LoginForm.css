@@ -9,11 +9,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 400px; 
+  max-width: 400px;
   width: 90%;
   height: auto;
   border-radius: 8px;
-  border: 1px solid #797373; 
+  border: 1px solid #797373;
   padding: 20px;
   margin: 30px auto;
 }
@@ -32,7 +32,8 @@
   margin-bottom: 20px;
 }
 
-.form input[type="text"], .form input[type="password"] {
+.form input[type="text"],
+.form input[type="password"] {
   width: 94%;
   padding: 10px;
   border: none;
@@ -60,7 +61,7 @@
   padding: 20px;
   background-color: white;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
@@ -102,7 +103,7 @@
 
 .background-login::before {
   content: "";
-  background-image: url('http://localhost:3000/img/bg-login.webp');
+  background-image: url("http://localhost:3000/img/bg-login.webp");
   background-size: cover;
   opacity: 0.5;
   top: 0;
@@ -110,6 +111,5 @@
   bottom: 0;
   right: 0;
   position: absolute;
-  z-index: -1;   
+  z-index: -1;
 }
-

@@ -37,7 +37,7 @@
 //         .send({ name: "study group 1", members: [], posts: [], token: token });
 //       expect(response.status).toEqual(201);
 //     });
-  
+
 //     test("creates a new group", async () => {
 //       await request(app)
 //         .post("/groups")
@@ -47,7 +47,7 @@
 //       expect(groups.length).toEqual(1);
 //       expect(groups[0].name).toEqual("study group 1");
 //     });
-  
+
 //     test("returns a new token", async () => {
 //       let response = await request(app)
 //         .post("/groups")
@@ -56,9 +56,9 @@
 //       let newPayload = JWT.decode(response.body.token, secret);
 //       let originalPayload = JWT.decode(token, secret);
 //       expect(newPayload.iat > originalPayload.iat).toEqual(true);
-//     });  
+//     });
 //   });
-  
+
 //   describe("POST /groups, when token is missing", () => {
 //     test("responds with a 401", async () => {
 //       let response = await request(app)
@@ -66,7 +66,7 @@
 //         .send({ name: "study group 2", members: [], posts: [] });
 //       expect(response.status).toEqual(401);
 //     });
-  
+
 //     test("a group is not created", async () => {
 //       await request(app)
 //         .post("/groups")
@@ -74,7 +74,7 @@
 //       let groups = await Group.find();
 //       expect(groups.length).toEqual(0);
 //     });
-  
+
 //     test("a token is not returned", async () => {
 //       let response = await request(app)
 //         .post("/groups")
@@ -160,38 +160,38 @@
 //     test("adds a user to the group", async () => {
 //       const group = new Group({ name: "study group 1", members: [], posts: [] });
 //       await group.save();
-  
+
 //       const newUser = new User({ email: "newuser@test.com", username: "newuser", password: "12345678" });
 //       await newUser.save();
-  
+
 //       await request(app)
 //         .post(`/groups/${group.id}/members`)
 //         .set("Authorization", `Bearer ${token}`)
 //         .send({ userId: newUser.id, token: token });
-  
+
 //       const updatedGroup = await Group.findById(group.id);
 //       expect(String(updatedGroup.members[0])).toEqual(String(newUser.id));
 //     });
-//   }); 
-  
+//   });
+
 //   describe("DELETE /groups/:id/members, when token is present", () => {
 //     test("removes a user from the group", async () => {
 //       const group = new Group({ name: "study group 1", members: [], posts: [] });
 //       const newUser = new User({ email: "newuser@test.com", username: "newuser", password: "12345678" });
-      
+
 //       await newUser.save();
 //       group.members.push(newUser);
 //       await group.save();
-  
+
 //       await request(app)
 //         .delete(`/groups/${group.id}/members`)
 //         .set("Authorization", `Bearer ${token}`)
 //         .send({ userId: newUser.id, token: token });
-    
+
 //       const updatedGroup = await Group.findById(group.id);
 //       expect(updatedGroup.members).not.toContain(String(newUser.id));
 //     });
-//   });  
+//   });
 
 //   describe("POST /groups/:id/posts, when token is present", () => {
 //     test("adds a post to the group", async () => {
@@ -201,19 +201,19 @@
 //         posts: [],
 //       });
 //       await group.save();
-  
+
 //       const newPostMessage = "New post";
-  
+
 //       const response = await request(app)
 //         .post(`/groups/${group.id}/posts`)
 //         .set("Authorization", `Bearer ${token}`)
 //         .send({ message: newPostMessage, token: token });
-  
+
 //       expect(response.status).toEqual(201);
-  
+
 //       const updatedGroup = await Group.findById(group.id).populate('posts');
 //       expect(updatedGroup.posts.length).toEqual(1);
 //       expect(updatedGroup.posts[0].message).toEqual(newPostMessage);
 //     });
-//   });  
+//   });
 // });

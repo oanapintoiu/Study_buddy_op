@@ -17,9 +17,9 @@ body {
   font-family: Arial, sans-serif;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Kalam&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kalam&display=swap");
 .studdybuddy-font {
-  font-family: 'Kalam';
+  font-family: "Kalam";
   text-align: center;
   padding: 20px;
   display: inline-block;

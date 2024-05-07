@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './LoginForm.css';
+import "./LoginForm.css";
 const LogInForm = ({ navigate }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -20,14 +20,14 @@ const LogInForm = ({ navigate }) => {
       navigate("/login");
     } else {
       console.log("oop");
-      
+
       let data = await response.json();
       window.localStorage.setItem("token", data.token);
-      window.localStorage.setItem("username", username)
+      window.localStorage.setItem("username", username);
 
-      let avatarResponse = await fetch(`/users/${username}/avatars`)
-      let avatarData = await avatarResponse.json()
-      window.localStorage.setItem("avatar", avatarData.avatar)
+      let avatarResponse = await fetch(`/users/${username}/avatars`);
+      let avatarData = await avatarResponse.json();
+      window.localStorage.setItem("avatar", avatarData.avatar);
 
       const expirationDate = new Date();
       expirationDate.setDate(
@@ -37,7 +37,7 @@ const LogInForm = ({ navigate }) => {
       let cookieValue =
         encodeURIComponent("token") + "=" + encodeURIComponent(data.token);
       cookieValue += "; expires=" + expirationDate.toUTCString();
-      cookieValue += "; path=/"; 
+      cookieValue += "; path=/";
 
       document.cookie = cookieValue;
 
@@ -54,13 +54,15 @@ const LogInForm = ({ navigate }) => {
   };
 
   return (
-     <>
-     
-     <div className="background-login"></div>
+    <>
+      <div className="background-login"></div>
 
       <div className="login-container">
         <h1 className="study-buddy-heading studdybuddy-font">Study Buddy</h1>
-        <p className="additional-text">Welcome to Study Buddy, your perfect companion for productive collaboration!</p>
+        <p className="additional-text">
+          Welcome to Study Buddy, your perfect companion for productive
+          collaboration!
+        </p>
         <form onSubmit={handleSubmit} className="form">
           <div className="input-group">
             <input
@@ -68,7 +70,8 @@ const LogInForm = ({ navigate }) => {
               id="username"
               type="text"
               value={username}
-              onChange={handleUsernameChange} />
+              onChange={handleUsernameChange}
+            />
           </div>
           <div className="input-group">
             <input
@@ -76,15 +79,20 @@ const LogInForm = ({ navigate }) => {
               id="password"
               type="password"
               value={password}
-              onChange={handlePasswordChange} />
+              onChange={handlePasswordChange}
+            />
           </div>
           <input
             role="submit-button"
             id="submit"
             type="submit"
-            value="Log in" />
+            value="Log in"
+          />
         </form>
-        <button className="create-account-button" onClick={() => navigate("/signup")}>
+        <button
+          className="create-account-button"
+          onClick={() => navigate("/signup")}
+        >
           Create new account
         </button>
       </div>

@@ -27,7 +27,8 @@
   font-weight: bold;
 }
 
-.side-bar-item, .dropbtn {
+.side-bar-item,
+.dropbtn {
   width: 100%;
   padding: 1em 0;
   text-decoration: none;
@@ -40,7 +41,8 @@
   border-radius: 10px;
 }
 
-.side-bar-item i, .dropbtn i {
+.side-bar-item i,
+.dropbtn i {
   margin-right: 1em;
 }
 
@@ -94,7 +96,7 @@
   width: 100%;
   color: #333;
   max-height: 125px;
-  overflow-y: auto; 
+  overflow-y: auto;
 }
 
 .group-list a {
