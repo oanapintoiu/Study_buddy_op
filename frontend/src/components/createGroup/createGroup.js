@@ -81,8 +81,6 @@ const CreateGroup = () => {
 
       if (response.ok) {
         navigate('/posts');
-        // Group creation was successful
-        // Handle any necessary logic or show a success message
       } else if (response.status === 401) {
         throw new Error('Unauthorized: Please log in');
       } else {
@@ -90,7 +88,6 @@ const CreateGroup = () => {
       }
     } catch (error) {
       console.error('Error creating group:', error);
-      // Handle the unauthorized error here, e.g., redirect to login page
     } 
   };
 

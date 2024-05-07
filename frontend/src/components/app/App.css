@@ -1,5 +1,5 @@
 .app-body {
-  margin: 0 auto;
+  margin: auto;
   width: 840px;
   display: flex;
   flex-direction: column;
@@ -11,8 +11,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to bottom, #e493d975, hsla(213, 85%, 65%, 0.348));
-  margin: 0;
+  background: linear-gradient(to bottom, #ebe5eb75, hsla(210, 4%, 22%, 0.348));
+  margin: 0% 0% 0% 0%;
   padding: 0;
   font-family: Arial, sans-serif;
 }
@@ -28,7 +28,7 @@ body {
 }
 
 .studdybuddy-color-blue {
-  color: #5f81f2;
+  color: #3f51b5;
 }
 
 .studdybuddy-color-white {

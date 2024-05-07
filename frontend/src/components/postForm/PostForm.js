@@ -1,11 +1,11 @@
-// import React, { useState } from 'react';
-// import './PostForm.css';
-// import Button from '@mui/material/Button'
-// import SendIcon from '@mui/icons-material/Send' 
+import React, { useState } from 'react';
+import './PostForm.css';
+import Button from '@mui/material/Button'
+import SendIcon from '@mui/icons-material/Send' 
 
 const PostForm = ({ handlePostChange, handleSubmit, newPost, handleAskAI, loading }) => {
   const handleAskButtonClick = () => {
-    handleAskAI(newPost); // You pass newPost into handleAskAI here
+    handleAskAI(newPost); 
   };
 
   return (

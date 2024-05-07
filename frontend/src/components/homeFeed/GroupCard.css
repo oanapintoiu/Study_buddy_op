@@ -3,8 +3,8 @@
   border-radius: 15px;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  max-width: 250px; /* Define the maximum width of the card */
-  margin: auto; /* Center the card */
+  max-width: 250px; 
+  margin: auto; 
 }
 
 .MuiCard-root:hover {
@@ -25,7 +25,7 @@
 }
 
 .MuiCardContent-root {
-  padding: 20px; /* Increase padding inside the card */
+  padding: 20px; 
 }
 
 .chatIcon {

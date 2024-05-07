@@ -37,7 +37,7 @@ const LogInForm = ({ navigate }) => {
       let cookieValue =
         encodeURIComponent("token") + "=" + encodeURIComponent(data.token);
       cookieValue += "; expires=" + expirationDate.toUTCString();
-      cookieValue += "; path=/"; // Optional: set the cookie path
+      cookieValue += "; path=/"; 
 
       document.cookie = cookieValue;
 

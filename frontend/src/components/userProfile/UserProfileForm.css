@@ -1,6 +1,10 @@
-.UserProfileForm-root {
+.UserProfileForm-container {
   display: flex;
   gap: 1rem;
+  margin-left: 75px;
+  margin-right: -140px;
+  justify-content: center;
+  margin-top: -20%;
 }
 
 .UserProfileForm-card {
@@ -15,7 +19,7 @@
 
 .UserProfileForm-title {
   color: #333;
-  font-weight: 500;
+  font-weight: bold;
   margin-bottom: 1rem;
 }
 
@@ -50,5 +54,5 @@
 }
 
 .UserProfileForm-button:hover {
-  background-color: #304fe0;
+  background-color: #002984;
 }

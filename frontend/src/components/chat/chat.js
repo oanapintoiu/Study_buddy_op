@@ -43,14 +43,14 @@ const Chat = ({ posts, username, handlePostChange, handleSubmit, newPost, handle
 
   return (
     <div>
-      <Grid container></Grid>
+      <Grid container style={{ paddingLeft: '57px' }}>
       <Grid container component={Paper} className='chatSection'>
-        <Grid item xs={20}>
+        <Grid item xs={12}>
           <List className="messageArea">
             {posts.map((post, index) => (
               <ListItem key={index}>
                 <Grid container>
-                  <Grid item xs={12} align={post.user?.username === username ? 'left' : 'right'}>
+                  <Grid item xs={11.8} align={post.user?.username === username ? 'right' : 'left'}>
                     <ListItemIcon>
                       {post.ai_question ? <Avatar sx={{ width: 40, height: 40 }} alt="Sheldon AI" src="https://res.cloudinary.com/dmkipvd8d/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1686121855/sheldon_640x480_41478610926_d6r4bh.jpg" />
                       :
@@ -101,6 +101,7 @@ const Chat = ({ posts, username, handlePostChange, handleSubmit, newPost, handle
             {loading && <p>Sheldon is thinking...</p>}
           </Grid>
         </Grid>
+      </Grid>
       </Grid>
     </div>
   );

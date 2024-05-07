@@ -70,13 +70,11 @@ const StudyGroup = () => {
     })
       .then(response => response.json())
       .then(data => {
-        // Handle the response if needed
         console.log(data);
         navigate(`/posts`)
       })
       .catch(error => {
         console.error('Error leaving group:', error);
-        // Handle errors
       });
   };
 
@@ -91,13 +89,11 @@ const StudyGroup = () => {
     })
       .then(response => response.json())
       .then(data => {
-        // Handle the response if needed
         console.log(data);
         navigate(`/posts`)
       })
       .catch(error => {
         console.error('Error deleting group:', error);
-        // Handle errors
       });
   };
 
@@ -115,7 +111,7 @@ const StudyGroup = () => {
         message: newPost,
         group: groupId,
         user: username,
-      }), // Add the group ID when creating a new post
+      }),
     })
       .then((response) => response.json())
       .then(async (data) => {
@@ -143,8 +139,8 @@ const StudyGroup = () => {
     const data = await response.json();
 
     const PostAI = {
-      message: data.message,  // data directly contains the AI message.
-      group: groupId, // Add the group ID when creating an AI post
+      message: data.message,  
+      group: groupId, 
       ai_question: postText.toString(),
     };
 
@@ -154,7 +150,7 @@ const StudyGroup = () => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       },
-      body: JSON.stringify(PostAI)  // Wrap newPostAI inside an object
+      body: JSON.stringify(PostAI)  
     })
       .then(response => response.json())
       .then(async data => {
@@ -238,7 +234,7 @@ const StudyGroup = () => {
     );
   } else {
     navigate("/signin");
-    return null; // Return null if not logged in to avoid rendering anything
+    return null; 
   }
   
 };

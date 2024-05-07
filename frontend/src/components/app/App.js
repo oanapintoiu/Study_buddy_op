@@ -11,15 +11,12 @@ import Feed from '../homeFeed/feed'
 import CreateGroup from '../createGroup/createGroup';
 import { useNavigate, Routes, Route } from "react-router-dom";
 import StudyGroup from '../studyGroup/StudyGroup';
-// import UserProfileForm from '../userProfile/UserProfileForm';
-// import StudyGroup from '../studyGroup/StudyGroup';
 
 const App = () => {
   const navigate = useNavigate();
   const [token, setToken] = useState(window.localStorage.getItem("token"));
 
   useEffect(() => {
-    //this is where we will check if the user is logged in and shows the navbar 
     setToken(window.localStorage.getItem("token"))
   })
     return (

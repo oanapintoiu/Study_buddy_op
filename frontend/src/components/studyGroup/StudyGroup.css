@@ -1,16 +1,21 @@
+
 .group {
   background-color: #8ca0ba;
   color: white;
   font-family: 'Roboto', sans-serif;
-  font-size: 1.5em;
+  font-size: 30px;
   padding: 10px;
+  margin-left: 75px;
+  justify-content: center;
+  margin-top: -25%;
 }
+
 .members-panel {
   position: fixed;
-  bottom: 50px;
+  bottom: 70px;
   right: 20px;
   width: 200px;
-  max-height: 400px;
+  max-height: 200px;
   background-color: #fdfdfd;
   border-radius: 15px;
   padding: 20px;
@@ -32,9 +37,12 @@
 .member {
   margin-bottom: 10px;
   font-size: 1.2em;
+  color: cornflowerblue;
+  font-weight: bold;
+
 }
 .member:hover{
-  color:blue;
+  color:#002984;
   cursor:pointer;
 }
 
@@ -43,7 +51,7 @@
   bottom: 20px;
   right: 20px;
   padding: 10px 20px;
-  background-color: #c1c1be;
+  background-color: #7f8492;
   color: #0d0d0d;
   border: none;
   border-radius: 15px;
@@ -53,7 +61,7 @@
 }
 
 .members-toggle-button:hover {
-  background-color: #6d7171;
+  background-color: #fff;
 }
 
 .leave-group-button, .delete-group-button {
@@ -61,7 +69,7 @@
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background-color: #5f81f2;
+  background-color: #3f51b5;
   color: #ffffff;
   font-size: 16px;
   cursor: pointer;
@@ -70,19 +78,18 @@
 }
 
 .leave-group-button:hover, .delete-group-button:hover {
-  background-color: #e73838;
+  background-color: #002984;
 }
 
 .leave-button-container {
   position: fixed;
-  bottom: 50px;
-  left: 50px;
-  margin-bottom: 30px;
-  
+  bottom: 100px;
+  left: 30px;
+  margin-bottom: 30px; 
 }
 
 .delete-button-container {
   position: fixed;
-  bottom: 30px;
-  left: 50px;
+  bottom: 75px;
+  left: 30px;
 }

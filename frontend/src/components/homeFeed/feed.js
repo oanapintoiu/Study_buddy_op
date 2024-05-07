@@ -78,27 +78,23 @@ const Feed = ({ navigate }) => {
     const selectedCategory = event.target.value;
     setSubjectCategory(selectedCategory);
     setSubCategory('');
-    fetchSubcategories(selectedCategory); // Call fetchSubcategories after updating subjectCategory
+    fetchSubcategories(selectedCategory); 
   };
 
   const createGroup = () => {
-    // Logic to handle creating a group and redirect to another page
     navigate('/create-group')
   }
-  // Frontend code
 
   const handleSearch = (value) => {
-    clearTimeout(searchTimeout); // Clear previous timeout
+    clearTimeout(searchTimeout); 
     const timeout = setTimeout(() => {
       performSearch(value);
-    }, 10); // Set a delay of 500 milliseconds before performing the search
+    }, 10); 
     setSearchTimeout(timeout);
   };
 
   const performSearch = async (value) => {
     try {
-      // Perform the search request here
-      // Use the updated value from the input field
       console.log(value);
 
       const response = await fetch('/groups/filter', {
@@ -126,8 +122,6 @@ const Feed = ({ navigate }) => {
 
   
   const joinGroup = (groupId) => {
-  
-    // Send a request to the backend to join the group
     fetch(`/groups/${groupId}/join`, {
       method: 'POST',
       headers: {
@@ -138,7 +132,6 @@ const Feed = ({ navigate }) => {
     })
       .then(response => response.json())
       .then(data => {
-        // Handle the response if needed
         console.log(data);
         handleSearch()
         navigate(`/groups/${groupId}`)
@@ -148,6 +141,7 @@ const Feed = ({ navigate }) => {
   if(token) {
     return (
       <>
+      <div className="feed-container">
       <div className="studdybuddy">
         <div className='logo-container'>
           <i className="fa-solid fa-users" style={{fontSize:'50px', color: '#5f81f2'}}></i>
@@ -158,7 +152,7 @@ const Feed = ({ navigate }) => {
       <div>
         <button className="create-study-group" onClick={createGroup}>Create a Study Group</button><br></br><br></br>
         </div>
-        {/* Search Bar */}
+       {/* Search Bar */}
         <div className="search-box">
           <input placeholder='Search for a Study Group'
             className="search-input"
@@ -167,23 +161,20 @@ const Feed = ({ navigate }) => {
               setName(event.target.value);
               handleSearch(event.target.value);
             }}
-          />
-          <button className="search-button" onClick={() => handleSearch(name)}>🔍</button>
-        </div>
-  
-        {/* Filter Button */}
-        <button className="filter-button" onClick={() => setShowFilters(!showFilters)}>
-          FILTER
-        </button>
+            />
+            <button className="filter-button" onClick={() => setShowFilters(!showFilters)}>
+              Filter
+            </button>
+            <button className="search-button" onClick={() => handleSearch(name)}>🔍</button>
+          </div>
   
         {showFilters && (
-          // Only show this filter box if showFilters is true
           <div className="filter-box">
             {/* Category Select */}
             <label>
               Subject Category:
               <select className="select" value={subjectCategory} onChange={handleCategoryChange} required>
-                <option value="">Select Category</option>
+                <option value="">Select</option>
                 {categories.map((category) => (
                   <option key={category._id} value={category._id}>
                     {category.name}
@@ -191,12 +182,11 @@ const Feed = ({ navigate }) => {
                 ))}
               </select>
             </label>
-  
             {/* Sub-Category Select */}
             <label>
               Sub-Category:
               <select className="select" value={subCategory} onChange={(event) => setSubCategory(event.target.value)} required>
-                <option value="">Select Sub-Category</option>
+                <option value="">Select</option>
                 {subcategories.map((subcategory) => (
                   <option key={subcategory._id} value={subcategory._id}>
                     {subcategory.name}
@@ -208,25 +198,22 @@ const Feed = ({ navigate }) => {
             <label>
               Level:
               <br/>
-              <br/>
               <select className="select-level" value={level} onChange={(event) => setLevel(event.target.value)} required>
-                <option value="">Select Level</option>
-                <option value="novice">NOVICE</option>
-                <option value="intermediate">INTERMEDIATE</option>
-                <option value="proficient">PROFICIENT</option>
-                <option value="advanced">ADVANCED</option>
-                <option value="expert">EXPERT</option>
+                <option value="">Select</option>
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="proficient">Proficient</option>
+                <option value="advanced">Advanced</option>
+                <option value="expert">Expert</option>
               </select>
             </label>
-  
             {/* Group Type Select */}
             <label>
               Group Type:
               <select className="select" value={groupType} onChange={(event) => setGroupType(event.target.value)}>
-                <option value="">Select type</option>
+                <option value="">Select</option>
                 <option value="public">Public</option>
                 <option value="private">Private</option>
-
               </select>
             </label>
           </div>
@@ -245,14 +232,13 @@ const Feed = ({ navigate }) => {
           ))}
         </div>
       </div>
+      </div>
     </>
-    )
-          
+    )        
     
   } else {
     navigate('/signup')
     return null;
-    // consider returning something if the user is not logged in??
   }
 }
 export default Feed;

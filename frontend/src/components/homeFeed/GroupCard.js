@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActions } from '@mui/material';
-import { FaRegComment } from 'react-icons/fa';  // Import the icon
+import { FaRegComment } from 'react-icons/fa';  
 import './GroupCard.css'
 
 const GroupCard = ({ group, onJoin }) => {
@@ -19,8 +19,6 @@ const GroupCard = ({ group, onJoin }) => {
         component="img"
         height="90"
         width={'100%'}
-        
-
         image={group.groupCard == null ? 'https://res.cloudinary.com/dmkipvd8d/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1686121855/sheldon_640x480_41478610926_d6r4bh.jpg' : group.groupCard}
         alt="Group"
       />
@@ -29,14 +27,13 @@ const GroupCard = ({ group, onJoin }) => {
           {group.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {/* Insert other group information here */}
         </Typography>
       </CardContent>
       <CardActions sx={{ justifyContent: 'space-between' }}>
         <Button size="small" sx={{color: '#FFFFFF', backgroundColor: '#3f51b5', '&:hover': { backgroundColor: '#002984' } }} onClick={handleJoinClick}>
           Join
         </Button>
-        <FaRegComment size={20} /> {/* This is the chat symbol. Adjust the size as needed */}
+        <FaRegComment size={20} /> 
       </CardActions>
     </Card>
   );
