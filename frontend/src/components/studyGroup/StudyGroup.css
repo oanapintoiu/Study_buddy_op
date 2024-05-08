@@ -1,12 +1,15 @@
 .group {
-  background-color: #8ca0ba;
-  color: white;
-  font-family: "Roboto", sans-serif;
-  font-size: 30px;
-  padding: 10px;
-  margin-left: 75px;
+  background-color: #c1bbbb;
+  color: rgb(83, 81, 81);
+  font-family: "Kalam";
+  text-align: center;
+  font-size: 20px;
   justify-content: center;
-  margin-top: -25%;
+  border-radius: 10px;
+  width: 10.5%;
+  position: fixed;
+  top: 2%;
+  left: 16%;
 }
 
 .members-panel {
@@ -50,13 +53,13 @@
   bottom: 20px;
   right: 20px;
   padding: 10px 20px;
-  background-color: #7f8492;
-  color: #0d0d0d;
+  background-color: #c1bbbb;
+  color: rgb(83, 81, 81);
   border: none;
   border-radius: 15px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
-  z-index: 20;
+  z-index: 999;
 }
 
 .members-toggle-button:hover {

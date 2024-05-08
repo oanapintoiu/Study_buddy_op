@@ -1,7 +1,7 @@
 .sidebar {
   width: 140px;
   height: 100vh;
-  background-color: #f4f4f4;
+  background-color: #e4dddd;
   position: fixed;
   top: 0;
   left: 0;
@@ -93,7 +93,7 @@
 }
 
 .group-list {
-  width: 100%;
+  width: 120%;
   color: #333;
   max-height: 125px;
   overflow-y: auto;
@@ -105,7 +105,7 @@
   color: #3f51b5;
   padding: 10px 10px 10px 10px;
   transition: background-color 0.2s ease;
-  margin-left: 25px;
+  margin-left: 15px;
 }
 
 .group-list a:hover {

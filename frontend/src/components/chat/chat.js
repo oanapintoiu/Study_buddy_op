@@ -118,7 +118,14 @@ const Chat = ({
                 />
               </Grid>
               <Grid item xs={1} align="right">
-                <Fab onClick={submitForm} color="primary" aria-label="add">
+                <Fab
+                  onClick={submitForm}
+                  style={{
+                    zIndex: "1",
+                  }}
+                  color="primary"
+                  aria-label="add"
+                >
                   <SendIcon />
                 </Fab>
               </Grid>

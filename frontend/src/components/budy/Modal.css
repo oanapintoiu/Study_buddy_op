@@ -39,9 +39,6 @@
   cursor: pointer;
 }
 
-/* Add your own styles for Budy inside the modal */
 .user-profile-card {
-  width: 100%; /* Make it take up the entire width of the modal */
+  width: 100%;
 }
-
-/* You can add more styles as needed */

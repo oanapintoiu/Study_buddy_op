@@ -143,133 +143,132 @@ const Feed = ({ navigate }) => {
   if (token) {
     return (
       <>
-        <div className="feed-container">
-          <div className="studdybuddy">
-            <div className="logo-container">
-              <i
-                className="fa-solid fa-users"
-                style={{ fontSize: "50px", color: "#5f81f2" }}
-              ></i>
-            </div>
-            <h1 className="studdybuddy-color-white studdybuddy-font">
-              study buddy
-            </h1>
+        <div className="studdybuddy">
+          <div className="logo-container">
+            <i
+              className="fa-solid fa-users"
+              style={{ fontSize: "35px", color: "#5f81f2" }}
+            ></i>
           </div>
+          <h1 className="studdybuddy-color-white studdybuddy-font">
+            study buddy
+          </h1>
+        </div>
+        <div className="feed-container"></div>
+        <div>
           <div>
-            <div>
-              <button className="create-study-group" onClick={createGroup}>
-                Create a Study Group
-              </button>
-              <br></br>
-              <br></br>
+            <button className="create-study-group" onClick={createGroup}>
+              Create a Study Group
+            </button>
+            <br></br>
+            <br></br>
+          </div>
+          {/* Search Bar */}
+          <div className="search-box">
+            <input
+              placeholder="Search for a Study Group"
+              className="search-input"
+              type="text"
+              onChange={(event) => {
+                setName(event.target.value);
+                handleSearch(event.target.value);
+              }}
+            />
+            <button
+              className="filter-button"
+              onClick={() => setShowFilters(!showFilters)}
+            >
+              Filter
+            </button>
+            <button
+              className="search-button"
+              onClick={() => handleSearch(name)}
+            >
+              🔍
+            </button>
+          </div>
+
+          {showFilters && (
+            <div className="filter-box">
+              {/* Category Select */}
+              <label>
+                Subject Category:
+                <select
+                  className="select"
+                  value={subjectCategory}
+                  onChange={handleCategoryChange}
+                  required
+                >
+                  <option value="">Select</option>
+                  {categories.map((category) => (
+                    <option key={category._id} value={category._id}>
+                      {category.name}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              {/* Sub-Category Select */}
+              <label>
+                Sub-Category:
+                <select
+                  className="select"
+                  value={subCategory}
+                  onChange={(event) => setSubCategory(event.target.value)}
+                  required
+                >
+                  <option value="">Select</option>
+                  {subcategories.map((subcategory) => (
+                    <option key={subcategory._id} value={subcategory._id}>
+                      {subcategory.name}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <label>
+                Level:
+                <br />
+                <select
+                  className="select-level"
+                  value={level}
+                  onChange={(event) => setLevel(event.target.value)}
+                  required
+                >
+                  <option value="">Select</option>
+                  <option value="beginner">Beginner</option>
+                  <option value="intermediate">Intermediate</option>
+                  <option value="proficient">Proficient</option>
+                  <option value="advanced">Advanced</option>
+                  <option value="expert">Expert</option>
+                </select>
+              </label>
+              {/* Group Type Select */}
+              <label>
+                Group Type:
+                <select
+                  className="select"
+                  value={groupType}
+                  onChange={(event) => setGroupType(event.target.value)}
+                >
+                  <option value="">Select</option>
+                  <option value="public">Public</option>
+                  <option value="private">Private</option>
+                </select>
+              </label>
             </div>
-            {/* Search Bar */}
-            <div className="search-box">
-              <input
-                placeholder="Search for a Study Group"
-                className="search-input"
-                type="text"
-                onChange={(event) => {
-                  setName(event.target.value);
-                  handleSearch(event.target.value);
-                }}
-              />
-              <button
-                className="filter-button"
-                onClick={() => setShowFilters(!showFilters)}
-              >
-                Filter
-              </button>
-              <button
-                className="search-button"
-                onClick={() => handleSearch(name)}
-              >
-                🔍
-              </button>
-            </div>
+          )}
 
-            {showFilters && (
-              <div className="filter-box">
-                {/* Category Select */}
-                <label>
-                  Subject Category:
-                  <select
-                    className="select"
-                    value={subjectCategory}
-                    onChange={handleCategoryChange}
-                    required
-                  >
-                    <option value="">Select</option>
-                    {categories.map((category) => (
-                      <option key={category._id} value={category._id}>
-                        {category.name}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                {/* Sub-Category Select */}
-                <label>
-                  Sub-Category:
-                  <select
-                    className="select"
-                    value={subCategory}
-                    onChange={(event) => setSubCategory(event.target.value)}
-                    required
-                  >
-                    <option value="">Select</option>
-                    {subcategories.map((subcategory) => (
-                      <option key={subcategory._id} value={subcategory._id}>
-                        {subcategory.name}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-
-                <label>
-                  Level:
-                  <br />
-                  <select
-                    className="select-level"
-                    value={level}
-                    onChange={(event) => setLevel(event.target.value)}
-                    required
-                  >
-                    <option value="">Select</option>
-                    <option value="beginner">Beginner</option>
-                    <option value="intermediate">Intermediate</option>
-                    <option value="proficient">Proficient</option>
-                    <option value="advanced">Advanced</option>
-                    <option value="expert">Expert</option>
-                  </select>
-                </label>
-                {/* Group Type Select */}
-                <label>
-                  Group Type:
-                  <select
-                    className="select"
-                    value={groupType}
-                    onChange={(event) => setGroupType(event.target.value)}
-                  >
-                    <option value="">Select</option>
-                    <option value="public">Public</option>
-                    <option value="private">Private</option>
-                  </select>
-                </label>
-              </div>
-            )}
-
-            <div id="feed" role="feed">
-              <Grid container spacing={3}>
-                {groups.map((group) => (
-                  <Grid item xs={12} sm={6} md={4} lg={3} key={group._id}>
-                    <GroupCard group={group} onJoin={joinGroup} />
-                  </Grid>
-                ))}
-              </Grid>
-              {posts.map((post) => (
-                <Post post={post} key={post._id} />
+          <div id="feed" role="feed">
+            <Grid container spacing={3}>
+              {groups.map((group) => (
+                <Grid item xs={12} sm={6} md={4} lg={3} key={group._id}>
+                  <GroupCard group={group} onJoin={joinGroup} />
+                </Grid>
               ))}
-            </div>
+            </Grid>
+            {posts.map((post) => (
+              <Post post={post} key={post._id} />
+            ))}
           </div>
         </div>
       </>

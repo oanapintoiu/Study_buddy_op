@@ -1,6 +1,6 @@
 .user-fullname {
   margin-top: 15px;
-  font-size: 2em; /* Increase the font size */
+  font-size: 2em;
   font-weight: bold;
   padding-right: 180px;
 }
@@ -8,13 +8,13 @@
 .user-username,
 .user-email {
   margin: 10px 0;
-  font-size: 1.2em; /* Increase the font size */
+  font-size: 1.2em;
   color: gray;
 }
 
 .groups-title {
   margin-top: 25px;
-  font-size: 1.3em; /* Increase the font size */
+  font-size: 1.3em;
   font-weight: bold;
   font-style: oblique;
 }
@@ -26,6 +26,6 @@
 
 .group-name {
   margin: 6px 0;
-  font-size: 1.1em; /* Increase the font size */
+  font-size: 1.1em;
   color: darkblue;
 }
