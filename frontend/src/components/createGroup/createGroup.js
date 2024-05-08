@@ -151,11 +151,11 @@ const CreateGroup = () => {
             required
           >
             <option value="">Select Level</option>
-            <option value="novice">NOVICE</option>
-            <option value="intermediate">INTERMEDIATE</option>
-            <option value="proficient">PROFICIENT</option>
-            <option value="advanced">ADVANCED</option>
-            <option value="expert">EXPERT</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="proficient">Proficient</option>
+            <option value="advanced">Advanced</option>
+            <option value="expert">Expert</option>
           </select>
           <br />
           <label>Group Party Size:</label>
