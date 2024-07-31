@@ -84,7 +84,7 @@ const Chat = ({
                       {post.user ? (
                         <>
                           <ListItemText
-                            sx={{ color: "#003D79" }}
+                            sx={{ color: "var(--main-color)" }}
                             primary={post.user.username}
                           />
                           <ListItemText primary={post.message} />
@@ -92,7 +92,7 @@ const Chat = ({
                       ) : (
                         <>
                           <ListItemText
-                            sx={{ color: "#003D79" }}
+                            sx={{ color: "var(--main-color)" }}
                             primary={getDefaultUser().username}
                           />
                           <ListItemText primary={post.message} />
@@ -121,11 +121,11 @@ const Chat = ({
                 <Fab
                   onClick={submitForm}
                   sx={{
-                    bgcolor: '#003D79', 
-                    '&:hover': {
-                      bgcolor: '#00B2A9', 
+                    bgcolor: "var(--main-color)",
+                    "&:hover": {
+                      bgcolor: "var(--hover-color)",
                     },
-                    color: 'white',
+                    color: "white",
                   }}
                   color="primary"
                   aria-label="add"

@@ -1,27 +1,21 @@
 .MuiCard-root {
-  background-color: #fff;
+  background-color: var(--main-white);
   border-radius: 15px;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
   max-width: 250px;
   margin: auto;
   flex-wrap: wrap;
 }
 
-.MuiCard-root:hover {
-  transform: translateY(-5px);
-}
-
 .MuiTypography-h6 {
-  color: #333;
+  color: var(--main-dark-color);
   font-weight: 500;
 }
 
 .MuiTypography-body2 {
-  color: #333333;
+  color: var(--main-dark-color);
 }
 
 .MuiCardContent-root {
   padding: 20px;
 }
-

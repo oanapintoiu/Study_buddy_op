@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   padding: 2em;
-  background-color: #f9f9f9;
+  background-color: var(--main-white);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   margin-left: 75px;
   margin-right: -140px;
@@ -11,15 +11,10 @@
 
 .create-group-container {
   width: 60%;
-  background-color: #f9f9f9;
+  background-color: var(--main-white);
   padding: 2em;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
-
-.create-group-container h2 {
-  text-align: center;
-  color: #000000;
 }
 
 .create-group-container form {
@@ -29,8 +24,7 @@
 }
 
 .create-group-container label {
-  margin-bottom: 0.5em;
-  color: #000000;
+  color: var(--main-dark-color);
 }
 
 .create-group-container input,
@@ -45,8 +39,8 @@
 .create-group-container button {
   padding: 0.5em 1em;
   margin-top: 1em;
-  background-color: #003D79;
-  color: #f9f9f9;
+  background-color: var(--main-color);
+  color: var(--main-white);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -61,5 +55,12 @@
 }
 
 .create-group-container button:hover {
-  background-color: #00B2A9;
+  background-color: var(--hover-color);
+}
+
+h2 {
+  font-family: "Orbitron", sans-serif;
+  color: var(--main-color);
+  font-size: 2em;
+  text-align: center;
 }

@@ -143,7 +143,7 @@ const Feed = ({ navigate }) => {
   if (token) {
     return (
       <>
-        <h1 className="study-buddy-heading">Study Buddy</h1>
+        <h1 className="heading">Study Buddy</h1>
 
         <div className="feed-container"></div>
         <div>

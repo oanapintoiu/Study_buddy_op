@@ -1,7 +1,7 @@
 .sidebar {
   width: 140px;
   height: 100vh;
-  background-color: #E0E0E0;
+  background-color: var(--main-light-grey);
   position: fixed;
   top: 0;
   left: 0;
@@ -21,9 +21,9 @@
 
 .username {
   margin-bottom: 2em;
-  font-size: 1em;
-  font-family: 'Orbitron', sans-serif;
-  color: #003D79;
+  font-size: 1.5em;
+  font-family: "Orbitron", sans-serif;
+  color: var(--main-color);
   text-align: center;
   font-weight: bold;
 }
@@ -33,7 +33,7 @@
   width: 100%;
   padding: 1em 0;
   text-decoration: none;
-  color: #333;
+  color: var(--main-dark-color);
   display: flex;
   align-items: center;
   transition: background-color 0.2s ease;
@@ -45,11 +45,19 @@
 .side-bar-item i,
 .dropbtn i {
   margin-right: 1em;
+  color: var(--main-color);
+  font-size: 1.1em;
+}
+
+.study-groups i {
+  margin-right: 0.5em;
+  color: var(--main-color);
+  font-size: 1.1em;
 }
 
 .dropdown-content a:hover {
-  background-color: #00B2A9;
-  color: white;
+  background-color: var(--hover-color);
+  color: var(--main-white);
 }
 
 .dropdown {
@@ -61,20 +69,20 @@
 .dropdown-content {
   display: none;
   position: absolute;
-  min-width: 100px;
+  min-width: 0px;
   box-shadow: 0px 8px 16px 0px rgba(72, 66, 249, 0.2);
   z-index: 1;
-  background-color: #fdfbfb;
+  background-color: var(--main-white);
   width: 100%;
   top: 80%;
 }
 
 .dropdown-content a {
-  color: #333;
+  color: var(--main-dark-color);
   padding: 0.8em;
   text-decoration: none;
   display: block;
-  background-color: #f4f4f4;
+  background-color: var(--main-white);
 }
 
 .dropdown:hover .dropdown-content {
@@ -83,19 +91,19 @@
 
 .study-groups {
   width: 100%;
-  color: #333;
+  color: var(--main-dark-color);
   padding-top: 1em;
 }
 
 .group-title {
   font-size: 1em;
-  color: #333;
+  color: var(--main-dark-color);
   margin-bottom: 0.5em;
 }
 
 .group-list {
   width: 120%;
-  color: #333;
+  color: var(--main-dark-color);
   max-height: 125px;
   overflow-y: auto;
 }
@@ -103,16 +111,16 @@
 .group-list a {
   display: block;
   text-decoration: none;
-  color: #003D79;
+  color: var(--main-color);
   font-weight: 700;
   padding: 10px 10px 10px 10px;
   transition: background-color 0.2s ease;
-  margin-left: 15px;
+  margin-left: 25px;
 }
 
 .group-list a:hover {
-  background-color: #00B2A9;
-  color: white;
+  background-color: var(--hover-color);
+  color: var(--main-white);
 }
 
 .sidebar .side-bar-item:last-child {

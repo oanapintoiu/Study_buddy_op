@@ -17,7 +17,7 @@ const GroupCard = ({ group, onJoin }) => {
         maxWidth: 345,
         marginBottom: "1rem",
         borderRadius: "15px",
-        boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.1)",
+        boxShadow: "0px 8px 16px 0px rgba(72, 66, 249, 0.25);",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -43,9 +43,10 @@ const GroupCard = ({ group, onJoin }) => {
         <Button
           size="small"
           sx={{
-            color: "#F9f9f9",
-            backgroundColor: "#003D79",
-            "&:hover": { backgroundColor: "#00B2A9" },
+            color: "var(--main-white)",
+            backgroundColor: "var(--main-color)",
+            textTransform: "none",
+            "&:hover": { backgroundColor: "var(--hover-color)" },
           }}
           onClick={handleJoinClick}
         >

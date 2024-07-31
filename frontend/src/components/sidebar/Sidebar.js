@@ -72,7 +72,7 @@ const Sidebar = ({ navigate }) => {
       <br />
       <br />
 
-      <a href="#" onClick={logout} className="side-bar-item">
+      <a href="#" onClick={logout} className="side-bar-item logout">
         <i className="fa fa-sign-out-alt"></i> Logout
       </a>
     </div>

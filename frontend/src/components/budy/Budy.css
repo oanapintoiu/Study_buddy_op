@@ -27,5 +27,5 @@
 .group-name {
   margin: 6px 0;
   font-size: 1.1em;
-  color: #003D79;
+  color: var(--main-color);
 }

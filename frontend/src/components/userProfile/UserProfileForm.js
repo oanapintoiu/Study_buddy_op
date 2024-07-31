@@ -116,7 +116,7 @@ const UserProfileForm = ({ navigate }) => {
   return (
     <div className="UserProfileForm-container">
       <div className="UserProfileForm-card">
-        <h1 className="UserProfileForm-title">Update Profile: {username}</h1>
+        <h1 className="UserProfileForm-title">Update Profile</h1>
         <form className="UserProfileForm-form" onSubmit={handleSubmit}>
           {successMessage && <p>{successMessage}</p>}
           <div className="UserProfileForm-input">
