@@ -1,31 +1,43 @@
 .login-container {
   width: 350px;
-  padding: 20px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 90%;
+  padding: 0 10px 20px;
+  background-color: #F9F9F9;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 400px;
-  width: 90%;
   height: auto;
-  border-radius: 8px;
-  border: 1px solid #797373;
-  padding: 20px;
-  margin: 30px auto;
+  border: 1px solid #333333;
+  margin: auto;
 }
 
 .login-container #submit:hover {
-  background-color: #002984;
+  background-color: #00B2A9;
+}
+
+.study-buddy-heading {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 36px;
+  color: #003D79;
+  margin-bottom: -10px;
 }
 
 .additional-text {
-  font-size: 14px;
-  color: #888;
-  margin-bottom: 30px;
+  font-size: 17px;
+  font-family: 'Roboto', sans-serif;
+  color: #333333;
+  margin-bottom: 40px;
+}
+
+.form {
+  width: 99%;
+  max-width: 400px; 
+  margin: auto;
 }
 
 .form .input-group {
@@ -34,59 +46,23 @@
 
 .form input[type="text"],
 .form input[type="password"] {
-  width: 94%;
-  padding: 10px;
+  width: 90%;
+  padding: 5px;
   border: none;
   border-bottom: 2px solid #888;
-  font-size: 16px;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
   color: #333;
   outline: none;
-  margin: 0 0 20px 0;
+  margin-bottom: 20px;
 }
 
 .form input[type="submit"] {
-  width: 100%;
+  width: 93%;
   padding: 10px;
   border: none;
-  background-color: #888;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-
-.login-container {
-  width: 350px;
-  padding: 20px;
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.study-buddy-heading {
-  font-size: 36px;
-  color: #3f51b5;
-  margin-bottom: 20px;
-}
-
-.additional-text {
-  font-size: 14px;
-  color: #888;
-  margin-bottom: 30px;
-}
-
-.form .input-group {
-  margin-bottom: 20px;
-}
-
-.form input[type="submit"] {
-  width: 107%;
-  padding: 15px;
-  border: none;
-  background-color: #3f51b5;
-  color: white;
+  background-color: #003D79;
+  color: #F9F9F9;
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
@@ -96,20 +72,18 @@
 .create-account-button {
   border: none;
   background: none;
-  color: #888;
+  color: #333333;
   font-size: 14px;
   cursor: pointer;
 }
 
 .background-login::before {
   content: "";
-  background-image: url("http://localhost:3000/img/bg-login.webp");
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)),
+  url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHN0dWR5JTIwZ3JvdXB8ZW58MHwwfDB8fHwy")
+    no-repeat center bottom / cover fixed;
   background-size: cover;
-  opacity: 0.5;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  inset: 0;
   position: absolute;
   z-index: -1;
 }

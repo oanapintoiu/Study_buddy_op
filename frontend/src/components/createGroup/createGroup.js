@@ -179,7 +179,7 @@ const CreateGroup = () => {
             <option value="public">Public</option>
           </select>
           <br />
-          <label>Image URL:</label>
+          <label>Upload Study Group Photo:</label>
           <input
             placeholder="Card Photo"
             id="group-card-file"

@@ -11,20 +11,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(244, 238, 234);
-  margin: 0% 0% 0% 0%;
-  padding: 0;
-  font-family: Arial, sans-serif;
+  background-color: #F9F9F9;
+  margin: 0%;
+  padding: 0%;
+  font-family: "Roboto", sans-serif;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Kalam&display=swap");
-.studdybuddy-font {
-  font-family: "Kalam";
-  text-align: center;
-  padding: 20px;
-  display: inline-block;
-  margin: 0 auto;
-  letter-spacing: 2px;
-}
+
 
 

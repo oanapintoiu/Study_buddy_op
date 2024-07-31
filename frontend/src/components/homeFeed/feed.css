@@ -15,14 +15,14 @@
 }
 
 #feed article {
-  border-bottom: 1px solid #fbf8f8;
+  border-bottom: 1px solid #F9F9F9;
   padding: 1em 0;
 }
 
 .feedButton {
-  background-color: #3f51b5;
+  background-color: #003D79;
   border: none;
-  color: white;
+  color: #F9F9F9;
   padding: 9px 25px;
   text-align: center;
   text-decoration: dotted;
@@ -33,17 +33,13 @@
   margin-top: 10px;
 }
 
-.feedButton:hover {
-  background-color: #002984;
-}
-
 .textarea-wrapper {
   position: relative;
   width: 100%;
 }
 
 .sendButton {
-  color: white;
+  color: #F9F9F9;
   text-align: center;
   font-size: 1em;
   cursor: pointer;
@@ -86,7 +82,7 @@ textarea {
   width: 70%;
   margin-top: 14%;
   margin-left: 22%;
-  background-color: white;
+  background-color: #F9F9F9;
   padding: 15px;
   border-radius: 16px;
   font-size: 15px;
@@ -142,8 +138,10 @@ textarea {
 }
 
 .filter-button:hover,
-.search-button:hover {
-  background-color: #a4a7a4;
+.search-button:hover,
+.feedButton:hover,
+.create-study-group:hover{
+  background-color: #00B2A9;
 }
 
 .create-study-group {
@@ -151,18 +149,14 @@ textarea {
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background-color: #3f51b5;
-  color: #ffffff;
+  background-color: #003D79;
+  color: #f9f9f9;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
   left: 23.7%;
   top: 12%;
   position: fixed;
-}
-
-.create-study-group:hover {
-  background-color: #002984;
 }
 
 .logo-container {
@@ -173,16 +167,14 @@ textarea {
   right: 10px;
 }
 
-.studdybuddy {
+.study-buddy-heading {
+  padding-right: 15%;
   text-align: center;
-  font-size: 16px;
   transition: background-color 0.3s;
   position: absolute;
   top: 0px;
-  right: calc(50% - 720px);
+  right: calc(43% - 720px);
   width: 380px;
+  position: fixed;
 }
 
-.studdybuddy-color-white {
-  color: rgb(83, 81, 81);
-}

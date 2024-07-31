@@ -60,8 +60,7 @@ const LogInForm = ({ navigate }) => {
       <div className="login-container">
         <h1 className="study-buddy-heading studdybuddy-font">Study Buddy</h1>
         <p className="additional-text">
-          Welcome to Study Buddy, your perfect companion for productive
-          collaboration!
+            The Big Bang of Learning!
         </p>
         <form onSubmit={handleSubmit} className="form">
           <div className="input-group">

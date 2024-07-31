@@ -8,7 +8,7 @@
 }
 
 .UserProfileForm-card {
-  background-color: #fff;
+  background-color: #f9f9f9;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 1rem;
@@ -45,8 +45,8 @@
 }
 
 .UserProfileForm-button {
-  background-color: #3f51b5;
-  color: #fff;
+  background-color: #003D79;
+  color: #f9f9f9;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 5px;

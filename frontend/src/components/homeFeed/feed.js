@@ -143,17 +143,8 @@ const Feed = ({ navigate }) => {
   if (token) {
     return (
       <>
-        <div className="studdybuddy">
-          <div className="logo-container">
-            <i
-              className="fa-solid fa-users"
-              style={{ fontSize: "35px", color: "#5f81f2" }}
-            ></i>
-          </div>
-          <h1 className="studdybuddy-color-white studdybuddy-font">
-            study buddy
-          </h1>
-        </div>
+        <h1 className="study-buddy-heading">Study Buddy</h1>
+
         <div className="feed-container"></div>
         <div>
           <div>

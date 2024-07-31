@@ -1,7 +1,7 @@
 .sidebar {
   width: 140px;
   height: 100vh;
-  background-color: #e4dddd;
+  background-color: #E0E0E0;
   position: fixed;
   top: 0;
   left: 0;
@@ -22,7 +22,8 @@
 .username {
   margin-bottom: 2em;
   font-size: 1em;
-  color: #333;
+  font-family: 'Orbitron', sans-serif;
+  color: #003D79;
   text-align: center;
   font-weight: bold;
 }
@@ -47,7 +48,7 @@
 }
 
 .dropdown-content a:hover {
-  background-color: #3f51b5;
+  background-color: #00B2A9;
   color: white;
 }
 
@@ -60,17 +61,17 @@
 .dropdown-content {
   display: none;
   position: absolute;
-  min-width: 160px;
+  min-width: 100px;
   box-shadow: 0px 8px 16px 0px rgba(72, 66, 249, 0.2);
   z-index: 1;
   background-color: #fdfbfb;
   width: 100%;
-  top: 100%;
+  top: 80%;
 }
 
 .dropdown-content a {
   color: #333;
-  padding: 1em;
+  padding: 0.8em;
   text-decoration: none;
   display: block;
   background-color: #f4f4f4;
@@ -89,7 +90,7 @@
 .group-title {
   font-size: 1em;
   color: #333;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
 }
 
 .group-list {
@@ -102,14 +103,15 @@
 .group-list a {
   display: block;
   text-decoration: none;
-  color: #3f51b5;
+  color: #003D79;
+  font-weight: 700;
   padding: 10px 10px 10px 10px;
   transition: background-color 0.2s ease;
   margin-left: 15px;
 }
 
 .group-list a:hover {
-  background-color: #3f51b5;
+  background-color: #00B2A9;
   color: white;
 }
 

@@ -1,15 +1,15 @@
 .group {
-  background-color: #c1bbbb;
-  color: rgb(83, 81, 81);
-  font-family: "Kalam";
+  background-color: #E0E0E0;
+  color: #333333;
   text-align: center;
-  font-size: 20px;
+  font-size: 1em;
   justify-content: center;
   border-radius: 10px;
-  width: 10.5%;
+  width: 10%;
   position: fixed;
   top: 2%;
   left: 16%;
+  padding: 5px 0px;
 }
 
 .members-panel {
@@ -18,10 +18,10 @@
   right: 20px;
   width: 200px;
   max-height: 200px;
-  background-color: #fdfdfd;
+  background-color: #f9f9f9;
   border-radius: 15px;
   padding: 20px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   overflow-y: auto;
   transform: translateY(100%);
   opacity: 0;
@@ -37,14 +37,20 @@
   visibility: visible;
 }
 
+h3 {
+  font-size: 1.2em;
+  color: #333333;
+}
+
 .member {
   margin-bottom: 10px;
-  font-size: 1.2em;
-  color: cornflowerblue;
+  font-size: 1em;
+  color: #003D79;
   font-weight: bold;
+  font-family: 'Orbitron', sans-serif;
 }
 .member:hover {
-  color: #002984;
+  color: #00B2A9;
   cursor: pointer;
 }
 
@@ -53,8 +59,8 @@
   bottom: 20px;
   right: 20px;
   padding: 10px 20px;
-  background-color: #c1bbbb;
-  color: rgb(83, 81, 81);
+  background-color: #E0E0E0;
+  color: #333333;
   border: none;
   border-radius: 15px;
   cursor: pointer;
@@ -62,9 +68,6 @@
   z-index: 999;
 }
 
-.members-toggle-button:hover {
-  background-color: #fff;
-}
 
 .leave-group-button,
 .delete-group-button {
@@ -72,8 +75,8 @@
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background-color: #3f51b5;
-  color: #ffffff;
+  background-color: #003D79;
+  color: #f9f9f9;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -81,8 +84,9 @@
 }
 
 .leave-group-button:hover,
-.delete-group-button:hover {
-  background-color: #002984;
+.delete-group-button:hover,
+.members-toggle-button:hover {
+  background-color: #00B2A9;
 }
 
 .leave-button-container {

@@ -58,9 +58,7 @@ const SignUpForm = ({ navigate }) => {
       <div className="background-signup"></div>
       <div className="login-container">
         <h1 className="study-buddy-heading studdybuddy-font">Study Buddy</h1>
-        <p className="additional-text">
-          Join Study Buddy, your perfect companion for productive collaboration!
-        </p>
+        <p className="additional-text">Bazinga! Ready to meet Sheldon AI?</p>
         <form onSubmit={handleSubmit} className="form">
           <div className="input-group">
             <input
@@ -89,16 +87,18 @@ const SignUpForm = ({ navigate }) => {
               onChange={handlePasswordChange}
             />
           </div>
-          <div className="input-group">
-            <span>Choose your avatar</span>
-          </div>
-          <div className="input-group">
-            <input
-              placeholder="Avatar"
-              id="avatar-user"
-              type="file"
-              onChange={handleAvatarChange}
-            />
+          <div className="input-container">
+            <div className="input-group label-group">
+              <span>Upload Photo</span>
+            </div>
+            <div className="input-group file-group">
+              <input
+                placeholder="Avatar"
+                id="avatar-user"
+                type="file"
+                onChange={handleAvatarChange}
+              />
+            </div>
           </div>
           <input id="submit" type="submit" value="Submit" />
         </form>

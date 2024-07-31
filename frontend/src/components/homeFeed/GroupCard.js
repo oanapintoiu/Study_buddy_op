@@ -4,7 +4,6 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActions } from "@mui/material";
-import { FaRegComment } from "react-icons/fa";
 import "./GroupCard.css";
 
 const GroupCard = ({ group, onJoin }) => {
@@ -44,15 +43,14 @@ const GroupCard = ({ group, onJoin }) => {
         <Button
           size="small"
           sx={{
-            color: "#FFFFFF",
-            backgroundColor: "#3f51b5",
-            "&:hover": { backgroundColor: "#002984" },
+            color: "#F9f9f9",
+            backgroundColor: "#003D79",
+            "&:hover": { backgroundColor: "#00B2A9" },
           }}
           onClick={handleJoinClick}
         >
           Join
         </Button>
-        <FaRegComment size={20} />
       </CardActions>
     </Card>
   );
