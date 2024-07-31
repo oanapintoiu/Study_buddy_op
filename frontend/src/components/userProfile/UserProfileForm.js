@@ -13,7 +13,6 @@ const UserProfileForm = ({ navigate }) => {
   const [lastName, setLastName] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  const [showCloseButton, setShowCloseButton] = useState(false);
 
   const dropdownRef = useRef(null);
   useEffect(() => {

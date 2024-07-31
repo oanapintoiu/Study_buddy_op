@@ -1,4 +1,3 @@
-//import React from 'react';
 import "./Sidebar.css";
 import Logout from "../auth/Logout";
 import React, { useEffect, useState } from "react";
@@ -72,7 +71,7 @@ const Sidebar = ({ navigate }) => {
       <br />
       <br />
 
-      <a href="#" onClick={logout} className="side-bar-item logout">
+      <a href="#" onClick={logout} className="side-bar-item">
         <i className="fa fa-sign-out-alt"></i> Logout
       </a>
     </div>
