@@ -42,47 +42,47 @@ The project was presented to a live audience as part of our certification requir
 
 1. Sig-in page:
 
-<img src="./img/login.png" alt="Sig-in Page" width="600">
+<img src="./img/login.png" alt="Sig-in Page" >
 
 2. Sign-up page: 
 
-<img src="./img/signup.png" alt="Sign-up Page" width="600">
+<img src="./img/signup.png" alt="Sign-up Page" >
 
 3. Home page: 
 
-<img src="./img/home.png" alt="Home Page" width="600">
+<img src="./img/home.png" alt="Home Page" >
 
 4. Chat page:
 
-<img src="./img/chat.png" alt="Chat Page" width="600">
+<img src="./img/chat.png" alt="Chat Page" >
 
 5. Members window: 
 
-<img src="./img/members.png" alt="members window" width="600">
+<img src="./img/members.png" alt="members window" >
 
 6. Members card:
 
-<img src="./img/card.png" alt="members card" width="600">
+<img src="./img/card.png" alt="members card" >
 
 7. Profile update: 
 
-<img src="./img/profile.png" alt="profile update" width="600">
+<img src="./img/profile.png" alt="profile update" >
 
 8. Group creation: 
 
-<img src="./img/group.png" alt="group creation" width="600">
+<img src="./img/group.png" alt="group creation" >
 
 9. Group Search: 
 
-<img src="./img/search.png" alt="group search" width="600">
+<img src="./img/search.png" alt="group search" >
 
 10. Group filter: 
 
-<img src="./img/filter.png" alt="group filer" width="600">
+<img src="./img/filter.png" alt="group filer" >
 
 11. Table Plus: 
 
-<img src="./img/tableplus.png" alt="tableplus" width="600">
+<img src="./img/tableplus.png" alt="tableplus" >
 
 
 
