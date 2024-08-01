@@ -1,243 +1,248 @@
-# Bank_Tech_Test README
+# Moangoose 
 
 ## Table of Contents
 
-[1. Specifications](#1-specifications)  
-[2. Observations](#2-observations)  
-[3. User Story](#3-user-story)  
-[4. Diagram](#4-diagram)  
-[5. Methodology Implementaion](#5-methodology-implementation)  
-[6. Tickets](#6-tickets)  
-[7. Test Covarage](#7-test-covarage)  
-[8. Screenshots: program tested in terminal](#8-screenshots-program-tested-in-terminal)  
-[9. Instructions](#9-instructions)   
+[Description](#description) | [Features](#features) | [Result](#result) | [Thechnologies](#technologies) | [Installation](#instalation) | [Usage](#usage)
 
-Technologies
+## Description
 
-Technologies
-Here's an overview of the technologies used to build this template application. You don't need to do a deep dive on each one right now. Instead, try to get a feeling for the big picture and then dive into the details when a specific task pushes you in that direction.
+A social media web app, developed as a group project, that enables users to sign up, log in, update their photos, write, edit, like other posts, delete their own posts and much more.
 
-M is for MongoDB
-MongoDB is a NoSQL database program that stores data in collections of documents (in a format similar to JSON), rather than in tables. The application interacts with MongoDB using a tool called Mongoose.
+This project was one of the Makers Academy project where the goup was tasked with working on an existing application. A significant part of the challenge was to familiarise and understand the codebase that was inherited and ultimatly work to **improve and extend** it - which was successfully achieved.
 
-E is for Express
-Express is the Javascript equivalent of Sinatra. The structure of this application will feel quite different to what you're used to but the principles are the same.
+## Features
 
-R is for React
-React is a hugely popular tool that is used to build engaging front ends. The basic principle is that the front end is split up into components, each of which could include some logic, template structure (HTML) and styling (CSS).
+### Existing Features
 
-N is for Node
-Java script was originally designed to run exclusively in browsers, such as Chrome. Node is a tool that allows you to run Javascript outside the browser and its invention made it possible to build full stack Javascript apps.
+- Sign up 
+- Sign in
+- Sign out
+- Upload pictures for user and study group
+- Update user details such as name, email, password and photo
+- Create, delete, join and leave a group
+- Groups can be filtered by category, sub-category, level and group type (public or private)
+- Navbar showing users photo, username, logout button, groups the user is part of, profile and tools link
+- Search bar feature to search specific groups by name
+- Group chat page that ca aceess Sheldon AI (OpenAI API)
+- Members panel in the the group chat that offers information about the members such as photo, username, email address and what other groups they are part of
+- User can stay logged in for up to 24h with the use of user authentication cookies
+
+
+### Features to consider adding
+
+- Hide email address from members area for privacy
+- Request permission to join a private group
+- Add update username feature
+- Make it possible for photo and username to be updated in navbar, not just chat and memebers' area
+- Add more alerts, warnings and security features
+- Being able to delete one's account
+- Standardize code throughout so it follows the same style
+ 
+## Result
+
+1. Sig-in page:
+
+<img src="./img/loading_page.png" alt="Loading Page">
+
+2. Sign-up page: 
+
+<img src="./img/home_page.png" alt="Home Page">
+
+3. Home page: 
+
+<img src="./img/profile.png" alt="Profile Page">
+
+4. Chat page:
+
+<img src="./img/confirmation.png" alt="Delete Acccount Confirmation">
+
+5. Members window: 
+
+<img src="" alt="">
+
+6. Group creation: 
+
+<img src="" alt="">
+
+7. Group filter: 
+
+<img src="" alt="">
+
+8. Group Search: 
+
+<img src="" alt="">
+
+9. Profile update: 
+
+<img src="" alt="">
+
+
+## Technologies
+
+Here's an overview of the technologies used to build this template application:
+
+### **M** is for MongoDB
+[MongoDB](https://www.mongodb.com/) is a _NoSQL_ database program that stores data in collections of documents (in a format similar to JSON), rather than in tables. The application interacts with MongoDB using a tool called Mongoose.
+
+### **E** is for Express
+[Express](https://expressjs.com/) is the Javascript equivalent of Sinatra. The structure of this application will feel quite different to what you're used to but the principles are the same.
+
+### **R** is for React
+[React](https://reactjs.org/) is a hugely popular tool that is used to build engaging front ends. The basic principle is that the front end is split up into _components_, each of which _could_ include some logic, template structure (HTML) and styling (CSS).
+
+### **N** is for Node
+Java script was originally designed to run exclusively in browsers, such as Chrome. [Node](https://nodejs.org/en/) is a tool that allows you to run Javascript outside the browser and its invention made it possible to build full stack Javascript apps.
 
 We also used...
 
-Jest for unit testing on the back end
-Cypress for end-to-end testing and component testing, on the front end
-Mongoose to model objects in MongoDB.
-Handlebars for the home template.
-ESLint for linting.
-Nodemon to reload the server automatically.
-Architecture
-This application is comprised of two distinct pieces.
+- [Jest](https://jestjs.io/) for unit testing on the back end.
+- [Cypress](https://www.cypress.io/) for end-to-end testing and component testing, on the front end.
+- [Mongoose](https://mongoosejs.com) to model objects in MongoDB.
+- [Handlebars](https://handlebarsjs.com/) for the `home` template.
+- [ESLint](https://eslint.org) for linting.
+- [Nodemon](https://nodemon.io/) to reload the server automatically.
+- [Prettier](https://prettier.io/) to format the code.
 
-A backend API built with Express
-A front end built with React
-The React front end sends HTTP requests to the backend API and receives JSON in response body, rather than a whole page of HTML.
+## Instalation
 
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Open index.html in your web browser to view the menu.
 
+## Usage
 
-## 1. Specifications
+### Install Node.js
 
+1. Install Node Version Manager (NVM)
+   ```
+   brew install nvm
+   ```
+   Then follow the instructions to update your `~/.bash_profile`.
+2. Open a new terminal
+3. Install the latest version of [Node.js](https://nodejs.org/en/), currently `18.1.0`.
+   ```
+   nvm install 18
+   ```
 
-#### Requirements
+### Set up your project
 
-* TEXT
+1. Clone to your local machine.
 
+2. Install Node.js dependencies for both FE and BE (API)
+   ```
+   ; cd api
+   ; npm install
+   ; cd ../frontend
+   ; npm install
+   ```
+3. Install an ESLint plugin for your editor. For example: [`linter-eslint`](https://github.com/AtomLinter/linter-eslint) for Atom.
 
-## 2. Observations
+4. Install MongoDB
+   ```
+   brew tap mongodb/brew
+   brew install mongodb-community@5.0
+   ```
+   *Note:* If you see a message that says `If you need to have mongodb-community@5.0 first in your PATH, run:`, follow the instruction. Restart your terminal after this.
 
-*
+5. Start MongoDB
+   ```
+   brew services start mongodb-community@5.0
+   ```
 
-## 3. User Story
+6. Further install requirements: 
 
+-> for use of cookies attached to the client request object: 
+```
+npm install cookie-parser
 ```
 
+-> for parsing, validating, manipulating and disaying dates in JS:
+
+```
+npm install moment --save
+```
+For image upload functionality
+```
+npm install multer
 ```
 
-## 4. Diagram
+### Start
 
-**1. Diagram Version 1**
-<img src="location/picure_name.png"
-alt="Text in case picture does not display">
+1. Start the server
 
-**2. Diagram Version 2**
-<img src="location/picure_name_2.png"
-alt="Text in case picture does not display 2">
+  **Note the use of an environment variable for the JWT secret**
 
+   ```
+   ; cd api
+   ; JWT_SECRET=SUPER_SECRET npm start
+   ```
+2. Start the front end
 
+  In a new terminal session...
 
-## 5. Methodology Implementation
+  ```
+  ; cd frontend
+  ; npm start
+  ```
 
-### Research
+You should now be able to open your browser and go to `http://localhost:3000/signup` to create a new user.
 
-This is how you add a link: [test to link](link).
+Then, after signing up, you should be able to log in by going to `http://localhost:3000/login`.
 
-
-### Controller functionality
-
-1. **User Controller**: 
-
-* All about the `user controller`
-
-2. **Example Controller**:
-
-* 
-
-3. **Example Controller**:
-
-* 
+After logging in, you won't see much but you can create posts using PostMan and they should then show up in the browser if you refresh the page.
 
 ### Testing
 
-1. **User Controller Tests**:
 
-* key notes:
+#### The Backend (API)
 
-* test (PASSED):
-  * test
+**Note the use of an environment variable for the JWT secret**
 
+1. Start the server in test mode (so that it connects to the test DB)
 
-2. **Transaction Controller Tests**:
+  ```
+  ; cd api
+  ; JWT_SECRET=SUPER_SECRET npm run start:test
+  ```
 
-* key notes:
-  * test
+2. Then run the tests in a new terminal session
 
-3. **Statement Controller Tests**:
+  ```
+  ; cd api
+  ; JWT_SECRET=SUPER_SECRET npm run test
+  ```
 
-* print
+#### The frontend (React)
 
-## 6. Tickets
+**Note the use of an environment variable for the JWT secret**
 
+1. Start the server in test mode (so that it connects to the test DB)
 
-## 7. Test Covarage
+  ```
+  ; cd api
+  ; JWT_SECRET=SUPER_SECRET npm run start:test
+  ```
 
-**1. Test coverage:**
+2. Then start the front end in a new terminal session
 
-**1. Screenshot 1**
-<img src="location/picure_name.png"
-alt="Text in case picture does not display">
+  ```
+  ; cd frontend
+  ; JWT_SECRET=SUPER_SECRET npm start
+  ```
 
-**2. Screenshot 2**
-<img src="location/picure_name_2.png"
-alt="Text in case picture does not display 2">
+3. Then run the tests in a new terminal session
 
-**4. ESlint - all errors fixed and cleared:** 
+  ```
+  ; cd frontend
+  ; JWT_SECRET=SUPER_SECRET npm run test
+  ```
 
-Note: in two situations `this` was used to call upon a method ([see here for more details](https://www.w3schools.com/js/js_function_call.asp)) and ESlint gave an error. One was fixed by turning the method into const declaration and the other by using the keyword `static`and turned the (regurlar) method into a static method ([read more here on static methods](https://javascript.info/static-properties-methods)).
+## MongoDB Connection Errors?
 
-**1. Screenshot 1**
-<img src="location/picure_name.png"
-alt="Text in case picture does not display">
+Some people occasionally experience MongoDB connection errors when running the tests or trying to use the application. Here are some tips which might help resolve such issues.
 
-## 8. Screenshots: program tested in terminal
+- Check that MongoDB is installed using `mongo --version`
+- Check that it's running using `brew services list`
 
-**1. Screenshot 1**
-<img src="location/picure_name.png"
-alt="Text in case picture does not display">
+If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
 
-**10. Finished product:**
-
-<img src="location/picure_name.png"
-alt="Text in case picture does not display">
-
-## 9. Instructions
-
-### Running JavaScript
-
-#### Introduction
-
-This program uses Javascript, a dynamic computer programming language and one of the core technologies for developing web page content, alongside HTML and CSS.
-
-For this exercise to be run, a program called Node.js will have to be installed. Node.js is a JavaScript runtime, i.e. it reads JavaScript code and executes it as a programs
-
-<ins> Step 1: Clone this repo to your machine:
-
-```
-# Create a folder/directory where you would like to store the cloned repo: 
-$ mkdir cloned-repo
-
-# Then switch to the newly created directory:
-$ cd cloned-repo
-
-# Inside the new fodler clone the repo, command which will copy all the existing files from the Git repository:
-$ git clone link-to-git-repository
-
-```
-
-<ins> Step 2: Install nvm
-
-Nvm stands for Node Version Manager, a tool that allows you to install and swtich in between different versions of Node.
-NVM is distributed using github - you can find installation instructions for the latest version [here](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```
-# You'll need to run a command that looks like this:
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-
-# Once that step is complete, reload your ~/.zshrc file:
-source ~/.zshrc
-
-# Now you can install Node by running: 
-$ nvm install node
-```
-
-<ins> Step 3: Setting up the project
-
-```
-# When NVM is installed, once can automatically install and use the latest, stable version. You can set up the enviroment by running: 
-$ nvm use node
-
-#The next step would be to set up the folder structure, however this is not required as this has been already done. 
-
-# Initialize NPM project, i.e. create the package.json file: 
-$ npm init -y
-
-# Add the jest package to run tests in the tests directory:
-$ npm add jest
-
-```
-
-<ins> Step 4: Running tests:
-
-```
-# Please check that all tests are running in the test directory before running the program in REPL: 
-$ npx jest
-
-# alternatively try:
-$ jest
-
-
-# To see test coverage then run: 
-$ npx jest --coverage
-
-# alternatively try:
-$ test
-```
-
-<ins> Step 5: Running the program:
-
-__OPTIONN 1__ 
-
-```
-
-```
-
-
-<!-- BEGIN GENERATED SECTION DO NOT EDIT -->
-
----
-
-**How was this resource?**  
-[😫](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/course&prefill_File=individual_challenges/bank_tech_test.md&prefill_Sentiment=😫) [😕](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/course&prefill_File=individual_challenges/bank_tech_test.md&prefill_Sentiment=😕) [😐](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/course&prefill_File=individual_challenges/bank_tech_test.md&prefill_Sentiment=😐) [🙂](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/course&prefill_File=individual_challenges/bank_tech_test.md&prefill_Sentiment=🙂) [😀](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/course&prefill_File=individual_challenges/bank_tech_test.md&prefill_Sentiment=😀)  
-Click an emoji to tell us.
-
-<!-- END GENERATED SECTION DO NOT EDIT -->

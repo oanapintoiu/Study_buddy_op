@@ -90,7 +90,7 @@ textarea {
 .filter-button,
 .search-button {
   border: 1px solid #ccc;
-  background-color: rgb(255 255 255);
+  background-color: var(--main-white);
   color: var(--main-dark-color);
   border-radius: 15px;
   cursor: pointer;

@@ -14,7 +14,8 @@ const GroupCard = ({ group, onJoin }) => {
   return (
     <Card
       sx={{
-        maxWidth: 345,
+        width: 220,
+        height: 200,
         marginBottom: "1rem",
         borderRadius: "15px",
         boxShadow: "0px 8px 16px 0px rgba(72, 66, 249, 0.25);",
@@ -34,10 +35,17 @@ const GroupCard = ({ group, onJoin }) => {
         alt="Group"
       />
       <CardContent sx={{ marginBottom: "0rem" }}>
-        <Typography gutterBottom variant="h6" component="div">
+        <Typography  gutterBottom
+          variant="h6"
+          component="div"
+          sx={{
+            fontFamily: "Roboto, sans-serif",
+            fontSize: "0.9rem", 
+             color: "var(--main-dark-colour)"
+          }}>
           {group.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary"></Typography>
+   
       </CardContent>
       <CardActions sx={{ justifyContent: "space-between" }}>
         <Button
