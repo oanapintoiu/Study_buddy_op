@@ -2,13 +2,13 @@
 
 ## Table of Contents
 
-[Description](#description) | [Features](#features) | [Result](#result) | [Thechnologies](#technologies) | [Installation](#instalation) | [Usage](#usage)
+[Description](#description) | [Features](#features) | [Result](#result) | [Thechnologies](#technologies) | [Installation](#instalation) | [Usage](#usage) | [Disclaimer](#discalimer)
 
 ## Description
 
-A social media web app, developed as a group project, that enables users to sign up, log in, update their photos, write, edit, like other posts, delete their own posts and much more.
+We developed a virtual study group web app as our final group project for Makers Academy. This app allows users to sign up, log in, update their profiles, and create interest-based study groups. Within these groups, users can communicate and collaborate, all while enjoying interactive learning experiences with Sheldon AI.
 
-This project was one of the Makers Academy project where the goup was tasked with working on an existing application. A significant part of the challenge was to familiarise and understand the codebase that was inherited and ultimatly work to **improve and extend** it - which was successfully achieved.
+The project was presented to a live audience as part of our certification requirements. It gained significant attention, coinciding with the emergence of OpenAI and the imminent launch of its share chat feature.
 
 ## Features
 
@@ -42,39 +42,51 @@ This project was one of the Makers Academy project where the goup was tasked wit
 
 1. Sig-in page:
 
-<img src="./img/loading_page.png" alt="Loading Page">
+<img src="./img/login.png" alt="Sig-in Page" width="600">
 
 2. Sign-up page: 
 
-<img src="./img/home_page.png" alt="Home Page">
+<img src="./img/signup.png" alt="Sign-up Page" width="600">
 
 3. Home page: 
 
-<img src="./img/profile.png" alt="Profile Page">
+<img src="./img/home.png" alt="Home Page" width="600">
 
 4. Chat page:
 
-<img src="./img/confirmation.png" alt="Delete Acccount Confirmation">
+<img src="./img/chat.png" alt="Chat Page" width="600">
 
 5. Members window: 
 
-<img src="" alt="">
+<img src="./img/members.png" alt="members window" width="600">
 
-6. Group creation: 
+6. Members card:
 
-<img src="" alt="">
+<img src="./img/card.png" alt="members card" width="600">
 
-7. Group filter: 
+7. Profile update: 
 
-<img src="" alt="">
+<img src="./img/profile.png" alt="profile update" width="600">
 
-8. Group Search: 
+8. Group creation: 
 
-<img src="" alt="">
+<img src="./img/group.png" alt="group creation" width="600">
 
-9. Profile update: 
+9. Group Search: 
 
-<img src="" alt="">
+<img src="./img/search.png" alt="group search" width="600">
+
+10. Group filter: 
+
+<img src="./img/filter.png" alt="group filer" width="600">
+
+11. Table Plus: 
+
+<img src="./img/tableplus.png" alt="tableplus" width="600">
+
+
+
+
 
 
 ## Technologies
@@ -166,6 +178,12 @@ For image upload functionality
 npm install multer
 ```
 
+-> to access Sheldon AI, a .env file must be created in api/controllers and add the following:
+
+```
+OPENAI_API_KEY=insert your own key from OpenAI
+```
+
 ### Start
 
 1. Start the server
@@ -245,4 +263,8 @@ Some people occasionally experience MongoDB connection errors when running the t
 - Check that it's running using `brew services list`
 
 If you have issues that are not resolved by these tips, please reach out to a coach and, once the issue is resolved, we can add a new tip!
+
+## Discalimer
+
+This project, including the integration of "Sheldon AI," was created solely for educational purposes. The use of Sheldon AI and any references to "The Big Bang Theory" are purely for illustrative and creative purposes. This app is a pet project and is not intended for commercial use or distribution. All elements related to Sheldon Cooper and "The Big Bang Theory" are used under fair use for educational and non-commercial purposes only.
 
