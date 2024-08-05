@@ -1,4 +1,4 @@
-# Moangoose 
+# Studt Buddy
 
 ## Table of Contents
 
@@ -6,9 +6,9 @@
 
 ## Description
 
-We developed a virtual study group web app as our final group project for Makers Academy. This app allows users to sign up, log in, update their profiles, and create interest-based study groups. Within these groups, users can communicate and collaborate, all while enjoying interactive learning experiences with Sheldon AI.
+Final group project for Makers Academy, where a virtual study group web app was developed. This app allows users to sign up, log in, update their profiles, and create interest-based study groups. Within these groups, users can communicate and collaborate, enjoying interactive learning experiences with Sheldon AI.
 
-The project was presented to a live audience as part of our certification requirements. It gained significant attention, coinciding with the emergence of OpenAI and the imminent launch of its share chat feature.
+The project was presented to a live audience as part of our certification requirements and gained significant attention, coinciding with the emergence of OpenAI and the imminent launch of its shared chat feature.
 
 ## Features
 
